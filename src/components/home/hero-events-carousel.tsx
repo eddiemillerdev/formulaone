@@ -74,7 +74,7 @@ export function HeroEventsCarousel({ events, variant = "compact", className }: H
             <span className="rounded-full border border-primary/45 bg-primary/15 px-2.5 py-1 text-[11px] uppercase tracking-[0.1em] text-primary">
               Upcoming events
             </span>
-            <p className="mt-3 font-display text-lg uppercase leading-[0.95] tracking-tight text-white md:text-xl">
+            <p className="mt-3 font-display font-black text-lg uppercase leading-[0.95] tracking-tight text-white md:text-xl">
               {current?.name ?? "Event"}
             </p>
             <p className="mt-2 text-sm text-zinc-200">

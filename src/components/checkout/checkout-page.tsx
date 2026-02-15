@@ -301,7 +301,7 @@ export function CheckoutPage() {
 
   if (isLoading) {
     return (
-      <main className="mx-auto w-[min(1180px,92vw)] py-10">
+      <main className="mx-auto w-[min(1280px,95vw)] py-10">
         <Card className="border-border/80 bg-card/80">
           <CardContent className="py-10 text-sm text-muted-foreground">Loading checkout details...</CardContent>
         </Card>
@@ -311,7 +311,7 @@ export function CheckoutPage() {
 
   if (isError || !selectedEvent || !selectedTicket) {
     return (
-      <main className="mx-auto w-[min(1180px,92vw)] py-10">
+      <main className="mx-auto w-[min(1280px,95vw)] py-10">
         <Card className="border-destructive/40 bg-destructive/10">
           <CardContent className="space-y-4 py-10">
             <p className="font-display text-2xl uppercase text-destructive">Package not selected</p>
@@ -331,7 +331,7 @@ export function CheckoutPage() {
   const eventDetailUrl = `/events/${selectedEvent.id}`;
 
   return (
-    <main className="mx-auto w-[min(1180px,92vw)] space-y-6 py-10 pb-20">
+    <main className="mx-auto w-[min(1280px,95vw)] space-y-6 py-10 pb-20">
       <FadeIn className="flex flex-wrap items-center gap-3">
         <Button variant="secondary" className="rounded-full" onClick={() => router.push(eventDetailUrl)}>
           <ArrowLeft className="mr-2 size-4" /> Back to event
@@ -339,14 +339,16 @@ export function CheckoutPage() {
       </FadeIn>
       <FadeIn className="space-y-2">
         <p className="text-xs uppercase tracking-[0.12em] text-muted-foreground">Finalize Booking</p>
-        <h1 className="font-display text-5xl uppercase leading-[0.95] tracking-tight md:text-6xl">Secure Your Race Weekend</h1>
+        <h1 className="font-display font-black text-5xl uppercase leading-[0.95] tracking-tight md:text-6xl">Secure Your Race Weekend</h1>
         <p className="text-muted-foreground">
           {selectedEvent.name} • {selectedEvent.dateLabel}
         </p>
       </FadeIn>
 
       <section className="grid gap-5 lg:grid-cols-[1fr_0.88fr]">
-        <FadeIn>
+        <FadeIn className="space-y-5">
+          <Form {...form}>
+            <form onSubmit={form.handleSubmit(onSubmit)} className="space-y-5">
           <Card className="border-border/80 bg-card/80">
             <CardHeader>
               <CardTitle className="font-display text-3xl uppercase tracking-tight">Guest Details</CardTitle>
@@ -354,9 +356,7 @@ export function CheckoutPage() {
                 {selectedTicket.title} • {formatMoney(selectedTicket.price)} per ticket
               </CardDescription>
             </CardHeader>
-            <CardContent>
-              <Form {...form}>
-                <form onSubmit={form.handleSubmit(onSubmit)} className="space-y-4">
+            <CardContent className="space-y-5">
                   <div className="grid gap-4 md:grid-cols-2">
                     <FormField
                       control={form.control}
@@ -434,174 +434,167 @@ export function CheckoutPage() {
                     )}
                   />
 
-                  <Card className="border-border/70 bg-background/30">
-                    <CardContent className="space-y-3 py-4">
-                      <Label htmlFor="quantity">Quantity</Label>
-                      <Input
-                        id="quantity"
-                        type="number"
-                        min={1}
-                        max={
-                          selectedTicket.isUnlimited
-                            ? undefined
-                            : Math.max(1, selectedTicket.quantityRemaining ?? 20)
-                        }
-                        value={quantity}
-                        onChange={(event) => setQuantity(Number(event.target.value))}
-                        className="rounded-xl"
-                        placeholder="1"
-                      />
+                  <div className="rounded-xl border border-border/70 bg-muted/30 space-y-3 p-4">
+                    <Label htmlFor="quantity">Quantity</Label>
+                    <Input
+                      id="quantity"
+                      type="number"
+                      min={1}
+                      max={
+                        selectedTicket.isUnlimited
+                          ? undefined
+                          : Math.max(1, selectedTicket.quantityRemaining ?? 20)
+                      }
+                      value={quantity}
+                      onChange={(event) => setQuantity(Number(event.target.value))}
+                      className="rounded-xl"
+                      placeholder="1"
+                    />
 
-                      {selectedTicket.addOns && selectedTicket.addOns.length > 0 && (
-                        <div className="grid gap-3 pt-2">
-                          <Label>Optional add-ons</Label>
-                          {selectedTicket.addOns.map((addOn) => {
-                            const sel = selectedAddOns.find((s) => s.addOnId === addOn.id);
-                            const hasOptions = addOn.options && addOn.options.length > 0;
-                            return (
-                              <div key={addOn.id} className="space-y-2 rounded-lg border border-border/50 p-3">
-                                <label className="flex items-center gap-3 text-sm">
-                                  <Checkbox
-                                    checked={!!sel}
-                                    onCheckedChange={(checked) => {
-                                      if (checked) {
-                                        setSelectedAddOns([
-                                          ...selectedAddOns.filter((s) => s.addOnId !== addOn.id),
-                                          { addOnId: addOn.id, quantity: quantity, optionId: hasOptions ? addOn.options?.[0]?.id : undefined },
-                                        ]);
-                                      } else {
-                                        setSelectedAddOns(selectedAddOns.filter((s) => s.addOnId !== addOn.id));
-                                      }
-                                    }}
-                                  />
-                                  <span>{addOn.title}</span>
-                                  <span className="text-muted-foreground">
-                                    +{formatMoney(addOn.price, selectedEvent?.currency?.code)}
-                                    {hasOptions && addOn.options && addOn.options.some((o) => o.priceModifier) && " base"}
-                                  </span>
-                                </label>
-                                {hasOptions && addOn.options && sel && (
-                                  <div className="ml-6 flex flex-wrap gap-2">
-                                    {addOn.options.map((opt) => (
-                                      <label key={opt.id} className="flex items-center gap-2 text-xs">
-                                        <input
-                                          type="radio"
-                                          name={`addon-${addOn.id}-option`}
-                                          checked={sel.optionId === opt.id}
-                                          onChange={() =>
-                                            setSelectedAddOns(
-                                              selectedAddOns.map((s) =>
-                                                s.addOnId === addOn.id ? { ...s, optionId: opt.id } : s,
-                                              ),
-                                            )
-                                          }
-                                        />
-                                        {opt.title}
-                                        {opt.priceModifier !== 0 && ` (${opt.priceModifier > 0 ? "+" : ""}${formatMoney(opt.priceModifier, selectedEvent?.currency?.code)})`}
-                                      </label>
-                                    ))}
-                                  </div>
-                                )}
-                              </div>
-                            );
-                          })}
-                        </div>
-                      )}
-                    </CardContent>
-                  </Card>
-
-                  <Card className="border-border/70 bg-background/30">
-                    <CardHeader className="pb-3">
-                      <CardTitle className="font-display text-2xl uppercase tracking-tight">Ticket Holders</CardTitle>
-                      <CardDescription>
-                        Add one ticket holder per seat ({Math.max(1, quantity)} total).
-                      </CardDescription>
-                      <label className="flex items-center gap-3 text-sm text-muted-foreground">
-                        <Checkbox
-                          checked={copyFromBuyer}
-                          onCheckedChange={(value) => setCopyFromBuyer(Boolean(value))}
-                        />
-                        Copy buyer details to all ticket holders
-                      </label>
-                    </CardHeader>
-                    <CardContent className="space-y-3">
-                      {fields.map((field, index) => (
-                        <Card key={field.id} className="border-border/70 bg-card/70">
-                          <CardHeader className="pb-3">
-                            <CardTitle className="font-display text-lg uppercase tracking-tight">
-                              Ticket Holder #{index + 1}
-                            </CardTitle>
-                          </CardHeader>
-                          <CardContent className="grid gap-3 md:grid-cols-3">
-                            <FormField
-                              control={form.control}
-                              name={`ticketHolders.${index}.firstName` as const}
-                              render={({ field }) => (
-                                <FormItem>
-                                  <FormLabel>First name</FormLabel>
-                                  <FormControl>
-                                    <Input {...field} disabled={copyFromBuyer} className="rounded-xl" placeholder="First name" />
-                                  </FormControl>
-                                  <FormMessage />
-                                </FormItem>
+                    {selectedTicket.addOns && selectedTicket.addOns.length > 0 && (
+                      <div className="grid gap-3 pt-2">
+                        <Label>Optional add-ons</Label>
+                        {selectedTicket.addOns.map((addOn) => {
+                          const sel = selectedAddOns.find((s) => s.addOnId === addOn.id);
+                          const hasOptions = addOn.options && addOn.options.length > 0;
+                          return (
+                            <div key={addOn.id} className="space-y-2 rounded-lg border border-border/50 p-3">
+                              <label className="flex items-center gap-3 text-sm">
+                                <Checkbox
+                                  checked={!!sel}
+                                  onCheckedChange={(checked) => {
+                                    if (checked) {
+                                      setSelectedAddOns([
+                                        ...selectedAddOns.filter((s) => s.addOnId !== addOn.id),
+                                        { addOnId: addOn.id, quantity: quantity, optionId: hasOptions ? addOn.options?.[0]?.id : undefined },
+                                      ]);
+                                    } else {
+                                      setSelectedAddOns(selectedAddOns.filter((s) => s.addOnId !== addOn.id));
+                                    }
+                                  }}
+                                />
+                                <span>{addOn.title}</span>
+                                <span className="text-muted-foreground">
+                                  +{formatMoney(addOn.price, selectedEvent?.currency?.code)}
+                                  {hasOptions && addOn.options && addOn.options.some((o) => o.priceModifier) && " base"}
+                                </span>
+                              </label>
+                              {hasOptions && addOn.options && sel && (
+                                <div className="ml-6 flex flex-wrap gap-2">
+                                  {addOn.options.map((opt) => (
+                                    <label key={opt.id} className="flex items-center gap-2 text-xs">
+                                      <input
+                                        type="radio"
+                                        name={`addon-${addOn.id}-option`}
+                                        checked={sel.optionId === opt.id}
+                                        onChange={() =>
+                                          setSelectedAddOns(
+                                            selectedAddOns.map((s) =>
+                                              s.addOnId === addOn.id ? { ...s, optionId: opt.id } : s,
+                                            ),
+                                          )
+                                        }
+                                      />
+                                      {opt.title}
+                                      {opt.priceModifier !== 0 && ` (${opt.priceModifier > 0 ? "+" : ""}${formatMoney(opt.priceModifier, selectedEvent?.currency?.code)})`}
+                                    </label>
+                                  ))}
+                                </div>
                               )}
-                            />
-                            <FormField
-                              control={form.control}
-                              name={`ticketHolders.${index}.lastName` as const}
-                              render={({ field }) => (
-                                <FormItem>
-                                  <FormLabel>Last name</FormLabel>
-                                  <FormControl>
-                                    <Input {...field} disabled={copyFromBuyer} className="rounded-xl" placeholder="Last name" />
-                                  </FormControl>
-                                  <FormMessage />
-                                </FormItem>
-                              )}
-                            />
-                            <FormField
-                              control={form.control}
-                              name={`ticketHolders.${index}.email` as const}
-                              render={({ field }) => (
-                                <FormItem>
-                                  <FormLabel>Email</FormLabel>
-                                  <FormControl>
-                                    <Input
-                                      type="email"
-                                      {...field}
-                                      disabled={copyFromBuyer}
-                                      className="rounded-xl"
-                                      placeholder="email@example.com"
-                                    />
-                                  </FormControl>
-                                  <FormMessage />
-                                </FormItem>
-                              )}
-                            />
-                          </CardContent>
-                        </Card>
-                      ))}
-                      {ticketHoldersError ? (
-                        <p className="text-sm text-destructive">{ticketHoldersError}</p>
-                      ) : null}
-                    </CardContent>
-                  </Card>
-
-                  <Button className="w-full rounded-full" type="submit" disabled={isSubmitting || isSoldOut}>
-                    {isSubmitting ? (
-                      <>
-                        <Loader2 className="mr-2 size-4 animate-spin" /> Submitting reservation...
-                      </>
-                    ) : isSoldOut ? (
-                      "Package sold out"
-                    ) : (
-                      "Submit Reservation Request"
+                            </div>
+                          );
+                        })}
+                      </div>
                     )}
-                  </Button>
-                </form>
-              </Form>
+                  </div>
             </CardContent>
           </Card>
+
+          <Card className="border-border/80 bg-card/80">
+            <CardHeader>
+              <CardTitle className="font-display text-3xl uppercase tracking-tight">Ticket Holders</CardTitle>
+              <CardDescription>
+                Add one ticket holder per seat ({Math.max(1, quantity)} total). Names will appear on the tickets.
+              </CardDescription>
+              <label className="flex items-center gap-3 text-sm text-muted-foreground">
+                <Checkbox
+                  checked={copyFromBuyer}
+                  onCheckedChange={(value) => setCopyFromBuyer(Boolean(value))}
+                />
+                Copy buyer details to all ticket holders
+              </label>
+            </CardHeader>
+            <CardContent className="space-y-4">
+                {fields.map((field, index) => (
+                  <div key={field.id} className="space-y-3 rounded-xl border border-border/60 bg-muted/20 p-4">
+                    <p className="text-sm font-medium text-muted-foreground">Ticket holder #{index + 1}</p>
+                    <div className="grid gap-3">
+                      <FormField
+                        control={form.control}
+                        name={`ticketHolders.${index}.firstName` as const}
+                        render={({ field: f }) => (
+                          <FormItem>
+                            <FormLabel>First name</FormLabel>
+                            <FormControl>
+                              <Input {...f} disabled={copyFromBuyer} className="rounded-xl" placeholder="First name" />
+                            </FormControl>
+                            <FormMessage />
+                          </FormItem>
+                        )}
+                      />
+                      <FormField
+                        control={form.control}
+                        name={`ticketHolders.${index}.lastName` as const}
+                        render={({ field: f }) => (
+                          <FormItem>
+                            <FormLabel>Last name</FormLabel>
+                            <FormControl>
+                              <Input {...f} disabled={copyFromBuyer} className="rounded-xl" placeholder="Last name" />
+                            </FormControl>
+                            <FormMessage />
+                          </FormItem>
+                        )}
+                      />
+                      <FormField
+                        control={form.control}
+                        name={`ticketHolders.${index}.email` as const}
+                        render={({ field: f }) => (
+                          <FormItem>
+                            <FormLabel>Email</FormLabel>
+                            <FormControl>
+                              <Input
+                                type="email"
+                                {...f}
+                                disabled={copyFromBuyer}
+                                className="rounded-xl"
+                                placeholder="email@example.com"
+                              />
+                            </FormControl>
+                            <FormMessage />
+                          </FormItem>
+                        )}
+                      />
+                    </div>
+                  </div>
+                ))}
+                {ticketHoldersError ? (
+                  <p className="text-sm text-destructive">{ticketHoldersError}</p>
+                ) : null}
+                <Button className="rounded-full" type="submit" disabled={isSubmitting || isSoldOut}>
+                  {isSubmitting ? (
+                    <>
+                      <Loader2 className="mr-2 size-4 animate-spin" /> Submitting reservation...
+                    </>
+                  ) : isSoldOut ? (
+                    "Package sold out"
+                  ) : (
+                    "Submit Reservation Request"
+                  )}
+                </Button>
+            </CardContent>
+          </Card>
+            </form>
+          </Form>
         </FadeIn>
 
         <FadeIn delay={0.06}>
@@ -640,6 +633,9 @@ export function CheckoutPage() {
                 {ORDER_SERVICE_MODE === "mock"
                   ? "Order submission is currently running in mock mode."
                   : "Order submission is connected to the public orders API."}
+              </p>
+              <p className="text-xs text-muted-foreground/90">
+                Prices and availability are subject to confirmation. After you submit, you will receive an email with next steps and payment instructions. Your reservation is held until the payment deadline.
               </p>
             </CardContent>
           </Card>

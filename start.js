@@ -1,7 +1,7 @@
 // start.js
 const { exec } = require('child_process');
 
-exec('next start -p 3000', (error, stdout, stderr) => {
+exec('bun run start -p 3000', (error, stdout, stderr) => {
   if (error) {
     console.error(`Error: ${error.message}`);
     return;

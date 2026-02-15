@@ -12,7 +12,7 @@ type EventCardProps = {
 
 export function EventCard({ event }: EventCardProps) {
   return (
-    <Card className="group flex h-full flex-col overflow-hidden border-border/80 bg-card/90 transition-all hover:-translate-y-1 hover:border-primary/50">
+    <Card className="group flex h-full flex-col overflow-hidden border-border/80 bg-card/90 pt-0 transition-all hover:-translate-y-1 hover:border-primary/50">
       <div
         className="relative aspect-[16/10] w-full shrink-0 bg-cover bg-center"
         style={{
@@ -38,7 +38,11 @@ export function EventCard({ event }: EventCardProps) {
         </CardTitle>
       </CardHeader>
       <CardContent className="flex-1">
-        <p className="line-clamp-3 text-sm text-muted-foreground">{event.description}</p>
+        <p className="line-clamp-3 text-sm text-muted-foreground">
+          {event.description?.trim() && event.description.trim().length > 20
+            ? event.description
+            : `Official 3-day ticket packages for ${event.name}. Grandstand, hospitality and VIP options with live availability.`}
+        </p>
       </CardContent>
       <CardFooter className="flex items-center justify-between gap-3">
         <p className="text-sm text-muted-foreground">

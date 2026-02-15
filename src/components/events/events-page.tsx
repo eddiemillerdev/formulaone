@@ -44,12 +44,12 @@ export function EventsPage() {
   }, [events, search, zone]);
 
   return (
-    <main className="mx-auto w-[min(1180px,92vw)] space-y-8 py-10 pb-20">
-      <FadeIn className="space-y-4 rounded-3xl border border-border/70 bg-[radial-gradient(circle_at_14%_-8%,rgba(255,30,0,0.22),transparent_34%),radial-gradient(circle_at_84%_10%,rgba(255,59,34,0.1),transparent_44%),linear-gradient(145deg,#181822,#20202d)] p-8 md:p-10">
+    <main className="mx-auto w-[min(1280px,95vw)] space-y-8 py-10 pb-20">
+      <FadeIn className="hero-panel-bg space-y-4 rounded-3xl border border-border/70 p-8 md:p-10">
         <Badge className="rounded-full border border-primary/40 bg-primary/10 px-3 py-1 text-[11px] uppercase tracking-[0.12em] text-primary">
           Upcoming Events
         </Badge>
-        <h1 className="font-display text-2xl uppercase leading-[0.95] tracking-tight md:text-3xl">
+        <h1 className="font-display font-black text-2xl uppercase leading-[0.95] tracking-wide md:text-3xl md:tracking-wider">
           Find Tickets, Passes, and VIP Hospitality
         </h1>
         <p className="max-w-[70ch] text-sm text-muted-foreground md:text-base">

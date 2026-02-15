@@ -15,13 +15,13 @@ export function MarkdownContent({ markdown, className }: MarkdownContentProps) {
         remarkPlugins={[remarkGfm]}
         components={{
           h1: ({ children }) => (
-            <h1 className="font-display text-xl tracking-tight text-foreground">{children}</h1>
+            <h1 className="font-display font-bold text-xl tracking-tight text-foreground">{children}</h1>
           ),
           h2: ({ children }) => (
-            <h2 className="font-display text-lg tracking-tight text-foreground">{children}</h2>
+            <h2 className="font-display font-bold text-lg tracking-tight text-foreground">{children}</h2>
           ),
           h3: ({ children }) => (
-            <h3 className="font-display text-base tracking-tight text-foreground">{children}</h3>
+            <h3 className="font-display font-bold text-base tracking-tight text-foreground">{children}</h3>
           ),
           p: ({ children }) => <p className="text-sm text-muted-foreground">{children}</p>,
           ul: ({ children }) => <ul className="list-disc space-y-1 pl-5">{children}</ul>,

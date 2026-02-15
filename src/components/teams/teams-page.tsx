@@ -63,12 +63,12 @@ const teams = [
 
 export function TeamsPage() {
   return (
-    <main className="mx-auto w-[min(1280px,94vw)] space-y-8 py-10 pb-20">
-      <FadeIn className="space-y-4 rounded-3xl border border-border/70 bg-[radial-gradient(circle_at_18%_-10%,rgba(255,30,0,0.18),transparent_35%),linear-gradient(145deg,#171720,#1e1e2a)] p-8">
+    <main className="mx-auto w-[min(1280px,95vw)] space-y-8 py-10 pb-20">
+      <FadeIn className="hero-panel-bg space-y-4 rounded-3xl border border-border/70 p-8">
         <Badge className="rounded-full border border-primary/40 bg-primary/10 px-3 py-1 text-[11px] uppercase tracking-[0.12em] text-primary">
           Teams
         </Badge>
-        <h1 className="font-display text-2xl uppercase leading-[0.9] tracking-tight md:text-3xl">Team Hub</h1>
+        <h1 className="font-display font-black text-2xl uppercase leading-[0.9] tracking-wide md:text-3xl md:tracking-wider">Team Hub</h1>
         <p className="max-w-[70ch] text-sm text-muted-foreground md:text-base">
           Placeholder teams page is now live. You can replace cards with your final team data, logos, sponsor blocks, and dedicated team landing pages later.
         </p>
@@ -83,7 +83,7 @@ export function TeamsPage() {
             transition={{ delay: 0.04 * index, duration: 0.45 }}
             whileHover={{ y: -6 }}
           >
-            <Card className="overflow-hidden border-border/70 bg-card/70">
+            <Card className="overflow-hidden border-border/70 bg-card/70 pt-0">
               <div
                 className={`relative h-44 bg-gradient-to-br ${team.color} bg-cover bg-center`}
                 style={{

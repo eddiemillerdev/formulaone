@@ -19,3 +19,4 @@ module.exports = {
         }
     ]
 }
+/// pm2 start bun --name formulaone-web -- start --port 3000

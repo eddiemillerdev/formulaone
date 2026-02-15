@@ -13,11 +13,11 @@ import { RACE_MAPPINGS } from "@/lib/races-mapping";
 export function RacesPage() {
   return (
     <main className="mx-auto w-[min(1280px,95vw)] space-y-8 py-10 pb-20">
-      <FadeIn className="space-y-4 rounded-3xl border border-border/70 bg-[radial-gradient(circle_at_14%_-8%,rgba(255,30,0,0.22),transparent_34%),radial-gradient(circle_at_84%_10%,rgba(255,59,34,0.1),transparent_44%),linear-gradient(145deg,#181822,#20202d)] p-8 md:p-10">
+      <FadeIn className="hero-panel-bg space-y-4 rounded-3xl border border-border/70 p-8 md:p-10">
         <Badge className="rounded-full border border-primary/40 bg-primary/10 px-3 py-1 text-[11px] uppercase tracking-[0.12em] text-primary">
           2026 Races
         </Badge>
-        <h1 className="font-display text-2xl uppercase leading-[0.9] tracking-tight md:text-3xl">
+        <h1 className="font-display font-black text-2xl uppercase leading-[0.9] tracking-wide md:text-3xl md:tracking-wider">
           Race Destinations
         </h1>
         <p className="max-w-[75ch] text-sm text-muted-foreground md:text-base">
@@ -35,7 +35,7 @@ export function RacesPage() {
             transition={{ duration: 0.45, delay: index * 0.03 }}
             className="h-full"
           >
-            <Card className="flex h-full flex-col overflow-hidden border-border/75 bg-card/80">
+            <Card className="flex h-full flex-col overflow-hidden border-border/75 bg-card/80 pt-0">
               <RaceImageCarousel images={race.images} title={race.name} className="h-52" />
 
               <CardHeader className="space-y-3">

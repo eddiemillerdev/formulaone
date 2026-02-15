@@ -160,6 +160,7 @@ export type EventItem = {
   monthLabel: string;
   description: string;
   imageUrl: string;
+  venueImageUrl: string;
   eventUrl: string;
   organiser: OrganiserInfo;
   tickets: TicketPackage[];
@@ -444,6 +445,7 @@ function normalizeEvent(
     monthLabel: toMonthLabel(event.start_date),
     description,
     imageUrl: event.image_url || "",
+    venueImageUrl: event.venue_image_url || "",
     eventUrl: event.event_url || "",
     organiser,
     tickets,

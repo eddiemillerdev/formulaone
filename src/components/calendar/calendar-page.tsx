@@ -83,12 +83,12 @@ export function CalendarPage() {
   }, [events]);
 
   return (
-    <main className="mx-auto w-[min(1320px,95vw)] space-y-10 py-10 pb-20">
-      <FadeIn className="relative overflow-hidden rounded-3xl border border-border/70 bg-[radial-gradient(circle_at_12%_-10%,rgba(255,30,0,0.2),transparent_38%),radial-gradient(circle_at_84%_14%,rgba(255,59,34,0.12),transparent_42%),linear-gradient(145deg,#191922,#1f1f2b)] p-7 md:p-10">
+    <main className="mx-auto w-[min(1280px,95vw)] space-y-10 py-10 pb-20">
+      <FadeIn className="hero-panel-bg relative overflow-hidden rounded-3xl border border-border/70 p-7 md:p-10">
         <Badge className="rounded-full border border-primary/40 bg-primary/10 px-3 py-1 text-[11px] uppercase tracking-[0.12em] text-primary">
           View Calendar
         </Badge>
-        <h1 className="mt-4 font-display text-2xl uppercase leading-[0.9] tracking-tight md:text-3xl">
+        <h1 className="mt-4 font-display font-black text-2xl uppercase leading-[0.9] tracking-wide md:text-3xl md:tracking-wider">
           Full Race Calendar
         </h1>
         <p className="mt-3 max-w-[70ch] text-sm text-muted-foreground md:text-base">

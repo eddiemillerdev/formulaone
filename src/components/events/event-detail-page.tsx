@@ -26,7 +26,7 @@ export function EventDetailPage({ eventId }: EventDetailPageProps) {
   const { data: events = [], isLoading, isError } = useEventsQuery();
   const setSelection = useBookingStore((state) => state.setSelection);
   const [selectedPackageId, setSelectedPackageId] = useState<string | null>(null);
-  const selectedTicketRef = useRef<HTMLDivElement>(null);
+  const availablePackagesRef = useRef<HTMLElement>(null);
 
   const event = useMemo(() => getEventById(events, eventId), [events, eventId]);
   const selectedPackage = useMemo(
@@ -35,14 +35,14 @@ export function EventDetailPage({ eventId }: EventDetailPageProps) {
   );
 
   useEffect(() => {
-    if (selectedPackageId && selectedTicketRef.current) {
-      selectedTicketRef.current.scrollIntoView({ behavior: "smooth", block: "start" });
+    if (selectedPackageId && availablePackagesRef.current) {
+      availablePackagesRef.current.scrollIntoView({ behavior: "smooth", block: "start" });
     }
   }, [selectedPackageId]);
 
   if (isLoading) {
     return (
-      <main className="mx-auto w-[min(1180px,92vw)] py-10">
+      <main className="mx-auto w-[min(1280px,95vw)] py-10">
         <Card className="border-border/80 bg-card/80">
           <CardContent className="py-10 text-sm text-muted-foreground">Loading event inventory...</CardContent>
         </Card>
@@ -52,7 +52,7 @@ export function EventDetailPage({ eventId }: EventDetailPageProps) {
 
   if (isError || !event) {
     return (
-      <main className="mx-auto w-[min(1180px,92vw)] py-10">
+      <main className="mx-auto w-[min(1280px,95vw)] py-10">
         <Card className="border-destructive/40 bg-destructive/10">
           <CardContent className="py-10 space-y-4">
             <p className="font-display text-2xl uppercase text-destructive">Event unavailable</p>
@@ -67,7 +67,7 @@ export function EventDetailPage({ eventId }: EventDetailPageProps) {
   }
 
   return (
-    <main className="mx-auto w-[min(1180px,92vw)] space-y-8 py-10 pb-20">
+    <main className="mx-auto w-[min(1280px,95vw)] space-y-8 py-10 pb-20">
       <FadeIn className="flex flex-wrap items-center gap-3">
         <Button variant="secondary" className="rounded-full" onClick={() => router.push("/events") }>
           <ArrowLeft className="mr-2 size-4" /> Back to events
@@ -79,7 +79,7 @@ export function EventDetailPage({ eventId }: EventDetailPageProps) {
 
       <section className="grid gap-5 lg:grid-cols-[1.2fr_0.8fr]">
         <FadeIn className="space-y-5">
-          <Card className="overflow-hidden border-border/80 bg-card/85">
+          <Card className="overflow-hidden border-border/80 bg-card/85 pt-0">
             <div
               className="h-64 bg-cover bg-center md:h-[19rem]"
               style={{
@@ -89,7 +89,7 @@ export function EventDetailPage({ eventId }: EventDetailPageProps) {
               }}
             />
             <CardHeader className="space-y-4">
-              <CardTitle className="font-display text-4xl uppercase leading-none tracking-tight">{event.name}</CardTitle>
+              <CardTitle className="font-display text-4xl font-black uppercase leading-none tracking-tight">{event.name}</CardTitle>
               <CardDescription className="text-base text-muted-foreground">{event.description}</CardDescription>
               <div className="grid gap-2 text-sm text-muted-foreground md:grid-cols-2">
                 <p className="inline-flex items-center gap-2">
@@ -111,6 +111,9 @@ export function EventDetailPage({ eventId }: EventDetailPageProps) {
             <CardHeader>
               <CardTitle className="font-display text-3xl uppercase">Booking Summary</CardTitle>
               <CardDescription>Live package inventory from public API endpoint.</CardDescription>
+              <p className="text-xs text-muted-foreground/90">
+                Select a package below to see details. Prices and availability update in real time from the organiser.
+              </p>
             </CardHeader>
             <CardContent className="space-y-3 text-sm">
               <div className="flex items-center justify-between">
@@ -152,13 +155,28 @@ export function EventDetailPage({ eventId }: EventDetailPageProps) {
         </FadeIn>
       </section>
 
-      <section className="space-y-4">
+      {event.venueImageUrl ? (
+        <FadeIn>
+          <section className="space-y-3">
+            <h2 className="font-display text-2xl uppercase tracking-tight text-muted-foreground">Venue</h2>
+            <div className="overflow-hidden rounded-xl border border-border/80 bg-card/85">
+              <img
+                src={event.venueImageUrl}
+                alt={`${event.venue}, ${event.city}`}
+                className="h-auto w-full object-cover"
+              />
+            </div>
+          </section>
+        </FadeIn>
+      ) : null}
+
+      <section ref={availablePackagesRef} className="scroll-mt-24 space-y-4">
         <FadeIn>
           <h2 className="font-display text-4xl uppercase tracking-tight">Available Packages</h2>
         </FadeIn>
 
         {selectedPackage ? (
-          <div ref={selectedTicketRef}>
+          <div>
             <FadeIn className="w-full space-y-3">
               <button
                 type="button"
@@ -232,7 +250,7 @@ export function EventDetailPage({ eventId }: EventDetailPageProps) {
                     </CardHeader>
                     <CardContent className="space-y-3">
                       <Button
-                        className="w-full rounded-full"
+                        className="rounded-full"
                         disabled={isSoldOut}
                         onClick={() => setSelectedPackageId(ticket.id)}
                       >
@@ -304,7 +322,7 @@ function SelectedPackageCard({
       </CardHeader>
       <CardContent>
         <Button
-          className="w-full rounded-full"
+          className="rounded-full"
           disabled={isSoldOut}
           onClick={onContinue}
         >

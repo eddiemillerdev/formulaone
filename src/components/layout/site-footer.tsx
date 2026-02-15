@@ -14,9 +14,9 @@ const footerSections = [
   {
     title: "Support",
     links: [
+      { label: "FAQ", href: "/faq" },
       { label: "Contact us", href: "/support" },
       { label: "Help Center", href: "/support" },
-      { label: "Booking FAQ", href: "/support" },
       { label: "Payment options", href: "/support" },
     ],
   },
@@ -42,7 +42,7 @@ const footerSections = [
 
 export function SiteFooter() {
   return (
-    <footer className="mt-20 border-t border-border/70 bg-[radial-gradient(circle_at_15%_-20%,rgba(255,30,0,0.16),transparent_42%),radial-gradient(circle_at_90%_10%,rgba(255,59,34,0.08),transparent_38%)]">
+    <footer className="mt-20 border-t border-[#2a2a38] bg-[#15151e] [background-image:radial-gradient(circle_at_15%_-20%,rgba(255,30,0,0.16),transparent_42%),radial-gradient(circle_at_90%_10%,rgba(255,59,34,0.08),transparent_38%)]">
       <div className="mx-auto w-[min(1220px,94vw)] py-14">
         <div className="grid gap-10 lg:grid-cols-[1.5fr_1fr_1fr_1fr_1fr]">
           <div className="space-y-4">
@@ -54,24 +54,24 @@ export function SiteFooter() {
               className="h-auto w-[148px] object-contain"
               style={{ width: 'auto', height: 'auto' }}
             />
-            <p className="max-w-[38ch] text-sm text-muted-foreground">
+            <p className="max-w-[38ch] text-sm text-[#b8b8c5]">
               Premium Formula 1 ticketing and hospitality discovery platform built for fast booking decisions,
               real-time inventory, and high-demand race weekends.
             </p>
-            <div className="flex flex-wrap gap-2 text-xs text-muted-foreground">
-              <span className="rounded-full border border-border/80 bg-card/70 px-3 py-1">Live ticket inventory</span>
-              <span className="rounded-full border border-border/80 bg-card/70 px-3 py-1">VIP concierge support</span>
-              <span className="rounded-full border border-border/80 bg-card/70 px-3 py-1">Secure ordering flow</span>
+            <div className="flex flex-wrap gap-2 text-xs text-[#b8b8c5]">
+              <span className="rounded-full border border-[#2a2a38] bg-[#20202d] px-3 py-1">Live ticket inventory</span>
+              <span className="rounded-full border border-[#2a2a38] bg-[#20202d] px-3 py-1">VIP concierge support</span>
+              <span className="rounded-full border border-[#2a2a38] bg-[#20202d] px-3 py-1">Secure ordering flow</span>
             </div>
           </div>
 
           {footerSections.map((section) => (
             <div key={section.title} className="space-y-3">
-              <p className="font-display text-base uppercase tracking-[0.06em] text-foreground">{section.title}</p>
+              <p className="font-display text-base uppercase tracking-[0.06em] text-white">{section.title}</p>
               <ul className="space-y-2">
                 {section.links.map((link) => (
                   <li key={link.label}>
-                    <Link href={link.href} className="text-sm text-muted-foreground transition-colors hover:text-foreground">
+                    <Link href={link.href} className="text-sm text-[#b8b8c5] transition-colors hover:text-white">
                       {link.label}
                     </Link>
                   </li>
@@ -81,13 +81,13 @@ export function SiteFooter() {
           ))}
         </div>
 
-        <div className="mt-10 flex flex-wrap items-center justify-between gap-3 border-t border-border/70 pt-5 text-xs text-muted-foreground">
+        <div className="mt-10 flex flex-wrap items-center justify-between gap-3 border-t border-[#2a2a38] pt-5 text-xs text-[#b8b8c5]">
           <p>© {new Date().getFullYear()} F1 Pass. All rights reserved.</p>
           <div className="flex items-center gap-4">
-            <Link href="#" className="hover:text-foreground">Instagram</Link>
-            <Link href="#" className="hover:text-foreground">YouTube</Link>
-            <Link href="#" className="hover:text-foreground">X</Link>
-            <Link href="#" className="hover:text-foreground">LinkedIn</Link>
+            <Link href="#" className="hover:text-white">Instagram</Link>
+            <Link href="#" className="hover:text-white">YouTube</Link>
+            <Link href="#" className="hover:text-white">X</Link>
+            <Link href="#" className="hover:text-white">LinkedIn</Link>
           </div>
         </div>
       </div>
