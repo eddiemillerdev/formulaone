@@ -6,6 +6,7 @@ import { useSearchParams } from "next/navigation";
 import { EventCard } from "@/components/events/event-card";
 import { EventCardSkeleton } from "@/components/events/event-card-skeleton";
 import { FadeIn } from "@/components/motion/fade-in";
+import { PageCallout } from "@/components/layout/page-callout";
 import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
@@ -44,8 +45,8 @@ export function EventsPage() {
   }, [events, search, zone]);
 
   return (
-    <main className="mx-auto w-[min(1280px,95vw)] space-y-8 py-10 pb-20">
-      <FadeIn className="hero-panel-bg space-y-4 rounded-3xl border border-border/70 p-8 md:p-10">
+    <main className="mx-auto page-width space-y-8 py-10 pb-20">
+      <FadeIn className="hero-panel-bg space-y-4 rounded-3xl border border-border/70 p-4 md:p-10">
         <Badge className="rounded-full border border-primary/40 bg-primary/10 px-3 py-1 text-[11px] uppercase tracking-[0.12em] text-primary">
           Upcoming Events
         </Badge>
@@ -117,6 +118,14 @@ export function EventsPage() {
               </FadeIn>
             ))}
       </div>
+
+      <PageCallout
+        badge="Plan your season"
+        title="View the full race calendar"
+        description="See every Grand Prix weekend at a glance and jump straight to ticket packages for any date."
+        href="/calendar"
+        linkLabel="Open calendar"
+      />
     </main>
   );
 }

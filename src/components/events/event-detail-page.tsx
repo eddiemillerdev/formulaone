@@ -47,7 +47,7 @@ export function EventDetailPage({ eventId }: EventDetailPageProps) {
 
   if (isError || !event) {
     return (
-      <main className="mx-auto w-[min(1280px,95vw)] py-10">
+      <main className="mx-auto page-width py-10">
         <Card className="border-destructive/40 bg-destructive/10">
           <CardContent className="py-10 space-y-4">
             <p className="font-display text-2xl uppercase text-destructive">Event unavailable</p>
@@ -62,7 +62,7 @@ export function EventDetailPage({ eventId }: EventDetailPageProps) {
   }
 
   return (
-    <main className="mx-auto w-[min(1280px,95vw)] space-y-8 py-10 pb-20">
+    <main className="mx-auto page-width space-y-8 py-10 pb-20">
       <FadeIn className="flex flex-wrap items-center gap-3">
         <Button variant="secondary" className="rounded-full" onClick={() => router.push("/events") }>
           <ArrowLeft className="mr-2 size-4" /> Back to events

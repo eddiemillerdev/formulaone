@@ -34,8 +34,8 @@ export function SupportPage() {
   }
 
   return (
-    <main className="mx-auto w-[min(1280px,95vw)] space-y-8 py-10 pb-20">
-      <FadeIn className="hero-panel-bg space-y-4 rounded-3xl border border-border/70 p-8 md:p-10">
+    <main className="mx-auto page-width space-y-8 py-10 pb-20">
+      <FadeIn className="hero-panel-bg space-y-4 rounded-3xl border border-border/70 p-4 md:p-10">
         <Badge className="rounded-full border border-primary/40 bg-primary/10 px-3 py-1 text-[11px] uppercase tracking-[0.12em] text-primary">
           Support
         </Badge>
@@ -143,7 +143,9 @@ export function SupportPage() {
                 <Mail className="size-5 shrink-0 text-primary" />
                 <div>
                   <p className="font-medium text-foreground">Email</p>
-                  <p className="text-sm text-muted-foreground">support@f1pass.com — we reply within 24 hours on business days.</p>
+                  <p className="text-sm text-muted-foreground">
+                    {process.env.NEXT_PUBLIC_CONTACT_EMAIL || "Contact us"} — we reply within 24 hours on business days.
+                  </p>
                 </div>
               </div>
             </CardContent>

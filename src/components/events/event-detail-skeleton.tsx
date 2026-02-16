@@ -3,7 +3,7 @@ import { Skeleton } from "@/components/ui/skeleton";
 
 export function EventDetailSkeleton() {
   return (
-    <main className="mx-auto w-[min(1280px,95vw)] space-y-8 py-10 pb-20">
+    <main className="mx-auto page-width space-y-8 py-10 pb-20">
       <div className="flex flex-wrap items-center gap-3">
         <Skeleton className="h-10 w-36 rounded-full" />
         <Skeleton className="h-8 w-24 rounded-full" />

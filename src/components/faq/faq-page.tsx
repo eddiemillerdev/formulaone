@@ -90,8 +90,8 @@ export function FaqPage() {
   const [activeCategory, setActiveCategory] = useState<FaqCategoryId>("general");
 
   return (
-    <main className="mx-auto w-[min(1280px,95vw)] space-y-10 py-10 pb-20">
-      <FadeIn className="hero-panel-bg space-y-4 rounded-3xl border border-border/70 p-8 md:p-10">
+    <main className="mx-auto page-width space-y-10 py-10 pb-20">
+      <FadeIn className="hero-panel-bg space-y-4 rounded-3xl border border-border/70 p-4 md:p-10">
         <Badge className="rounded-full border border-primary/40 bg-primary/10 px-3 py-1 text-[11px] uppercase tracking-[0.12em] text-primary">
           Help
         </Badge>

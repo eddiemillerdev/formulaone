@@ -18,11 +18,21 @@ const F1_TV_HREF = "https://f1tv.formula1.com";
 export function TopBar() {
   const pathname = usePathname();
 
+  const fiaUrl = "https://www.fia.com/";
+
   return (
     <div className="border-b border-neutral-200 bg-white">
-      <div className="mx-auto flex h-9 w-[min(1220px,94vw)] items-center justify-end gap-5 px-2">
-        
-        <nav className="flex items-center gap-5" aria-label="Utility">
+      <div className="mx-auto flex h-9 w-[min(1220px,94vw)] items-center gap-5 px-2">
+        <a
+          href={fiaUrl}
+          target="_blank"
+          rel="noopener noreferrer"
+          className="flex shrink-0 items-center text-neutral-600 transition-colors hover:text-neutral-900"
+          aria-label="FIA – Fédération Internationale de l'Automobile"
+        >
+          <Image src="/images/fia-logo.svg" alt="" width={28} height={20} className="h-5 w-auto" />
+        </a>
+        <nav className="ml-auto flex items-center gap-5" aria-label="Utility">
           {topLinks.map((link) => {
             const active = pathname === link.href || pathname.startsWith(link.href + "/");
             return (

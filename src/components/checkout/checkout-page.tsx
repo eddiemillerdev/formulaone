@@ -281,7 +281,7 @@ export function CheckoutPage() {
 
   if (isLoading) {
     return (
-      <main className="mx-auto w-[min(1280px,95vw)] py-10">
+      <main className="mx-auto page-width py-10">
         <Card className="border-border/80 bg-card/80">
           <CardContent className="py-10 text-sm text-muted-foreground">Loading checkout details...</CardContent>
         </Card>
@@ -291,7 +291,7 @@ export function CheckoutPage() {
 
   if (isError || !selectedEvent || !selectedTicket) {
     return (
-      <main className="mx-auto w-[min(1280px,95vw)] py-10">
+      <main className="mx-auto page-width py-10">
         <Card className="border-destructive/40 bg-destructive/10">
           <CardContent className="space-y-4 py-10">
             <p className="font-display text-2xl uppercase text-destructive">Package not selected</p>
@@ -311,18 +311,22 @@ export function CheckoutPage() {
   const eventDetailUrl = `/events/${selectedEvent.id}`;
 
   return (
-    <main className="mx-auto w-[min(1280px,95vw)] space-y-6 py-10 pb-20">
+    <main className="mx-auto page-width space-y-6 py-10 pb-20">
       <FadeIn className="flex flex-wrap items-center gap-3">
         <Button variant="secondary" className="rounded-full" onClick={() => router.push(eventDetailUrl)}>
           <ArrowLeft className="mr-2 size-4" /> Back to event
         </Button>
       </FadeIn>
-      <FadeIn className="space-y-2">
-        <p className="text-xs uppercase tracking-[0.12em] text-muted-foreground">Finalize Booking</p>
-        <h1 className="font-display font-black text-5xl uppercase leading-[0.95] tracking-tight md:text-6xl">Secure Your Race Weekend</h1>
-        <p className="text-muted-foreground">
-          {selectedEvent.name} • {selectedEvent.dateLabel}
-        </p>
+      <FadeIn>
+        <Card className="border-border/80 bg-card/80">
+          <CardContent>
+            <p className="text-xs uppercase tracking-[0.12em] text-muted-foreground">Finalize Booking</p>
+            <h1 className="mt-2 font-display font-black text-2xl uppercase leading-tight tracking-tight md:text-3xl">Secure Your Race Weekend</h1>
+            <p className="mt-1.5 text-sm text-muted-foreground md:text-base">
+              {selectedEvent.name} • {selectedEvent.dateLabel}
+            </p>
+          </CardContent>
+        </Card>
       </FadeIn>
 
       <section className="grid gap-5 lg:grid-cols-[1fr_0.88fr]">

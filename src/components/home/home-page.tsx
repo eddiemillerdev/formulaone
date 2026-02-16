@@ -79,8 +79,8 @@ export function HomePage() {
 
   return (
     <main className="space-y-16 pb-20 md:space-y-20">
-      <section className="mx-auto grid w-[min(1280px,95vw)] gap-5 pt-8 lg:grid-cols-[1.1fr_0.9fr]">
-        <FadeIn className="hero-panel-bg relative overflow-hidden rounded-3xl border border-border/70 p-7 md:p-9">
+      <section className="mx-auto grid page-width gap-5 pt-8 lg:grid-cols-[1.1fr_0.9fr]">
+        <FadeIn className="hero-panel-bg relative overflow-hidden rounded-3xl border border-border/70 p-4 md:p-9">
           <Badge className="rounded-full border border-primary/40 bg-primary/10 px-3 py-1 text-[11px] uppercase tracking-[0.14em] text-primary">
             Formula 1 Ticket Platform
           </Badge>
@@ -105,7 +105,7 @@ export function HomePage() {
             </Button>
           </div>
 
-          <div className="mt-6 grid gap-3 sm:grid-cols-3">
+          <div className="mt-6 grid gap-3 text-center sm:grid-cols-3 sm:text-left">
             {[
               { label: "Global races", value: `${events.length || "--"}`, sub: "Events with live ticket inventory" },
               { label: "Avg response", value: "15m", sub: "Concierge reply time" },
@@ -131,7 +131,7 @@ export function HomePage() {
         </FadeIn>
       </section>
 
-      <section className="mx-auto w-[min(1280px,95vw)] overflow-hidden rounded-3xl border border-border/70">
+      <section className="mx-auto page-width overflow-hidden rounded-3xl border border-border/70">
         <FadeIn delay={0.04}>
           <div className="relative min-h-[28rem] w-full bg-muted/50 md:min-h-[32rem]">
             {/* Video background */}
@@ -183,7 +183,7 @@ export function HomePage() {
         </FadeIn>
       </section>
 
-      <section className="mx-auto grid w-[min(1280px,95vw)] gap-4 md:grid-cols-2">
+      <section className="mx-auto grid page-width gap-4 md:grid-cols-2">
         {featurePanels.map((panel, index) => (
           <motion.div
             key={panel.title}
@@ -199,12 +199,12 @@ export function HomePage() {
                   backgroundImage: `linear-gradient(130deg, rgba(11,11,16,0.35), rgba(11,11,16,0.68)), url('${asAssetUrl(panel.image)}')`,
                 }}
               />
-              <CardHeader>
+              <CardHeader className="text-center md:text-left">
                 <CardTitle className="font-display text-base uppercase tracking-tight">{panel.title}</CardTitle>
               </CardHeader>
-              <CardContent className="space-y-4">
+              <CardContent className="space-y-4 text-center md:text-left">
                 <p className="text-sm text-muted-foreground">{panel.copy}</p>
-                <Link href={panel.href} className="inline-flex items-center gap-2 text-sm text-primary hover:underline">
+                <Link href={panel.href} className="inline-flex items-center justify-center gap-2 text-sm text-primary hover:underline md:justify-start">
                   <panel.icon className="size-4" /> Open section
                 </Link>
               </CardContent>
@@ -213,8 +213,8 @@ export function HomePage() {
         ))}
       </section>
 
-      <section className="mx-auto w-[min(1280px,95vw)] space-y-8">
-        <FadeIn>
+      <section className="mx-auto page-width space-y-8">
+        <FadeIn className="text-center md:text-left">
           <p className="text-xs uppercase tracking-[0.12em] text-muted-foreground">Simple flow</p>
           <h2 className="font-display font-bold text-xl uppercase tracking-tight md:text-2xl">How it works</h2>
         </FadeIn>
@@ -246,13 +246,13 @@ export function HomePage() {
               viewport={{ once: true, amount: 0.3 }}
               transition={{ duration: 0.4, delay: i * 0.08 }}
             >
-              <Card className="relative flex h-full flex-row overflow-hidden border-border/80 bg-card/70">
-                <div className="flex flex-1 flex-col justify-center px-6 py-6">
+              <Card className="relative flex h-full flex-col overflow-hidden border-border/80 bg-card/70 md:flex-row">
+                <div className="flex flex-1 flex-col justify-center px-4 py-6 text-center md:px-6 md:text-left">
                   <span className="font-display text-2xl font-bold leading-none text-primary/60">{item.step}</span>
                   <CardTitle className="font-display text-sm uppercase tracking-tight mt-2">{item.title}</CardTitle>
                   <p className="mt-2 text-sm text-muted-foreground">{item.copy}</p>
                 </div>
-                <div className="flex items-center justify-end mr-[-70px] overflow-hidden">
+                <div className="flex items-center justify-center overflow-hidden py-4 md:justify-end md:mr-[-70px] md:py-0">
                   <item.icon className="size-24 shrink-0 text-primary/40 md:size-32 lg:size-40" />
                 </div>
               </Card>
@@ -261,10 +261,10 @@ export function HomePage() {
         </div>
       </section>
 
-      <section className="mx-auto w-[min(1280px,95vw)]">
+      <section className="mx-auto page-width">
         <Link
           href="/calendar"
-          className="hero-panel-bg flex flex-wrap items-center justify-between gap-3 rounded-2xl border border-border/70 px-5 py-4 transition-colors hover:border-primary/40 hover:bg-primary/5 md:px-6"
+          className="hero-panel-bg flex flex-col flex-wrap items-center justify-between gap-3 rounded-2xl border border-border/70 px-4 py-4 md:px-6 text-center transition-colors hover:border-primary/40 hover:bg-primary/5 md:flex-row md:px-6 md:text-left"
         >
           <div className="flex items-center gap-3">
             <CalendarDays className="size-5 shrink-0 text-primary md:size-6" />
@@ -276,16 +276,16 @@ export function HomePage() {
         </Link>
       </section>
 
-      <section className="mx-auto w-[min(1280px,95vw)] space-y-5">
-        <FadeIn className="flex flex-wrap items-end justify-between gap-3">
-          <div>
+      <section className="mx-auto page-width space-y-5">
+        <FadeIn className="flex flex-wrap items-end justify-between gap-3 text-center md:text-left">
+          <div className="mx-auto md:mx-0">
             <p className="text-xs uppercase tracking-[0.12em] text-muted-foreground">Upcoming</p>
             <h2 className="font-display font-bold text-xl uppercase tracking-tight md:text-2xl">Featured Events</h2>
-            <p className="mt-1 max-w-[50ch] text-sm text-muted-foreground">
+            <p className="mt-1 max-w-[50ch] text-sm text-muted-foreground md:max-w-none">
               Official ticket packages with live availability. Select an event to see options and reserve your weekend.
             </p>
           </div>
-          <Link href="/calendar" className="inline-flex items-center gap-2 text-sm text-primary hover:underline">
+          <Link href="/calendar" className="inline-flex items-center justify-center gap-2 text-sm text-primary hover:underline md:justify-start">
             View full calendar <ArrowRight className="size-4" />
           </Link>
         </FadeIn>
@@ -309,7 +309,7 @@ export function HomePage() {
         </div>
       </section>
 
-      <section className="mx-auto grid w-[min(1280px,95vw)] gap-4 md:grid-cols-3">
+      <section className="mx-auto grid page-width gap-4 md:grid-cols-3">
         {[
           { icon: Flag, title: "24", copy: "Grands Prix in one place. Browse the full F1® calendar and book official ticket packages for any race weekend.", label: "Race weekends" },
           { icon: Sparkles, title: "15m", copy: "Our concierge typically replies within 15 minutes for booking and payment questions. We're here until you're at the circuit.", label: "Avg. response" },
@@ -323,10 +323,10 @@ export function HomePage() {
             transition={{ duration: 0.45, delay: index * 0.06 }}
           >
             <Card className="h-full border-border/80 bg-card/80">
-              <CardHeader className="pb-3">
+              <CardHeader className="flex flex-col items-center pb-3 md:items-start">
                 <item.icon className="size-16 text-primary md:size-20" />
               </CardHeader>
-              <CardContent>
+              <CardContent className="text-center md:text-left">
                 <p className="text-xs uppercase tracking-[0.08em] text-muted-foreground">{item.label}</p>
                 <p className="mt-1 font-display text-3xl font-black leading-none tracking-tight md:text-4xl">{item.title}</p>
                 <p className="mt-3 text-sm text-muted-foreground">{item.copy}</p>
@@ -338,9 +338,9 @@ export function HomePage() {
 
       <SponsorCarousel />
 
-      <section className="mx-auto w-[min(1280px,95vw)]">
+      <section className="mx-auto page-width">
         <Card className="overflow-hidden border-primary/20 bg-gradient-to-br from-primary/10 via-card to-card">
-          <div className="grid gap-6 p-8 md:p-10 lg:grid-cols-[1fr_auto] lg:items-center">
+          <div className="grid gap-6 p-4 md:p-10 lg:grid-cols-[1fr_auto] lg:items-center">
             <div>
               <div className="inline-flex items-center gap-2 rounded-full border border-primary/30 bg-primary/10 px-3 py-1 text-xs uppercase tracking-[0.1em] text-primary">
                 <Shield className="size-3.5" /> Trusted booking

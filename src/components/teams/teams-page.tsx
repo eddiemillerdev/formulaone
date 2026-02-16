@@ -1,9 +1,13 @@
 "use client";
 
+import Link from "next/link";
 import { motion } from "framer-motion";
+import { ArrowRight, Mail } from "lucide-react";
 
 import { FadeIn } from "@/components/motion/fade-in";
 import { Badge } from "@/components/ui/badge";
+import { Button } from "@/components/ui/button";
+import { Card, CardContent } from "@/components/ui/card";
 import { useF1TeamSectionsQuery } from "@/hooks/use-f1-teams-query";
 import type { F1Team, F1TeamSection } from "@/lib/api/f1-teams";
 
@@ -119,8 +123,8 @@ export function TeamsPage() {
   const { data: sections = [], isLoading, error } = useF1TeamSectionsQuery();
 
   return (
-    <main className="mx-auto w-[min(1280px,95vw)] space-y-8 py-10 pb-20">
-      <FadeIn className="hero-panel-bg space-y-4 rounded-3xl border border-border/70 p-8">
+    <main className="mx-auto page-width space-y-8 py-10 pb-20">
+      <FadeIn className="hero-panel-bg space-y-4 rounded-3xl border border-border/70 p-4 md:p-8">
         <Badge className="rounded-full border border-primary/40 bg-primary/10 px-3 py-1 text-[11px] uppercase tracking-[0.12em] text-primary">
           Teams
         </Badge>
@@ -149,6 +153,32 @@ export function TeamsPage() {
           ))}
         </div>
       )}
+
+      <FadeIn delay={0.05}>
+        <Card className="overflow-hidden border-primary/20 bg-gradient-to-br from-primary/10 via-card to-card">
+          <CardContent className="p-4 md:p-10">
+            <div className="grid gap-6 lg:grid-cols-[1fr_auto] lg:items-center">
+              <div>
+                <span className="inline-flex gap-2 rounded-full border border-primary/30 bg-primary/10 px-3 py-1 text-xs uppercase tracking-[0.1em] text-primary">
+                  <Mail className="size-3.5" /> Stay updated
+                </span>
+                <h2 className="mt-3 font-display font-bold text-lg uppercase leading-tight tracking-tight md:text-xl">
+                  Questions or group bookings?
+                </h2>
+                <p className="mt-3 max-w-[50ch] text-sm text-muted-foreground">
+                  Contact our team for help with ticket packages, corporate bookings, or any enquiry. We reply within 24 hours on business days.
+                </p>
+              </div>
+              <Button className="rounded-full" size="lg" asChild>
+                <Link href="/support">
+                  Contact us
+                  <ArrowRight className="ml-2 size-4" />
+                </Link>
+              </Button>
+            </div>
+          </CardContent>
+        </Card>
+      </FadeIn>
     </main>
   );
 }

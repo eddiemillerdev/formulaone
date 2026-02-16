@@ -5,6 +5,11 @@ const API_BASE_URL =
   process.env.API_BASE_URL || "https://f1experiences.co.uk/api/public";
 
 const nextConfig: NextConfig = {
+  images: {
+    remotePatterns: [
+      { protocol: "https", hostname: "assets.quintevents.com", pathname: "/**" },
+    ],
+  },
   async rewrites() {
     return [
       {

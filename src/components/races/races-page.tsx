@@ -5,6 +5,7 @@ import { motion } from "framer-motion";
 import { ArrowRight, CalendarDays, MapPin } from "lucide-react";
 
 import { FadeIn } from "@/components/motion/fade-in";
+import { PageCallout } from "@/components/layout/page-callout";
 import { RaceImageCarousel } from "@/components/races/race-image-carousel";
 import { Badge } from "@/components/ui/badge";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
@@ -12,8 +13,8 @@ import { RACE_MAPPINGS } from "@/lib/races-mapping";
 
 export function RacesPage() {
   return (
-    <main className="mx-auto w-[min(1280px,95vw)] space-y-8 py-10 pb-20">
-      <FadeIn className="hero-panel-bg space-y-4 rounded-3xl border border-border/70 p-8 md:p-10">
+    <main className="mx-auto page-width space-y-8 py-10 pb-20">
+      <FadeIn className="hero-panel-bg space-y-4 rounded-3xl border border-border/70 p-4 md:p-10">
         <Badge className="rounded-full border border-primary/40 bg-primary/10 px-3 py-1 text-[11px] uppercase tracking-[0.12em] text-primary">
           2026 Races
         </Badge>
@@ -68,6 +69,14 @@ export function RacesPage() {
           </motion.div>
         ))}
       </section>
+
+      <PageCallout
+        badge="Next step"
+        title="Check availability and book"
+        description="See live ticket packages and VIP options for every race. Filter by event and secure your seats."
+        href="/events"
+        linkLabel="Browse events"
+      />
     </main>
   );
 }

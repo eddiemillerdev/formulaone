@@ -110,7 +110,7 @@ html.light .hero-panel-bg {
   --brand-primary: #ff1e00;
   --brand-dark: #15151e;
 
-  --bg-main: #15151e;
+  --bg-main: #1e1d20;
   --bg-surface: #1c1c27;
   --bg-card: #20202d;
   --bg-light: #f4f4f4;
@@ -174,20 +174,20 @@ html.light .hero-panel-bg {
   --sidebar-ring: #ff634e;
 }
 
-/* Light theme: proper light (white/off-white), not gray; header & footer stay dark */
+/* Light theme: subtle warm (egg) tint, not white, not yellow; header & footer stay dark */
 html.light {
-  --background: #ffffff;
+  --background: #faf9f6;
   --foreground: #15151e;
-  --card: #ffffff;
+  --card: #faf9f6;
   --card-foreground: #15151e;
-  --popover: #ffffff;
+  --popover: #faf9f6;
   --popover-foreground: #15151e;
-  --muted: #f5f5f5;
+  --muted: #f2f0eb;
   --muted-foreground: #52525b;
-  --accent: #f5f5f5;
+  --accent: #f2f0eb;
   --accent-foreground: #15151e;
-  --border: #e4e4e7;
-  --input: #e4e4e7;
+  --border: #e8e6e0;
+  --input: #e8e6e0;
 }
 
 @layer base {
@@ -228,5 +228,17 @@ html.light {
   select,
   textarea {
     font-family: inherit;
+  }
+}
+
+/* Tighter horizontal space on mobile: less page + card padding stacking */
+@layer utilities {
+  .page-width {
+    width: min(1280px, 97vw);
+  }
+  @media (min-width: 768px) {
+    .page-width {
+      width: min(1280px, 95vw);
+    }
   }
 }
