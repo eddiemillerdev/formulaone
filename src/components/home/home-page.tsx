@@ -4,11 +4,12 @@ import Link from "next/link";
 import { useMemo, useState, useEffect } from "react";
 import { useRouter } from "next/navigation";
 import { motion } from "framer-motion";
-import { ArrowRight, CalendarDays, CheckCircle2, Flag, Shield, Sparkles, Trophy, Users } from "lucide-react";
+import { ArrowRight, CalendarDays, CheckCircle2, Flag, Loader2, Shield, Sparkles, Trophy, Users } from "lucide-react";
 
 import { EventCard } from "@/components/events/event-card";
 import { EventCardSkeleton } from "@/components/events/event-card-skeleton";
 import { HeroEventsCarousel } from "@/components/home/hero-events-carousel";
+import { SponsorCarousel } from "@/components/home/sponsor-carousel";
 import { FadeIn } from "@/components/motion/fade-in";
 import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
@@ -51,6 +52,8 @@ export function HomePage() {
   const router = useRouter();
   const { data: events = [], isLoading, isError } = useEventsQuery();
   const [search, setSearch] = useState("");
+  const [searching, setSearching] = useState(false);
+  const [navigatingTo, setNavigatingTo] = useState<string | null>(null);
 
   const featured = useMemo(() => events.slice(0, 3), [events]);
 
@@ -65,7 +68,13 @@ export function HomePage() {
 
   function handleSearch() {
     const q = search.trim();
+    setSearching(true);
     router.push(q ? `/events?q=${encodeURIComponent(q)}` : "/events");
+  }
+
+  function handleNavigate(href: string) {
+    setNavigatingTo(href);
+    router.push(href);
   }
 
   return (
@@ -90,8 +99,9 @@ export function HomePage() {
               placeholder="Search race, city, or circuit"
               className="h-11 rounded-full border-input bg-background"
             />
-            <Button className="h-11 rounded-full px-6" onClick={handleSearch}>
-              Find Tickets
+            <Button className="h-11 rounded-full px-6" onClick={handleSearch} disabled={searching}>
+              {searching ? <Loader2 className="size-4 animate-spin" /> : null}
+              {searching ? "Searching…" : "Find Tickets"}
             </Button>
           </div>
 
@@ -326,6 +336,8 @@ export function HomePage() {
         ))}
       </section>
 
+      <SponsorCarousel />
+
       <section className="mx-auto w-[min(1280px,95vw)]">
         <Card className="overflow-hidden border-primary/20 bg-gradient-to-br from-primary/10 via-card to-card">
           <div className="grid gap-6 p-8 md:p-10 lg:grid-cols-[1fr_auto] lg:items-center">
@@ -342,11 +354,24 @@ export function HomePage() {
               </p>
             </div>
             <div className="flex flex-wrap gap-3">
-              <Button asChild className="rounded-full" size="lg">
-                <Link href="/events">Browse events</Link>
+              <Button
+                className="rounded-full"
+                size="lg"
+                onClick={() => handleNavigate("/events")}
+                disabled={!!navigatingTo}
+              >
+                {navigatingTo === "/events" ? <Loader2 className="size-4 animate-spin" /> : null}
+                {navigatingTo === "/events" ? "Loading…" : "Browse events"}
               </Button>
-              <Button asChild variant="outline" className="rounded-full" size="lg">
-                <Link href="/races">Explore races</Link>
+              <Button
+                variant="outline"
+                className="rounded-full"
+                size="lg"
+                onClick={() => handleNavigate("/races")}
+                disabled={!!navigatingTo}
+              >
+                {navigatingTo === "/races" ? <Loader2 className="size-4 animate-spin" /> : null}
+                {navigatingTo === "/races" ? "Loading…" : "Explore races"}
               </Button>
             </div>
           </div>

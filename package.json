@@ -4,7 +4,8 @@
   "private": true,
   "scripts": {
     "dev": "next dev",
-    "build": "next build",
+    "build": "node scripts/generate-sponsors-list.js && next build",
+    "generate-sponsors": "node scripts/generate-sponsors-list.js",
     "start": "next start",
     "lint": "eslint"
   },

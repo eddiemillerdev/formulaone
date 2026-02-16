@@ -4,6 +4,7 @@ import { useEffect, useMemo, useRef, useState } from "react";
 import { useRouter } from "next/navigation";
 import { ArrowLeft, CalendarRange, MapPin, ShieldCheck } from "lucide-react";
 
+import { EventDetailSkeleton } from "@/components/events/event-detail-skeleton";
 import { FadeIn } from "@/components/motion/fade-in";
 import { MarkdownContent } from "@/components/ui/markdown-content";
 import { Accordion, AccordionContent, AccordionItem, AccordionTrigger } from "@/components/ui/accordion";
@@ -41,13 +42,7 @@ export function EventDetailPage({ eventId }: EventDetailPageProps) {
   }, [selectedPackageId]);
 
   if (isLoading) {
-    return (
-      <main className="mx-auto w-[min(1280px,95vw)] py-10">
-        <Card className="border-border/80 bg-card/80">
-          <CardContent className="py-10 text-sm text-muted-foreground">Loading event inventory...</CardContent>
-        </Card>
-      </main>
-    );
+    return <EventDetailSkeleton />;
   }
 
   if (isError || !event) {

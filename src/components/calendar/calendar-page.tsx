@@ -4,6 +4,7 @@ import Link from "next/link";
 import { useMemo } from "react";
 import { CalendarDays, FlagTriangleRight } from "lucide-react";
 
+import { CalendarSkeleton } from "@/components/calendar/calendar-skeleton";
 import { FadeIn } from "@/components/motion/fade-in";
 import { Badge } from "@/components/ui/badge";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
@@ -108,11 +109,7 @@ export function CalendarPage() {
         </Card>
       ) : null}
 
-      {isLoading ? (
-        <Card className="border-border/70 bg-card/70">
-          <CardContent className="py-8 text-sm text-muted-foreground">Loading race calendar...</CardContent>
-        </Card>
-      ) : null}
+      {isLoading ? <CalendarSkeleton /> : null}
 
       {!isLoading && !months.length ? (
         <Card className="border-border/70 bg-card/70">

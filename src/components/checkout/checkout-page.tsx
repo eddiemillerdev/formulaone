@@ -45,12 +45,6 @@ const checkoutSchema = z.object({
 
 type CheckoutInput = z.infer<typeof checkoutSchema>;
 
-const SERVICE_FEE_BY_CATEGORY = {
-  grandstand: 0.08,
-  vip: 0.11,
-  paddock: 0.14,
-};
-
 const EMPTY_TICKET_HOLDER = {
   firstName: "",
   lastName: "",
@@ -194,26 +188,12 @@ export function CheckoutPage() {
 
   const pricing = useMemo(() => {
     if (!selectedTicket) {
-      return {
-        subtotal: 0,
-        serviceFee: 0,
-        addOnsTotal: 0,
-        total: 0,
-      };
+      return { subtotal: 0, addOnsTotal: 0, total: 0 };
     }
-
     const qty = Math.max(1, quantity);
     const subtotal = selectedTicket.price * qty;
-    const feeRate = SERVICE_FEE_BY_CATEGORY[selectedTicket.category] ?? 0.1;
-    const serviceFee = Math.round(subtotal * feeRate);
-    const total = subtotal + serviceFee + addOnsTotal;
-
-    return {
-      subtotal,
-      serviceFee,
-      addOnsTotal,
-      total,
-    };
+    const total = subtotal + addOnsTotal;
+    return { subtotal, addOnsTotal, total };
   }, [selectedTicket, quantity, addOnsTotal]);
 
   async function onSubmit(values: CheckoutInput) {
@@ -454,9 +434,14 @@ export function CheckoutPage() {
                     {selectedTicket.addOns && selectedTicket.addOns.length > 0 && (
                       <div className="grid gap-3 pt-2">
                         <Label>Optional add-ons</Label>
+                        <p className="text-xs text-muted-foreground">
+                          Add-ons have their own quantity (e.g. 1× Double accommodation or 2× Single). Not tied to ticket count.
+                        </p>
                         {selectedTicket.addOns.map((addOn) => {
                           const sel = selectedAddOns.find((s) => s.addOnId === addOn.id);
                           const hasOptions = addOn.options && addOn.options.length > 0;
+                          const selectedOptionTitle = sel?.optionId ? addOn.options?.find((o) => o.id === sel.optionId)?.title : null;
+                          const addOnDisplayName = selectedOptionTitle ? `${addOn.title} (${selectedOptionTitle})` : addOn.title;
                           return (
                             <div key={addOn.id} className="space-y-2 rounded-lg border border-border/50 p-3">
                               <label className="flex items-center gap-3 text-sm">
@@ -466,39 +451,64 @@ export function CheckoutPage() {
                                     if (checked) {
                                       setSelectedAddOns([
                                         ...selectedAddOns.filter((s) => s.addOnId !== addOn.id),
-                                        { addOnId: addOn.id, quantity: quantity, optionId: hasOptions ? addOn.options?.[0]?.id : undefined },
+                                        { addOnId: addOn.id, quantity: 1, optionId: hasOptions ? addOn.options?.[0]?.id : undefined },
                                       ]);
                                     } else {
                                       setSelectedAddOns(selectedAddOns.filter((s) => s.addOnId !== addOn.id));
                                     }
                                   }}
                                 />
-                                <span>{addOn.title}</span>
+                                <span>{addOnDisplayName}</span>
                                 <span className="text-muted-foreground">
                                   +{formatMoney(addOn.price, selectedEvent?.currency?.code)}
                                   {hasOptions && addOn.options && addOn.options.some((o) => o.priceModifier) && " base"}
                                 </span>
                               </label>
-                              {hasOptions && addOn.options && sel && (
-                                <div className="ml-6 flex flex-wrap gap-2">
-                                  {addOn.options.map((opt) => (
-                                    <label key={opt.id} className="flex items-center gap-2 text-xs">
-                                      <input
-                                        type="radio"
-                                        name={`addon-${addOn.id}-option`}
-                                        checked={sel.optionId === opt.id}
-                                        onChange={() =>
-                                          setSelectedAddOns(
-                                            selectedAddOns.map((s) =>
-                                              s.addOnId === addOn.id ? { ...s, optionId: opt.id } : s,
-                                            ),
-                                          )
-                                        }
-                                      />
-                                      {opt.title}
-                                      {opt.priceModifier !== 0 && ` (${opt.priceModifier > 0 ? "+" : ""}${formatMoney(opt.priceModifier, selectedEvent?.currency?.code)})`}
-                                    </label>
-                                  ))}
+                              {sel && (
+                                <div className="ml-6 flex flex-wrap items-center gap-3">
+                                  <div className="flex items-center gap-2">
+                                    <Label htmlFor={`addon-qty-${addOn.id}`} className="text-xs font-normal text-muted-foreground">
+                                      Qty
+                                    </Label>
+                                    <Input
+                                      id={`addon-qty-${addOn.id}`}
+                                      type="number"
+                                      min={1}
+                                      max={99}
+                                      value={sel.quantity}
+                                      onChange={(e) => {
+                                        const v = Math.max(1, Math.min(99, Number(e.target.value) || 1));
+                                        setSelectedAddOns(
+                                          selectedAddOns.map((s) =>
+                                            s.addOnId === addOn.id ? { ...s, quantity: v } : s,
+                                          ),
+                                        );
+                                      }}
+                                      className="h-8 w-16 rounded-lg text-sm"
+                                    />
+                                  </div>
+                                  {hasOptions && addOn.options && (
+                                    <div className="flex flex-wrap gap-2">
+                                      {addOn.options.map((opt) => (
+                                        <label key={opt.id} className="flex items-center gap-2 text-xs">
+                                          <input
+                                            type="radio"
+                                            name={`addon-${addOn.id}-option`}
+                                            checked={sel.optionId === opt.id}
+                                            onChange={() =>
+                                              setSelectedAddOns(
+                                                selectedAddOns.map((s) =>
+                                                  s.addOnId === addOn.id ? { ...s, optionId: opt.id } : s,
+                                                ),
+                                              )
+                                            }
+                                          />
+                                          {opt.title}
+                                          {opt.priceModifier !== 0 && ` (${opt.priceModifier > 0 ? "+" : ""}${formatMoney(opt.priceModifier, selectedEvent?.currency?.code)})`}
+                                        </label>
+                                      ))}
+                                    </div>
+                                  )}
                                 </div>
                               )}
                             </div>
@@ -615,20 +625,38 @@ export function CheckoutPage() {
               <div className="grid grid-cols-[1fr_auto] gap-2 text-muted-foreground">
                 <span>Tickets ({quantity} × {formatMoney(selectedTicket.price, selectedEvent?.currency?.code)})</span>
                 <span>{formatMoney(pricing.subtotal, selectedEvent?.currency?.code)}</span>
-                <span>Service fee</span>
-                <span>{formatMoney(pricing.serviceFee, selectedEvent?.currency?.code)}</span>
+                {selectedAddOns.length > 0 && selectedTicket.addOns && selectedAddOns.map((sel) => {
+                  const addOn = selectedTicket.addOns.find((a) => a.id === sel.addOnId);
+                  if (!addOn) return null;
+                  let unitPrice = addOn.price;
+                  if (sel.optionId) {
+                    const opt = addOn.options?.find((o) => o.id === sel.optionId);
+                    if (opt) unitPrice += opt.priceModifier;
+                  }
+                  const lineTotal = unitPrice * sel.quantity;
+                  const optionLabel = sel.optionId ? addOn.options?.find((o) => o.id === sel.optionId)?.title : null;
+                  const lineTitle = optionLabel ? `${addOn.title} (${optionLabel})` : addOn.title;
+                  return (
+                    <span key={addOn.id} className="col-span-2 text-xs pl-2 border-l-2 border-border/50">
+                      {lineTitle} × {sel.quantity} = {formatMoney(lineTotal, selectedEvent?.currency?.code)}
+                    </span>
+                  );
+                })}
                 {pricing.addOnsTotal > 0 && (
                   <>
-                    <span>Add-ons</span>
+                    <span>Add-ons total</span>
                     <span>{formatMoney(pricing.addOnsTotal, selectedEvent?.currency?.code)}</span>
                   </>
                 )}
               </div>
               <Separator />
               <div className="flex items-center justify-between text-base">
-                <span className="font-semibold">Total</span>
-                <span className="font-display text-2xl">{formatMoney(pricing.total, selectedEvent?.currency?.code)}</span>
+                <span className="font-semibold">Subtotal</span>
+                <span className="font-display text-xl">{formatMoney(pricing.total, selectedEvent?.currency?.code)}</span>
               </div>
+              <p className="text-xs text-muted-foreground">
+                Final amount to pay (including any fees) will be confirmed on the next page after your reservation is created.
+              </p>
               <p className="text-xs text-muted-foreground">
                 {ORDER_SERVICE_MODE === "mock"
                   ? "Order submission is currently running in mock mode."

@@ -3,7 +3,7 @@
 import Link from "next/link";
 import { useMemo, useEffect, useState } from "react";
 import { useSearchParams } from "next/navigation";
-import { AlertTriangle, CheckCircle2, Clock, Download, ExternalLink, Mail } from "lucide-react";
+import { AlertTriangle, CheckCircle2, Clock, Download, ExternalLink, Loader2, Mail } from "lucide-react";
 
 import { FadeIn } from "@/components/motion/fade-in";
 import { Badge } from "@/components/ui/badge";
@@ -24,6 +24,7 @@ export function OrderFinishPage() {
   const params = useSearchParams();
   const [orderData, setOrderData] = useState<OrderData | null>(null);
   const [sendingEmail, setSendingEmail] = useState<"me" | "attendees" | null>(null);
+  const [downloadingPdf, setDownloadingPdf] = useState(false);
 
   const status = (params.get("status") || "error") as FinishStatus;
   const reference = params.get("reference") || "";
@@ -128,23 +129,35 @@ export function OrderFinishPage() {
                     )}
                   </div>
                 </div>
-                {(orderData?.payment_instructions_pdf_url || isPaymentPending) && (
+                {(orderData?.payment_instructions_pdf_url || isPaymentPending) && reference && (
                   <div className="rounded-lg border border-amber-500/30 bg-amber-500/5 p-4">
                     <p className="mb-2 text-sm font-medium text-amber-700 dark:text-amber-200">Payment instructions – take this to the bank</p>
-                    <p className="mb-3 text-xs text-amber-700/90 dark:text-amber-200/80">Download the PDF or have it sent by email. It contains the amount, reference and bank details for your transfer.</p>
+                    <p className="mb-3 text-xs text-amber-700/90 dark:text-amber-200/80">Download the PDF or have it sent by email. It contains the amount, reference, fees and bank details for your transfer.</p>
                     <div className="flex flex-wrap gap-2">
-                      {orderData?.payment_instructions_pdf_url ? (
-                        <a
-                          href={orderData.payment_instructions_pdf_url}
-                          target="_blank"
-                          rel="noreferrer"
-                          className="inline-flex items-center gap-2 rounded-full border border-amber-500/40 bg-amber-500/20 px-4 py-2 text-sm font-medium text-amber-700 transition hover:bg-amber-500/30 dark:text-amber-200"
-                        >
-                          <Download className="size-4" /> Download PDF
-                        </a>
-                      ) : (
-                        <span className="text-xs text-amber-700/80 dark:text-amber-200/80">Loading PDF link…</span>
-                      )}
+                      <button
+                        type="button"
+                        disabled={downloadingPdf}
+                        onClick={async () => {
+                          setDownloadingPdf(true);
+                          try {
+                            const res = await fetch(`/api/orders/${encodeURIComponent(reference)}/payment-instructions`);
+                            if (!res.ok) throw new Error("Download failed");
+                            const blob = await res.blob();
+                            const url = URL.createObjectURL(blob);
+                            const a = document.createElement("a");
+                            a.href = url;
+                            a.download = `Payment-Instructions-${reference}.pdf`;
+                            a.click();
+                            URL.revokeObjectURL(url);
+                          } finally {
+                            setDownloadingPdf(false);
+                          }
+                        }}
+                        className="inline-flex items-center gap-2 rounded-full border border-amber-500/40 bg-amber-500/20 px-4 py-2 text-sm font-medium text-amber-700 transition hover:bg-amber-500/30 disabled:opacity-50 dark:text-amber-200"
+                      >
+                        {downloadingPdf ? <Loader2 className="size-4 animate-spin" /> : <Download className="size-4" />}
+                        {downloadingPdf ? "Downloading…" : "Download PDF"}
+                      </button>
                       <button
                         type="button"
                         onClick={async () => {
@@ -202,7 +215,43 @@ export function OrderFinishPage() {
               </p>
             ) : null}
 
-            {totalLabel ? (
+            {isSuccess && orderData && (orderData.amount != null || orderData.grand_total != null) ? (
+              <div className="rounded-lg border border-border/70 bg-muted/30 p-4 space-y-2">
+                <p className="text-xs font-medium uppercase tracking-wide text-muted-foreground">Payment summary</p>
+                <div className="grid grid-cols-[1fr_auto] gap-x-4 gap-y-1 text-sm">
+                  {orderData.amount != null && (
+                    <>
+                      <span className="text-muted-foreground">Subtotal</span>
+                      <span>{formatMoney(orderData.amount, currency.code)}</span>
+                    </>
+                  )}
+                  {orderData.booking_fee != null && orderData.booking_fee > 0 && (
+                    <>
+                      <span className="text-muted-foreground">Booking fee</span>
+                      <span>{formatMoney(orderData.booking_fee, currency.code)}</span>
+                    </>
+                  )}
+                  {orderData.organiser_booking_fee != null && orderData.organiser_booking_fee > 0 && (
+                    <>
+                      <span className="text-muted-foreground">Service fee</span>
+                      <span>{formatMoney(orderData.organiser_booking_fee, currency.code)}</span>
+                    </>
+                  )}
+                  {orderData.taxamt != null && orderData.taxamt > 0 && (
+                    <>
+                      <span className="text-muted-foreground">Tax</span>
+                      <span>{formatMoney(orderData.taxamt, currency.code)}</span>
+                    </>
+                  )}
+                  {orderData.grand_total != null && (
+                    <>
+                      <span className="font-semibold text-foreground">Grand total</span>
+                      <span className="font-semibold text-foreground">{formatMoney(orderData.grand_total, currency.code)}</span>
+                    </>
+                  )}
+                </div>
+              </div>
+            ) : totalLabel ? (
               <p className="text-muted-foreground">
                 Grand total: <span className="font-semibold text-foreground">{totalLabel}</span>
               </p>

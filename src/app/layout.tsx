@@ -33,7 +33,7 @@ export default function RootLayout({
           rel="stylesheet"
         />
       </head>
-      <body className="antialiased">
+      <body className="antialiased" suppressHydrationWarning>
         <AppProviders>
           <ScrollToTop />
           <div className="relative min-h-screen bg-background text-foreground">

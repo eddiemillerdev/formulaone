@@ -3,7 +3,7 @@
 import { useCallback, useEffect, useState } from "react";
 import Link from "next/link";
 import { useParams } from "next/navigation";
-import { ArrowLeft, Clock, AlertCircle, CheckCircle2, Download, Mail, Upload } from "lucide-react";
+import { ArrowLeft, Clock, AlertCircle, CheckCircle2, Download, Loader2, Mail, Upload } from "lucide-react";
 
 import { FadeIn } from "@/components/motion/fade-in";
 import { Badge } from "@/components/ui/badge";
@@ -50,6 +50,7 @@ export function OrderViewPage({ reference: refProp }: { reference?: string }) {
   const [sendingEmail, setSendingEmail] = useState<"me" | "attendees" | null>(null);
   const [uploadSuccess, setUploadSuccess] = useState(false);
   const [uploadError, setUploadError] = useState<string | null>(null);
+  const [downloadingPdf, setDownloadingPdf] = useState(false);
 
   const loadOrder = useCallback(async () => {
     if (!reference) {
@@ -221,17 +222,33 @@ export function OrderViewPage({ reference: refProp }: { reference?: string }) {
               </div>
               <div className="rounded-lg border border-amber-500/30 bg-amber-500/5 p-4">
                 <p className="mb-2 text-sm font-medium text-amber-700 dark:text-amber-200">Payment instructions – take this to the bank</p>
-                <p className="mb-3 text-xs text-amber-700/90 dark:text-amber-200/80">Download the PDF or have it sent by email. It contains the amount, reference and bank details for your transfer.</p>
+                <p className="mb-3 text-xs text-amber-700/90 dark:text-amber-200/80">Download the PDF or have it sent by email. It contains the amount, reference, fees and bank details for your transfer.</p>
                 <div className="flex flex-wrap gap-2">
-                  {order.payment_instructions_pdf_url ? (
-                    <a
-                      href={order.payment_instructions_pdf_url}
-                      target="_blank"
-                      rel="noreferrer"
-                      className="inline-flex items-center gap-2 rounded-full border border-amber-500/40 bg-amber-500/20 px-4 py-2 text-sm font-medium text-amber-700 transition hover:bg-amber-500/30 dark:text-amber-200"
+                  {reference ? (
+                    <button
+                      type="button"
+                      disabled={downloadingPdf}
+                      onClick={async () => {
+                        setDownloadingPdf(true);
+                        try {
+                          const res = await fetch(`/api/orders/${encodeURIComponent(reference)}/payment-instructions`);
+                          if (!res.ok) throw new Error("Download failed");
+                          const blob = await res.blob();
+                          const url = URL.createObjectURL(blob);
+                          const a = document.createElement("a");
+                          a.href = url;
+                          a.download = `Payment-Instructions-${reference}.pdf`;
+                          a.click();
+                          URL.revokeObjectURL(url);
+                        } finally {
+                          setDownloadingPdf(false);
+                        }
+                      }}
+                      className="inline-flex items-center gap-2 rounded-full border border-amber-500/40 bg-amber-500/20 px-4 py-2 text-sm font-medium text-amber-700 transition hover:bg-amber-500/30 disabled:opacity-50 dark:text-amber-200"
                     >
-                      <Download className="size-4" /> Download PDF
-                    </a>
+                      {downloadingPdf ? <Loader2 className="size-4 animate-spin" /> : <Download className="size-4" />}
+                      {downloadingPdf ? "Downloading…" : "Download PDF"}
+                    </button>
                   ) : (
                     <span className="text-xs text-amber-700/80 dark:text-amber-200/80">PDF will be available after loading.</span>
                   )}
