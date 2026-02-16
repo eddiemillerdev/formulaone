@@ -5,9 +5,14 @@ The app manifest expects these files in this folder (or at `/icons/` from the si
 | File | Size | Purpose |
 |------|------|--------|
 | `icon-192.png` | 192×192 | PWA icon (any + maskable) |
-| `icon-512.png` | 512×512 | PWA icon (any + maskable), fallback for iOS splash |
-| `apple-touch-icon.png` | 180×180 | iOS home screen icon (optional; 512 is used if missing) |
-| `favicon.ico` | 32×32 (or multi-size) | Browser tab (optional; favicon.svg can be used) |
+| `icon-512.png` | 512×512 | PWA icon (any + maskable) |
+| `splash-1170x2532.png` | 1170×2532 | iOS splash (iPhone 14/13) |
+| `splash-1290x2796.png` | 1290×2796 | iOS splash (iPhone 14 Pro Max) |
+| `splash-1242x2688.png` | 1242×2688 | iOS splash (iPhone 11 Pro Max) |
+| `splash-750x1334.png` | 750×1334 | iOS splash (iPhone 8/SE) |
+| `splash-2048x2732.png` | 2048×2732 | iOS splash (iPad Pro 12.9") |
+| `apple-touch-icon.png` | 180×180 | iOS home screen (optional) |
+| `favicon.ico` | 32×32 | Browser tab (optional) |
 
 ## Generating from `favicon.svg`
 
@@ -23,7 +28,7 @@ Or use any image tool (Figma, ImageMagick, online converter) to export 192×192 
 
 ## Splash screen (iOS)
 
-The layout uses `icon-512.png` as a simple startup image. For device-optimized splash screens, add PNGs (e.g. `splash-1284x2778.png`) and extra `<link rel="apple-touch-startup-image" href="/icons/splash-1284x2778.png" media="..." />` tags in `src/app/layout.tsx`.
+The same script generates full-screen splash images (dark background `#1e1d20` + centered logo) for common iOS sizes. They are linked in `src/app/layout.tsx` via `apple-touch-startup-image` with matching media queries. Android/Chrome uses the manifest `background_color` and icons for its splash.
 
 ## Legacy files
 
