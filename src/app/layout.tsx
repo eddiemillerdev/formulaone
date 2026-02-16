@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 
 import { AppDownloadStripe } from "@/components/layout/app-download-stripe";
 import { BottomNav } from "@/components/layout/bottom-nav";
+import { PwaInstallPrompt } from "@/components/layout/pwa-install-prompt";
 import { SiteFooter } from "@/components/layout/site-footer";
 import { SiteHeader } from "@/components/layout/site-header";
 import { TopBar } from "@/components/layout/top-bar";
@@ -97,6 +98,7 @@ export default function RootLayout({
             {children}
             <SiteFooter />
             <AppDownloadStripe />
+            <PwaInstallPrompt />
             <BottomNav />
           </div>
         </AppProviders>
