@@ -1,0 +1,67 @@
+{
+    "status": "success",
+    "message": "Order created successfully.",
+    "data": {
+        "order_reference": "HQRB3162",
+        "order_url": "https:\/\/f1experiences.co.uk\/order\/HQRB3162",
+        "payment_instructions_pdf_url": "https:\/\/f1experiences.co.uk\/order\/HQRB3162\/payment-instructions.pdf",
+        "first_name": "Jimmy",
+        "last_name": "Xhu",
+        "email": "adeviss2@gmail.com",
+        "order_status_id": "5",
+        "amount": 6614.44,
+        "booking_fee": 0,
+        "organiser_booking_fee": 198.44,
+        "taxamt": 0,
+        "grand_total": 6812.88,
+        "is_payment_received": false,
+        "payment_deadline_at": "2026-02-18T14:43:35+00:00",
+        "has_pending_receipt": false,
+        "receipt_confirmed": false,
+        "receipt": null,
+        "currency": {
+            "code": "GBP",
+            "symbol": "\u00a3"
+        },
+        "event": {
+            "id": 1,
+            "title": "FORMULA 1 QATAR AIRWAYS AUSTRALIAN GRAND PRIX 2026",
+            "start_date": "2026-03-05T09:00:00+00:00",
+            "end_date": "2026-03-08T22:30:00+00:00",
+            "event_url": "https:\/\/f1experiences.co.uk\/e\/1\/formula-1-qatar-airways-australian-grand-prix-2026",
+            "organiser": {
+                "id": 1,
+                "name": "Formula One Digital Media Limited",
+                "email": "hq@f1experiences.co.uk",
+                "logo_url": "https:\/\/f1experiences.co.uk\/user_content\/organiser_images\/formula-one-digital-media-limited-logo-.png",
+                "organiser_url": "https:\/\/f1experiences.co.uk\/o\/1\/formula-one-digital-media-limited"
+            }
+        },
+        "order_items": [
+            {
+                "title": "Champions Club 3-Days",
+                "quantity": "2",
+                "unit_price": 3307.22,
+                "total": 6614.44
+            }
+        ],
+        "attendees": [
+            {
+                "id": 54,
+                "first_name": "Jimmy",
+                "last_name": "Xhu",
+                "email": "adeviss2@gmail.com",
+                "ticket_id": "21",
+                "ticket_title": "Champions Club 3-Days"
+            },
+            {
+                "id": 55,
+                "first_name": "Jimmy",
+                "last_name": "Xhu",
+                "email": "adeviss2@gmail.com",
+                "ticket_id": "21",
+                "ticket_title": "Champions Club 3-Days"
+            }
+        ]
+    }
+}

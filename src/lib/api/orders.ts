@@ -16,9 +16,9 @@ const nullableNumberSchema = z.preprocess((value) => {
 
 const orderItemSchema = z.object({
   title: z.string().optional(),
-  quantity: z.number().optional(),
-  unit_price: z.number().optional(),
-  total: z.number().optional(),
+  quantity: z.union([z.number(), z.string().transform((v) => (v === "" ? undefined : Number(v)))]).optional(),
+  unit_price: z.union([z.number(), z.string().transform((v) => (v === "" ? undefined : Number(v)))]).optional(),
+  total: z.union([z.number(), z.string().transform((v) => (v === "" ? undefined : Number(v)))]).optional(),
 }).passthrough();
 
 const orderDataSchema = z.object({
