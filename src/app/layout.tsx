@@ -91,7 +91,7 @@ export default function RootLayout({
         <AppProviders>
           <PwaRegister />
           <ScrollToTop />
-          <div className="relative min-h-screen bg-background text-foreground pb-[max(4rem,calc(4rem+env(safe-area-inset-bottom)))] md:pb-0">
+          <div className="relative min-h-screen bg-background text-foreground pt-[env(safe-area-inset-top,0px)] pb-[max(4rem,calc(4rem+env(safe-area-inset-bottom)))] md:pb-0">
             <div className="pointer-events-none fixed inset-0 -z-10 bg-[radial-gradient(circle_at_10%_-5%,rgba(255,30,0,0.2),transparent_35%),radial-gradient(circle_at_88%_8%,rgba(255,59,34,0.1),transparent_40%)]" />
             <TopBar />
             <SiteHeader />

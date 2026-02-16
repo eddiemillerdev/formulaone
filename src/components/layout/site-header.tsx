@@ -47,7 +47,7 @@ export function SiteHeader() {
   };
 
   return (
-    <header className="relative sticky top-0 z-50 bg-[#15151e]/95 shadow-[0_4px_14px_0_rgba(0,0,0,0.25)] backdrop-blur-xl">
+    <header className="relative sticky top-0 z-50 bg-[#15151e]/95 pt-[env(safe-area-inset-top,0px)] shadow-[0_4px_14px_0_rgba(0,0,0,0.25)] backdrop-blur-xl">
       {/* Pattern behind links: repeat to fill */}
       <div
         className="pointer-events-none absolute inset-0 z-0 bg-repeat"
