@@ -626,7 +626,7 @@ export function CheckoutPage() {
                 <span>Tickets ({quantity} × {formatMoney(selectedTicket.price, selectedEvent?.currency?.code)})</span>
                 <span>{formatMoney(pricing.subtotal, selectedEvent?.currency?.code)}</span>
                 {selectedAddOns.length > 0 && selectedTicket.addOns && selectedAddOns.map((sel) => {
-                  const addOn = selectedTicket.addOns.find((a) => a.id === sel.addOnId);
+                  const addOn = selectedTicket.addOns?.find((a) => a.id === sel.addOnId);
                   if (!addOn) return null;
                   let unitPrice = addOn.price;
                   if (sel.optionId) {

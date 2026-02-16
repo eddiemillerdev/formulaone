@@ -1,0 +1,15 @@
+---
+description: When user approves changes, stage, commit and push
+globs: 
+alwaysApply: true
+---
+
+# Git after approval
+
+When the user says that what was modified is OK (or confirms/approves the changes), you must:
+
+1. **Stage** all changes: `git add *` (or `git add -A`)
+2. **Commit** with a short, clear message describing the change
+3. **Push** to the remote: `git push`
+
+**Important:** Only the **formulaone** folder is the git repo. Never run git from the parent (formula1) root. Always run all git commands with the working directory set to **formulaone** (e.g. `cd formulaone` then run git, or use `working_directory: formulaone` in the terminal tool).
