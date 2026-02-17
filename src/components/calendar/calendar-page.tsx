@@ -4,11 +4,18 @@ import Link from "next/link";
 import { useMemo } from "react";
 import { CalendarDays, FlagTriangleRight } from "lucide-react";
 
-import { CalendarSkeleton } from "@/components/calendar/calendar-skeleton";
 import { FadeIn } from "@/components/motion/fade-in";
 import { PageCallout } from "@/components/layout/page-callout";
 import { Badge } from "@/components/ui/badge";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
+import {
+  Empty,
+  EmptyDescription,
+  EmptyHeader,
+  EmptyMedia,
+  EmptyTitle,
+} from "@/components/ui/empty";
+import { Spinner } from "@/components/ui/spinner";
 import { useEventsQuery } from "@/hooks/use-events-query";
 import { type EventItem, formatMoney } from "@/lib/api/events";
 
@@ -98,7 +105,7 @@ export function CalendarPage() {
         </p>
         <div className="mt-5 inline-flex items-center gap-2 rounded-full border border-border/80 bg-card/70 px-3 py-2 text-xs text-muted-foreground">
           <CalendarDays className="size-4 text-primary" />
-          {events.length} races currently loaded from the organiser feed
+          {events.length} race weekends in the calendar
         </div>
       </FadeIn>
 
@@ -110,7 +117,21 @@ export function CalendarPage() {
         </Card>
       ) : null}
 
-      {isLoading ? <CalendarSkeleton /> : null}
+      {isLoading ? (
+        <div className="flex min-h-[320px] items-center justify-center py-8">
+          <Empty className="w-full max-w-md border border-dashed border-border/80 bg-card/40 px-6">
+            <EmptyHeader>
+              <EmptyMedia variant="icon">
+                <Spinner className="size-8 text-primary" />
+              </EmptyMedia>
+              <EmptyTitle>Loading calendar</EmptyTitle>
+              <EmptyDescription>
+                Please wait while we load the race calendar.
+              </EmptyDescription>
+            </EmptyHeader>
+          </Empty>
+        </div>
+      ) : null}
 
       {!isLoading && !months.length ? (
         <Card className="border-border/70 bg-card/70">
@@ -164,7 +185,7 @@ export function CalendarPage() {
                               <p className="mt-1 text-xs text-muted-foreground">{dayLabel}</p>
                             </div>
                             <div className="flex shrink-0 items-center gap-2">
-                              <span className="text-sm font-medium text-primary">{formatMoney(event.fromPrice)}</span>
+                              <span className="text-sm font-medium text-primary">{formatMoney(event.fromPrice, event.currency?.code)}</span>
                               <FlagTriangleRight className="size-4 text-muted-foreground" />
                             </div>
                           </Link>
@@ -208,7 +229,7 @@ export function CalendarPage() {
                                     <span className="line-clamp-2 font-medium">{event.name}</span>
                                     <span className="mt-1 inline-flex items-center gap-1 text-[10px] text-muted-foreground">
                                       <FlagTriangleRight className="size-3" />
-                                      from {formatMoney(event.fromPrice)}
+                                      from {formatMoney(event.fromPrice, event.currency?.code)}
                                     </span>
                                   </Link>
                                 ))

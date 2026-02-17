@@ -4,8 +4,15 @@ import { useEffect, useMemo, useRef, useState } from "react";
 import { useRouter } from "next/navigation";
 import { ArrowLeft, CalendarRange, MapPin, ShieldCheck } from "lucide-react";
 
-import { EventDetailSkeleton } from "@/components/events/event-detail-skeleton";
 import { FadeIn } from "@/components/motion/fade-in";
+import {
+  Empty,
+  EmptyDescription,
+  EmptyHeader,
+  EmptyMedia,
+  EmptyTitle,
+} from "@/components/ui/empty";
+import { Spinner } from "@/components/ui/spinner";
 import { MarkdownContent } from "@/components/ui/markdown-content";
 import { Accordion, AccordionContent, AccordionItem, AccordionTrigger } from "@/components/ui/accordion";
 import { Badge } from "@/components/ui/badge";
@@ -42,7 +49,21 @@ export function EventDetailPage({ eventId }: EventDetailPageProps) {
   }, [selectedPackageId]);
 
   if (isLoading) {
-    return <EventDetailSkeleton />;
+    return (
+      <main className="mx-auto page-width flex min-h-[50vh] items-center justify-center py-10">
+        <Empty className="w-full max-w-md border border-dashed border-border/80 bg-card/40 px-6">
+          <EmptyHeader>
+            <EmptyMedia variant="icon">
+              <Spinner className="size-8 text-primary" />
+            </EmptyMedia>
+            <EmptyTitle>Loading event</EmptyTitle>
+            <EmptyDescription>
+              Please wait while we load this race and its packages.
+            </EmptyDescription>
+          </EmptyHeader>
+        </Empty>
+      </main>
+    );
   }
 
   if (isError || !event) {
@@ -74,9 +95,9 @@ export function EventDetailPage({ eventId }: EventDetailPageProps) {
 
       <section className="grid gap-5 lg:grid-cols-[1.2fr_0.8fr]">
         <FadeIn className="space-y-5">
-          <Card className="overflow-hidden border-border/80 bg-card/85 pt-0">
+          <Card className="overflow-hidden border-border/80 bg-card/85 pt-0 md:pt-0">
             <div
-              className="h-64 bg-cover bg-center md:h-[19rem]"
+              className="h-64 shrink-0 bg-cover bg-center md:h-[19rem]"
               style={{
                 backgroundImage: event.imageUrl
                   ? `linear-gradient(130deg, rgba(21,21,30,0.2) 0%, rgba(21,21,30,0.7) 100%), url('${event.imageUrl}')`
@@ -105,9 +126,9 @@ export function EventDetailPage({ eventId }: EventDetailPageProps) {
           <Card className="sticky top-24 self-start border-primary/35 bg-gradient-to-br from-primary/20 via-card to-card">
             <CardHeader>
               <CardTitle className="font-display text-3xl uppercase">Booking Summary</CardTitle>
-              <CardDescription>Live package inventory from public API endpoint.</CardDescription>
+              <CardDescription>Official packages with live availability.</CardDescription>
               <p className="text-xs text-muted-foreground/90">
-                Select a package below to see details. Prices and availability update in real time from the organiser.
+                Choose a package below to see details and continue. Prices and availability are updated in real time.
               </p>
             </CardHeader>
             <CardContent className="space-y-3 text-sm">
@@ -118,7 +139,7 @@ export function EventDetailPage({ eventId }: EventDetailPageProps) {
               <Separator />
               <div className="flex items-center justify-between">
                 <span className="text-muted-foreground">Starting from</span>
-                <span className="font-display text-xl">{formatMoney(event.fromPrice)}</span>
+                <span className="font-display text-xl">{formatMoney(event.fromPrice, event.currency?.code)} {event.currency?.code ? <span className="text-sm font-normal text-muted-foreground">({event.currency.code})</span> : null}</span>
               </div>
               <div className="space-y-2">
                 <label className="mb-2 block text-xs font-medium text-muted-foreground">
@@ -134,7 +155,7 @@ export function EventDetailPage({ eventId }: EventDetailPageProps) {
                         ticket.isSoldOut || (!ticket.isUnlimited && (ticket.quantityRemaining ?? 0) <= 0);
                       return (
                         <SelectItem key={ticket.id} value={ticket.id} disabled={isSoldOut} className="truncate max-w-full">
-                          <span className="block truncate">{ticket.title} — {formatMoney(ticket.price)}
+                          <span className="block truncate">{ticket.title} — {formatMoney(ticket.price, event.currency?.code)}
                           {isSoldOut ? " (Sold out)" : ""}</span>
                         </SelectItem>
                       );
@@ -211,7 +232,7 @@ export function EventDetailPage({ eventId }: EventDetailPageProps) {
                     <CardHeader className="space-y-3">
                       <div className="flex flex-wrap items-start justify-between gap-2">
                         <CardTitle className="font-display text-2xl uppercase leading-tight">{ticket.title}</CardTitle>
-                        <span className="font-display text-3xl leading-none">{formatMoney(ticket.price)}</span>
+                        <span className="font-display text-3xl leading-none">{formatMoney(ticket.price, event.currency?.code)}</span>
                       </div>
                       <div className="flex flex-wrap gap-2 text-xs">
                         <Badge variant="outline" className="rounded-full border-border bg-background/70 text-muted-foreground">
@@ -268,7 +289,7 @@ function SelectedPackageCard({
   ticket,
   onContinue,
 }: {
-  event: { id: string; name: string };
+  event: { id: string; name: string; currency?: { code: string; symbol: string } };
   ticket: TicketPackage;
   onContinue: () => void;
 }) {
@@ -286,7 +307,8 @@ function SelectedPackageCard({
         <p className="text-xs uppercase tracking-[0.1em] text-muted-foreground">Selected package</p>
         <div className="flex flex-wrap items-start justify-between gap-4">
           <CardTitle className="font-display text-3xl uppercase leading-tight">{ticket.title}</CardTitle>
-          <span className="font-display text-4xl leading-none">{formatMoney(ticket.price)}</span>
+          <span className="font-display text-4xl leading-none">{formatMoney(ticket.price, event.currency?.code)}</span>
+          {event.currency?.code ? <span className="text-sm font-normal text-muted-foreground"> ({event.currency.code})</span> : null}
         </div>
         <div className="flex flex-wrap gap-2 text-xs">
           <Badge variant="outline" className="rounded-full border-border bg-background/70 text-muted-foreground">

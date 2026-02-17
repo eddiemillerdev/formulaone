@@ -36,7 +36,7 @@ export function RacesPage() {
             transition={{ duration: 0.45, delay: index * 0.03 }}
             className="h-full"
           >
-            <Card className="flex h-full flex-col overflow-hidden border-border/75 bg-card/80 pt-0">
+            <Card className="flex h-full flex-col overflow-hidden border-border/75 bg-card/80 pt-0 md:pt-0">
               <RaceImageCarousel images={race.images} title={race.name} className="h-52" />
 
               <CardHeader className="space-y-3">

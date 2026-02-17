@@ -12,7 +12,7 @@ type EventCardProps = {
 
 export function EventCard({ event }: EventCardProps) {
   return (
-    <Card className="group flex h-full flex-col overflow-hidden border-border/80 bg-card/90 pt-0 transition-all hover:-translate-y-1 hover:border-primary/50">
+    <Card className="group flex h-full flex-col overflow-hidden border-border/80 bg-card/90 pt-0 md:pt-0 transition-all hover:-translate-y-1 hover:border-primary/50">
       <div
         className="relative aspect-[16/10] w-full shrink-0 bg-cover bg-center"
         style={{
@@ -46,7 +46,8 @@ export function EventCard({ event }: EventCardProps) {
       </CardContent>
       <CardFooter className="flex items-center justify-between gap-3">
         <p className="text-sm text-muted-foreground">
-          From <strong className="font-display text-lg text-foreground">{formatMoney(event.fromPrice)}</strong>
+          From <strong className="font-display text-lg text-foreground">{formatMoney(event.fromPrice, event.currency?.code)}</strong>
+          {event.currency?.code ? <span className="ml-1 text-xs text-muted-foreground">({event.currency.code})</span> : null}
         </p>
         <Button asChild variant="secondary" className="rounded-full">
           <Link href={`/events/${event.id}`}>Check availability</Link>

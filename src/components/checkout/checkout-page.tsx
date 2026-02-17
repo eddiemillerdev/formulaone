@@ -1,13 +1,22 @@
 "use client";
 
+import Link from "next/link";
 import { useEffect, useMemo, useState } from "react";
 import { useRouter, useSearchParams } from "next/navigation";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { useFieldArray, useForm, useWatch } from "react-hook-form";
 import { z } from "zod";
-import { ArrowLeft, Loader2 } from "lucide-react";
+import { ArrowLeft } from "lucide-react";
 
 import { FadeIn } from "@/components/motion/fade-in";
+import {
+  Empty,
+  EmptyDescription,
+  EmptyHeader,
+  EmptyMedia,
+  EmptyTitle,
+} from "@/components/ui/empty";
+import { Spinner } from "@/components/ui/spinner";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
 import { Checkbox } from "@/components/ui/checkbox";
@@ -281,10 +290,18 @@ export function CheckoutPage() {
 
   if (isLoading) {
     return (
-      <main className="mx-auto page-width py-10">
-        <Card className="border-border/80 bg-card/80">
-          <CardContent className="py-10 text-sm text-muted-foreground">Loading checkout details...</CardContent>
-        </Card>
+      <main className="mx-auto page-width flex min-h-[50vh] items-center justify-center py-10">
+        <Empty className="w-full max-w-md border border-dashed border-border/80 bg-card/40 px-6">
+          <EmptyHeader>
+            <EmptyMedia variant="icon">
+              <Spinner className="size-8 text-primary" />
+            </EmptyMedia>
+            <EmptyTitle>Loading checkout</EmptyTitle>
+            <EmptyDescription>
+              Please wait while we load your checkout details.
+            </EmptyDescription>
+          </EmptyHeader>
+        </Empty>
       </main>
     );
   }
@@ -337,7 +354,7 @@ export function CheckoutPage() {
             <CardHeader>
               <CardTitle className="font-display text-3xl uppercase tracking-tight">Guest Details</CardTitle>
               <CardDescription>
-                {selectedTicket.title} • {formatMoney(selectedTicket.price)} per ticket
+                {selectedTicket.title} • {formatMoney(selectedTicket.price, selectedEvent?.currency?.code)} per ticket
               </CardDescription>
             </CardHeader>
             <CardContent className="space-y-5">
@@ -597,7 +614,7 @@ export function CheckoutPage() {
                 <Button className="rounded-full" type="submit" disabled={isSubmitting || isSoldOut}>
                   {isSubmitting ? (
                     <>
-                      <Loader2 className="mr-2 size-4 animate-spin" /> Submitting reservation...
+                      <Spinner className="mr-2 size-4" /> Submitting reservation...
                     </>
                   ) : isSoldOut ? (
                     "Package sold out"
@@ -612,7 +629,7 @@ export function CheckoutPage() {
         </FadeIn>
 
         <FadeIn delay={0.06}>
-          <Card className="border-primary/30 bg-gradient-to-br from-card via-card to-primary/10">
+          <Card className="sticky top-24 self-start border-primary/30 bg-gradient-to-br from-card via-card to-primary/10">
             <CardHeader>
               <CardTitle className="font-display text-3xl uppercase tracking-tight">Order Summary</CardTitle>
               <CardDescription>Your request is confirmed before payment.</CardDescription>
@@ -661,13 +678,12 @@ export function CheckoutPage() {
               <p className="text-xs text-muted-foreground">
                 Final amount to pay (including any fees) will be confirmed on the next page after your reservation is created.
               </p>
-              <p className="text-xs text-muted-foreground">
-                {ORDER_SERVICE_MODE === "mock"
-                  ? "Order submission is currently running in mock mode."
-                  : "Order submission is connected to the public orders API."}
-              </p>
               <p className="text-xs text-muted-foreground/90">
                 Prices and availability are subject to confirmation. After you submit, you will receive an email with next steps and payment instructions. Your reservation is held until the payment deadline.
+              </p>
+              <Separator />
+              <p className="text-xs text-muted-foreground">
+                Need help? <Link href="/support" className="text-primary underline underline-offset-2 hover:no-underline">Contact support</Link> before you submit.
               </p>
             </CardContent>
           </Card>

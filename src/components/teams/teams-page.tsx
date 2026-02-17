@@ -8,6 +8,14 @@ import { FadeIn } from "@/components/motion/fade-in";
 import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent } from "@/components/ui/card";
+import {
+  Empty,
+  EmptyDescription,
+  EmptyHeader,
+  EmptyMedia,
+  EmptyTitle,
+} from "@/components/ui/empty";
+import { Spinner } from "@/components/ui/spinner";
 import { useF1TeamSectionsQuery } from "@/hooks/use-f1-teams-query";
 import type { F1Team, F1TeamSection } from "@/lib/api/f1-teams";
 
@@ -138,7 +146,19 @@ export function TeamsPage() {
       </FadeIn>
 
       {isLoading && (
-        <p className="text-center text-muted-foreground">Loading teams…</p>
+        <div className="flex justify-center py-12">
+          <Empty className="w-full max-w-md border border-dashed border-border/80 bg-card/40 px-6">
+            <EmptyHeader>
+              <EmptyMedia variant="icon">
+                <Spinner className="size-8 text-primary" />
+              </EmptyMedia>
+              <EmptyTitle>Loading teams</EmptyTitle>
+              <EmptyDescription>
+                Please wait while we load F1 teams and drivers.
+              </EmptyDescription>
+            </EmptyHeader>
+          </Empty>
+        </div>
       )}
       {error && (
         <p className="text-center text-destructive">Failed to load teams.</p>

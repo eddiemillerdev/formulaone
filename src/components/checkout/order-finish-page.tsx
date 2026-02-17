@@ -3,9 +3,10 @@
 import Link from "next/link";
 import { useMemo, useEffect, useState } from "react";
 import { useSearchParams } from "next/navigation";
-import { AlertTriangle, CheckCircle2, Clock, Download, ExternalLink, Loader2, Mail } from "lucide-react";
+import { AlertTriangle, CheckCircle2, Clock, Download, ExternalLink, Mail } from "lucide-react";
 
 import { FadeIn } from "@/components/motion/fade-in";
+import { Spinner } from "@/components/ui/spinner";
 import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
@@ -35,7 +36,7 @@ export function OrderFinishPage() {
   const message = useMemo(() => {
     const fromQuery = params.get("message");
     if (fromQuery) return fromQuery;
-    if (status === "success") return "Order created successfully.";
+    if (status === "success") return "Order received. Your reservation is held—tickets are not confirmed until payment is complete.";
     return "Order could not be completed.";
   }, [params, status]);
 
@@ -112,8 +113,9 @@ export function OrderFinishPage() {
                   <div>
                     <p className="font-medium text-amber-700 dark:text-amber-200">Payment required</p>
                     <p className="text-amber-700/90 dark:text-amber-200/90">
-                      Complete your bank transfer and submit your payment receipt. Download the payment
-                      instructions PDF or have it sent to your email before heading to the bank.
+                    Full payment must be received to confirm the booking. The reservation will remain in pending status until funds are received and credited to our account.
+                    
+                    To proceed, please download the payment instructions or have them sent to your email before initiating the transfer.
                     </p>
                     {orderData?.payment_deadline_at && (
                       <p className="mt-2 text-amber-700/90 dark:text-amber-200/90">
@@ -121,8 +123,7 @@ export function OrderFinishPage() {
                           <span className="text-destructive">Payment deadline has passed.</span>
                         ) : (
                           <>
-                            Pay by <strong>{formatDate(orderData.payment_deadline_at)}</strong>. If payment is
-                            not received by then, your order will be cancelled.
+                            Pay by <strong>{formatDate(orderData.payment_deadline_at)}</strong> (business days only—weekends excluded). If payment is not received by then, your order will be cancelled.
                           </>
                         )}
                       </p>
@@ -132,7 +133,12 @@ export function OrderFinishPage() {
                 {(orderData?.payment_instructions_pdf_url || isPaymentPending) && reference && (
                   <div className="rounded-lg border border-amber-500/30 bg-amber-500/5 p-4">
                     <p className="mb-2 text-sm font-medium text-amber-700 dark:text-amber-200">Payment instructions – take this to the bank</p>
-                    <p className="mb-3 text-xs text-amber-700/90 dark:text-amber-200/80">Download the PDF or have it sent by email. It contains the amount, reference, fees and bank details for your transfer.</p>
+                    <ol className="mb-3 list-decimal list-inside space-y-1.5 text-sm text-amber-700/90 dark:text-amber-200/80">
+                      <li>Click “Download PDF” to access the bank transfer details. Alternatively, select “Email to me” or “Email to attendees” to receive the instructions directly.</li>
+                      <li>Complete the wire transfer using the banking details provided in the document.</li>
+                      <li>Ensure the reservation reference is included in the payment description to enable seamless allocation.</li>
+                      <li>Once the wire has been processed, submit your payment confirmation or receipt as instructed in the PDF.</li>
+                    </ol>
                     <div className="flex flex-wrap gap-2">
                       <button
                         type="button"
@@ -155,7 +161,7 @@ export function OrderFinishPage() {
                         }}
                         className="inline-flex items-center gap-2 rounded-full border border-amber-500/40 bg-amber-500/20 px-4 py-2 text-sm font-medium text-amber-700 transition hover:bg-amber-500/30 disabled:opacity-50 dark:text-amber-200"
                       >
-                        {downloadingPdf ? <Loader2 className="size-4 animate-spin" /> : <Download className="size-4" />}
+                        {downloadingPdf ? <Spinner className="size-4" /> : <Download className="size-4" />}
                         {downloadingPdf ? "Downloading…" : "Download PDF"}
                       </button>
                       <button
@@ -203,7 +209,14 @@ export function OrderFinishPage() {
               <span>
                 {isSuccess
                   ? isPaymentPending
-                    ? "Your reservation is held. Please complete payment to confirm your tickets."
+                    ? (
+                        <>
+                          Your reservation is held. Please complete payment to confirm your tickets.
+                          {orderData?.payment_deadline_at && !deadlinePassed && (
+                            <> Pay by <strong>{formatDate(orderData.payment_deadline_at)}</strong> (business days only—weekends excluded). If payment is not received by then, your order will be cancelled.</>
+                          )}
+                        </>
+                      )
                     : "Your request has been processed."
                   : "Please review the details below."}
               </span>

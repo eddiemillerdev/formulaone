@@ -3,9 +3,17 @@
 import { useCallback, useEffect, useState } from "react";
 import Link from "next/link";
 import { useParams } from "next/navigation";
-import { ArrowLeft, Clock, AlertCircle, CheckCircle2, Download, Loader2, Mail, Upload } from "lucide-react";
+import { ArrowLeft, Clock, AlertCircle, CheckCircle2, Download, Mail, Upload } from "lucide-react";
 
 import { FadeIn } from "@/components/motion/fade-in";
+import {
+  Empty,
+  EmptyDescription,
+  EmptyHeader,
+  EmptyMedia,
+  EmptyTitle,
+} from "@/components/ui/empty";
+import { Spinner } from "@/components/ui/spinner";
 import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
@@ -133,8 +141,18 @@ export function OrderViewPage({ reference: refProp }: { reference?: string }) {
 
   if (loading) {
     return (
-      <main className="mx-auto w-[min(840px,92vw)] py-12">
-        <p className="text-muted-foreground">Loading order...</p>
+      <main className="mx-auto flex min-h-[40vh] w-[min(840px,92vw)] items-center justify-center py-12">
+        <Empty className="w-full max-w-md border border-dashed border-border/80 bg-card/40 px-6">
+          <EmptyHeader>
+            <EmptyMedia variant="icon">
+              <Spinner className="size-8 text-primary" />
+            </EmptyMedia>
+            <EmptyTitle>Loading order</EmptyTitle>
+            <EmptyDescription>
+              Please wait while we load your order details.
+            </EmptyDescription>
+          </EmptyHeader>
+        </Empty>
       </main>
     );
   }
@@ -181,8 +199,8 @@ export function OrderViewPage({ reference: refProp }: { reference?: string }) {
               <Badge
                 className={
                   isPaid
-                    ? "rounded-full border border-emerald-500/40 bg-emerald-500/15 text-emerald-300"
-                    : "rounded-full border border-amber-500/40 bg-amber-500/15 text-amber-300"
+                    ? "rounded-full border border-emerald-500/40 bg-emerald-500/15 text-emerald-700 dark:text-emerald-200"
+                    : "rounded-full border border-amber-500/40 bg-amber-500/15 text-amber-800 dark:text-amber-200"
                 }
               >
                 {isPaid ? "Paid" : "Awaiting payment"}
@@ -213,7 +231,7 @@ export function OrderViewPage({ reference: refProp }: { reference?: string }) {
                         {deadlinePassed ? (
                           <span className="text-destructive">Payment deadline has passed. Your reservation may have been cancelled.</span>
                         ) : (
-                          <>Pay by <strong>{formatDate(order.payment_deadline_at)}</strong>. If payment is not received by then, your order will be cancelled.</>
+                          <>Pay by <strong>{formatDate(order.payment_deadline_at)}</strong> (business days only—weekends excluded). If payment is not received by then, your order will be cancelled.</>
                         )}
                       </p>
                     )}
@@ -222,7 +240,12 @@ export function OrderViewPage({ reference: refProp }: { reference?: string }) {
               </div>
               <div className="rounded-lg border border-amber-500/30 bg-amber-500/5 p-4">
                 <p className="mb-2 text-sm font-medium text-amber-700 dark:text-amber-200">Payment instructions – take this to the bank</p>
-                <p className="mb-3 text-xs text-amber-700/90 dark:text-amber-200/80">Download the PDF or have it sent by email. It contains the amount, reference, fees and bank details for your transfer.</p>
+                <ol className="mb-3 list-decimal list-inside space-y-1.5 text-xs text-amber-700/90 dark:text-amber-200/80">
+                  <li>Click “Download PDF” to access the bank transfer details. Alternatively, select “Email to me” or “Email to attendees” to receive the instructions directly.</li>
+                  <li>Complete the wire transfer using the banking details provided in the document.</li>
+                  <li>Ensure the reservation reference is included in the payment description to enable seamless allocation.</li>
+                  <li>Once the wire has been processed, submit your payment confirmation or receipt as instructed in the PDF.</li>
+                </ol>
                 <div className="flex flex-wrap gap-2">
                   {reference ? (
                     <button
@@ -246,7 +269,7 @@ export function OrderViewPage({ reference: refProp }: { reference?: string }) {
                       }}
                       className="inline-flex items-center gap-2 rounded-full border border-amber-500/40 bg-amber-500/20 px-4 py-2 text-sm font-medium text-amber-700 transition hover:bg-amber-500/30 disabled:opacity-50 dark:text-amber-200"
                     >
-                      {downloadingPdf ? <Loader2 className="size-4 animate-spin" /> : <Download className="size-4" />}
+                      {downloadingPdf ? <Spinner className="size-4" /> : <Download className="size-4" />}
                       {downloadingPdf ? "Downloading…" : "Download PDF"}
                     </button>
                   ) : (
@@ -329,7 +352,7 @@ export function OrderViewPage({ reference: refProp }: { reference?: string }) {
                     />
                     <Button type="button" asChild className="rounded-full">
                       <span>
-                        <Upload className="mr-2 size-4" /> {uploading ? "Uploading..." : "Choose file"}
+                        {uploading ? <Spinner className="mr-2 size-4" /> : <Upload className="mr-2 size-4" />} {uploading ? "Uploading..." : "Choose file"}
                       </span>
                     </Button>
                   </label>
@@ -364,10 +387,38 @@ export function OrderViewPage({ reference: refProp }: { reference?: string }) {
                 ))}
               </div>
             )}
-            {order.grand_total != null && (
-              <div className="mt-4 flex justify-between border-t pt-4 font-display text-lg">
-                <span>Total</span>
-                <span>{format(order.grand_total)}</span>
+            {(order.amount != null || order.booking_fee != null || order.organiser_booking_fee != null || order.taxamt != null || order.grand_total != null) && (
+              <div className="mt-4 space-y-1.5 border-t pt-4 text-sm">
+                {order.amount != null && (
+                  <div className="flex justify-between">
+                    <span className="text-muted-foreground">Subtotal</span>
+                    <span>{format(order.amount)}</span>
+                  </div>
+                )}
+                {order.booking_fee != null && Number(order.booking_fee) > 0 && (
+                  <div className="flex justify-between">
+                    <span className="text-muted-foreground">Booking fee</span>
+                    <span>{format(order.booking_fee)}</span>
+                  </div>
+                )}
+                {order.organiser_booking_fee != null && Number(order.organiser_booking_fee) > 0 && (
+                  <div className="flex justify-between">
+                    <span className="text-muted-foreground">Service fee</span>
+                    <span>{format(order.organiser_booking_fee)}</span>
+                  </div>
+                )}
+                {order.taxamt != null && Number(order.taxamt) > 0 && (
+                  <div className="flex justify-between">
+                    <span className="text-muted-foreground">Tax</span>
+                    <span>{format(order.taxamt)}</span>
+                  </div>
+                )}
+                {order.grand_total != null && (
+                  <div className="flex justify-between border-t pt-2 font-display text-lg font-semibold">
+                    <span>Total</span>
+                    <span>{format(order.grand_total)}</span>
+                  </div>
+                )}
               </div>
             )}
           </CardContent>

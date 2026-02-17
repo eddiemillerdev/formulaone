@@ -6,6 +6,14 @@ import { AnimatePresence, motion } from "framer-motion";
 import { ArrowRight, ChevronLeft, ChevronRight } from "lucide-react";
 
 import { Button } from "@/components/ui/button";
+import {
+  Empty,
+  EmptyDescription,
+  EmptyHeader,
+  EmptyMedia,
+  EmptyTitle,
+} from "@/components/ui/empty";
+import { Spinner } from "@/components/ui/spinner";
 import { formatMoney } from "@/lib/api/events";
 import type { EventItem } from "@/lib/api/events";
 import { cn } from "@/lib/utils";
@@ -30,12 +38,22 @@ export function HeroEventsCarousel({ events, variant = "compact", className }: H
     return (
       <div
         className={cn(
-          "rounded-3xl border border-border/70 bg-card/60 p-8 text-center text-muted-foreground",
+          "rounded-3xl border border-border/70 bg-card/60 p-8",
           variant === "hero" && "flex min-h-[480px] items-center justify-center",
           className,
         )}
       >
-        Loading events…
+        <Empty className="w-full">
+          <EmptyHeader>
+            <EmptyMedia variant="icon">
+              <Spinner className="size-8 text-primary" />
+            </EmptyMedia>
+            <EmptyTitle>Loading events</EmptyTitle>
+            <EmptyDescription>
+              Please wait while we load upcoming race events.
+            </EmptyDescription>
+          </EmptyHeader>
+        </Empty>
       </div>
     );
   }
@@ -82,7 +100,7 @@ export function HeroEventsCarousel({ events, variant = "compact", className }: H
             </p>
             <div className="mt-4 flex flex-wrap items-center gap-3">
               <span className="font-display text-lg text-white">
-                {current ? formatMoney(current.fromPrice) : "—"}
+                {current ? formatMoney(current.fromPrice, current.currency?.code) : "—"}
               </span>
               <span className="inline-flex items-center gap-2 rounded-full border border-white/40 bg-white/15 px-4 py-2 text-xs uppercase tracking-[0.08em] text-white">
                 View packages <ArrowRight className="size-3.5" />
@@ -171,7 +189,7 @@ export function HeroEventsCarousel({ events, variant = "compact", className }: H
                   {current?.dateLabel ?? ""} • {current?.venue ?? ""}
                 </p>
                 <p className="mt-1 font-display text-base text-primary">
-                  {current ? formatMoney(current.fromPrice) : "—"}
+                  {current ? formatMoney(current.fromPrice, current.currency?.code) : "—"}
                 </p>
               </div>
               <ArrowRight className="size-4 shrink-0 text-muted-foreground" />

@@ -18,6 +18,11 @@ const nullableNumberSchema = z.preprocess((value) => {
   return Number.isFinite(parsed) ? parsed : null;
 }, z.number().nullable());
 
+const apiCurrencySchema = z.object({
+  code: z.string(),
+  symbol: z.string(),
+}).optional();
+
 const apiOrganiserSchema = z
   .object({
     id: z.number(),
@@ -25,6 +30,7 @@ const apiOrganiserSchema = z
     email: z.string().nullable().optional(),
     logo_url: z.string().nullable().optional(),
     organiser_url: z.string().nullable().optional(),
+    currency: apiCurrencySchema,
   })
   .passthrough();
 
@@ -55,11 +61,6 @@ const apiTicketSchema = z.object({
   end_sale_date: z.string().nullable().optional(),
   add_ons: z.array(apiAddOnSchema).optional(),
 });
-
-const apiCurrencySchema = z.object({
-  code: z.string(),
-  symbol: z.string(),
-}).optional();
 
 const apiEventSchema = z.object({
   id: z.number(),
@@ -423,7 +424,8 @@ function normalizeEvent(
   );
   const fromPrice = activeTickets[0]?.price ?? tickets[0]?.price ?? 0;
 
-  const currency = event.currency ? { code: event.currency.code, symbol: event.currency.symbol } : undefined;
+  const rawCurrency = event.currency ?? organiserFallback?.currency;
+  const currency = rawCurrency ? { code: rawCurrency.code, symbol: rawCurrency.symbol } : undefined;
 
   const description = stripHtml(event.description || event.description_html);
   const organiser = normalizeOrganiser(event.organiser ?? organiserFallback);

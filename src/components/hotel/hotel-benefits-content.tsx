@@ -65,7 +65,7 @@ export function HotelBenefitsContent() {
       <section className="grid gap-6 sm:grid-cols-2">
         {PACKAGE_INCLUSIONS.map((item, index) => (
           <FadeIn key={item.title} delay={0.04 + index * 0.02}>
-            <Card className="overflow-hidden border-border/70 bg-card/80">
+            <Card className="overflow-hidden border-border/70 bg-card/80 pt-0 md:pt-0">
               <div className="relative aspect-[16/10]">
                 <Image
                   src={item.image}

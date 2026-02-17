@@ -65,7 +65,7 @@ export function CorporatePackagesContent() {
       <section className="space-y-6">
         {BENEFITS.map((block, index) => (
           <FadeIn key={block.title} delay={0.04 + index * 0.02}>
-            <Card className="overflow-hidden border-border/70 bg-card/80">
+            <Card className="overflow-hidden border-border/70 bg-card/80 pt-0 md:pt-0">
               <div className="grid gap-0 md:grid-cols-2">
                 <div className="relative aspect-[4/3] md:aspect-auto md:min-h-[220px]">
                   <Image

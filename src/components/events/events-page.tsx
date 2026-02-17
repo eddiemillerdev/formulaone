@@ -9,6 +9,14 @@ import { FadeIn } from "@/components/motion/fade-in";
 import { PageCallout } from "@/components/layout/page-callout";
 import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
+import {
+  Empty,
+  EmptyDescription,
+  EmptyHeader,
+  EmptyMedia,
+  EmptyTitle,
+} from "@/components/ui/empty";
+import { Spinner } from "@/components/ui/spinner";
 import { Input } from "@/components/ui/input";
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select";
 import { useEventsQuery } from "@/hooks/use-events-query";
@@ -54,7 +62,7 @@ export function EventsPage() {
           Find Tickets, Passes, and VIP Hospitality
         </h1>
         <p className="max-w-[70ch] text-sm text-muted-foreground md:text-base">
-          Filter by region or search by city and reserve inventory before sellout. Live package availability from the organiser API.
+          Filter by region or search by city and reserve inventory before sellout. Live package availability.
         </p>
       </FadeIn>
 
@@ -78,14 +86,14 @@ export function EventsPage() {
           </SelectContent>
         </Select>
         <div className="flex items-center justify-center rounded-full border border-primary/30 bg-primary/10 px-4 text-sm text-primary">
-          {filtered.length} event{filtered.length === 1 ? "" : "s"} available
+          {filtered.length} racing event{filtered.length === 1 ? "" : "s"} available
         </div>
       </FadeIn>
 
       {isError ? (
         <FadeIn delay={0.08}>
           <div className="rounded-2xl border border-destructive/40 bg-destructive/10 p-4 text-sm text-destructive">
-            Could not load events from the public API endpoint.
+            Could not load events. Please try again later.
           </div>
         </FadeIn>
       ) : null}
@@ -110,13 +118,27 @@ export function EventsPage() {
       ) : null}
 
       <div className="grid gap-4 md:grid-cols-2 xl:grid-cols-3">
-        {isLoading
-          ? Array.from({ length: 6 }).map((_, index) => <EventCardSkeleton key={index} />)
-          : filtered.map((event, index) => (
+        {isLoading ? (
+          <div className="col-span-full flex min-h-[280px] items-center justify-center">
+            <Empty className="w-full max-w-md border border-dashed border-border/80 bg-card/40 px-6">
+              <EmptyHeader>
+                <EmptyMedia variant="icon">
+                  <Spinner className="size-8 text-primary" />
+                </EmptyMedia>
+                <EmptyTitle>Loading racing events</EmptyTitle>
+                <EmptyDescription>
+                  Please wait while we load available race weekends and packages.
+                </EmptyDescription>
+              </EmptyHeader>
+            </Empty>
+          </div>
+        ) : (
+          filtered.map((event, index) => (
               <FadeIn key={event.id} delay={0.08 + index * 0.04}>
                 <EventCard event={event} />
               </FadeIn>
-            ))}
+            ))
+        )}
       </div>
 
       <PageCallout

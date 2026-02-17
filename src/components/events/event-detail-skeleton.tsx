@@ -10,7 +10,7 @@ export function EventDetailSkeleton() {
       </div>
 
       <section className="grid gap-5 lg:grid-cols-[1.2fr_0.8fr]">
-        <Card className="overflow-hidden border-border/80 bg-card/85 pt-0">
+        <Card className="overflow-hidden border-border/80 bg-card/85 pt-0 md:pt-0">
           <Skeleton className="aspect-[2/1] w-full rounded-none md:aspect-[19/8]" />
           <CardHeader className="space-y-4">
             <Skeleton className="h-10 w-[85%]" />
@@ -50,7 +50,7 @@ export function EventDetailSkeleton() {
         <Skeleton className="h-9 w-64" />
         <div className="grid gap-4 md:grid-cols-2">
           {[1, 2, 3].map((i) => (
-            <Card key={i} className="border-border/80 bg-card/85 pt-0">
+            <Card key={i} className="border-border/80 bg-card/85 pt-0 md:pt-0">
               <Skeleton className="aspect-[16/10] w-full rounded-none" />
               <CardHeader className="space-y-2">
                 <Skeleton className="h-6 w-3/4" />

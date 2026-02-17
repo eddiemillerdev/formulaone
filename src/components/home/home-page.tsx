@@ -4,13 +4,14 @@ import Link from "next/link";
 import { useMemo, useState, useEffect } from "react";
 import { useRouter } from "next/navigation";
 import { motion } from "framer-motion";
-import { ArrowRight, CalendarDays, CheckCircle2, Flag, Loader2, Shield, Sparkles, Trophy, Users } from "lucide-react";
+import { ArrowRight, CalendarDays, CheckCircle2, Flag, Shield, Sparkles, Trophy, Users } from "lucide-react";
 
 import { EventCard } from "@/components/events/event-card";
 import { EventCardSkeleton } from "@/components/events/event-card-skeleton";
 import { HeroEventsCarousel } from "@/components/home/hero-events-carousel";
 import { SponsorCarousel } from "@/components/home/sponsor-carousel";
 import { FadeIn } from "@/components/motion/fade-in";
+import { Spinner } from "@/components/ui/spinner";
 import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
@@ -100,7 +101,7 @@ export function HomePage() {
               className="h-11 rounded-full border-input bg-background"
             />
             <Button className="h-11 rounded-full px-6" onClick={handleSearch} disabled={searching}>
-              {searching ? <Loader2 className="size-4 animate-spin" /> : null}
+              {searching ? <Spinner className="size-4" /> : null}
               {searching ? "Searching…" : "Find Tickets"}
             </Button>
           </div>
@@ -192,9 +193,9 @@ export function HomePage() {
             viewport={{ once: true, amount: 0.35 }}
             transition={{ duration: 0.5, delay: index * 0.06 }}
           >
-            <Card className="group h-full overflow-hidden border-border/80 bg-card/70 pt-0">
+            <Card className="group h-full overflow-hidden border-border/80 bg-card/70 pt-0 md:pt-0">
               <div
-                className="h-40 bg-cover bg-center transition-transform duration-500 group-hover:scale-105"
+                className="h-40 shrink-0 bg-cover bg-center transition-transform duration-500 group-hover:scale-105"
                 style={{
                   backgroundImage: `linear-gradient(130deg, rgba(11,11,16,0.35), rgba(11,11,16,0.68)), url('${asAssetUrl(panel.image)}')`,
                 }}
@@ -360,7 +361,7 @@ export function HomePage() {
                 onClick={() => handleNavigate("/events")}
                 disabled={!!navigatingTo}
               >
-                {navigatingTo === "/events" ? <Loader2 className="size-4 animate-spin" /> : null}
+                {navigatingTo === "/events" ? <Spinner className="size-4" /> : null}
                 {navigatingTo === "/events" ? "Loading…" : "Browse events"}
               </Button>
               <Button
@@ -370,7 +371,7 @@ export function HomePage() {
                 onClick={() => handleNavigate("/races")}
                 disabled={!!navigatingTo}
               >
-                {navigatingTo === "/races" ? <Loader2 className="size-4 animate-spin" /> : null}
+                {navigatingTo === "/races" ? <Spinner className="size-4" /> : null}
                 {navigatingTo === "/races" ? "Loading…" : "Explore races"}
               </Button>
             </div>

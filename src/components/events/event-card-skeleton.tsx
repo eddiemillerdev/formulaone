@@ -3,7 +3,7 @@ import { Skeleton } from "@/components/ui/skeleton";
 
 export function EventCardSkeleton() {
   return (
-    <Card className="flex h-full flex-col overflow-hidden border-border/80 bg-card/90 pt-0">
+    <Card className="flex h-full flex-col overflow-hidden border-border/80 bg-card/90 pt-0 md:pt-0">
       <Skeleton className="aspect-[16/10] w-full shrink-0 rounded-none" />
       <CardHeader className="space-y-3">
         <div className="flex gap-2">
