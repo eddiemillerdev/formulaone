@@ -226,20 +226,11 @@ export function OrderViewPage({ reference: refProp }: { reference?: string }) {
                         Complete your bank transfer and submit your payment receipt. Download the payment
                         instructions PDF or have it sent to your email before heading to the bank.
                       </p>
-                    {order.payment_deadline_at && (
-                      <p className="mt-2 text-sm">
-                        {deadlinePassed ? (
-                          <span className="text-destructive">Payment deadline has passed. Your reservation may have been cancelled.</span>
-                        ) : (
-                          <>Pay by <strong>{formatDate(order.payment_deadline_at)}</strong> (business days only—weekends excluded). If payment is not received by then, your order will be cancelled.</>
-                        )}
-                      </p>
-                    )}
                   </div>
                 </div>
               </div>
               <div className="rounded-lg border border-amber-500/30 bg-amber-500/5 p-4">
-                <p className="mb-2 text-sm font-medium text-amber-700 dark:text-amber-200">Payment instructions – take this to the bank</p>
+                <p className="mb-2 text-sm font-medium text-amber-700 dark:text-amber-200">Payment instructions</p>
                 <ol className="mb-3 list-decimal list-inside space-y-1.5 text-xs text-amber-700/90 dark:text-amber-200/80">
                   <li>Click “Download PDF” to access the bank transfer details. Alternatively, select “Email to me” or “Email to attendees” to receive the instructions directly.</li>
                   <li>Complete the wire transfer using the banking details provided in the document.</li>
