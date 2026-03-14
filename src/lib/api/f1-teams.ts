@@ -1,4 +1,7 @@
-const API_BASE_URL = "/api/f1experiences";
+const API_BASE_URL =
+  (typeof process.env.NEXT_PUBLIC_API_BASE_URL === "string" && process.env.NEXT_PUBLIC_API_BASE_URL.trim() !== "")
+    ? process.env.NEXT_PUBLIC_API_BASE_URL.replace(/\/$/, "")
+    : "/api/f1experiences";
 const F1_TEAM_SECTIONS_URL = `${API_BASE_URL}/f1-team-sections`;
 
 export interface F1TeamDriver {

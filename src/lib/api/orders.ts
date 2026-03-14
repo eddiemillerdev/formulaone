@@ -1,7 +1,10 @@
 import { z } from "zod";
 
-// Proxy path; rewrite target comes from API_BASE_URL in next.config
-const API_BASE_URL = "/api/f1experiences";
+// Use direct API URL when set (client calls Laravel; no rewrite/proxy needed). Else proxy path.
+const API_BASE_URL =
+  (typeof process.env.NEXT_PUBLIC_API_BASE_URL === "string" && process.env.NEXT_PUBLIC_API_BASE_URL.trim() !== "")
+    ? process.env.NEXT_PUBLIC_API_BASE_URL.replace(/\/$/, "")
+    : "/api/f1experiences";
 
 const ORDERS_API_URL = `${API_BASE_URL}/orders`;
 
