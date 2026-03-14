@@ -1,8 +1,8 @@
 import type { NextConfig } from "next";
 
-// Single env for all API endpoints: set API_BASE_URL in .env (e.g. https://f1experiences.co.uk/api/public)
+// Single env for all API endpoints: set API_BASE_URL in .env (e.g. https://dash.f1experiences.co.uk/api/public)
 const API_BASE_URL =
-  process.env.API_BASE_URL || "https://f1experiences.co.uk/api/public";
+  process.env.API_BASE_URL || "https://dash.f1experiences.co.uk/api/public";
 
 const nextConfig: NextConfig = {
   images: {
