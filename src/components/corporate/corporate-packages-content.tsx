@@ -9,7 +9,7 @@ import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent } from "@/components/ui/card";
 
-const APP_NAME = process.env.NEXT_PUBLIC_APP_NAME || "F1 Pass";
+const APP_NAME = process.env.NEXT_PUBLIC_APP_NAME || "F1® Experiences";
 
 const BENEFITS = [
   {
@@ -52,7 +52,7 @@ export function CorporatePackagesContent() {
           {APP_NAME} Corporate Hospitality
         </h1>
         <p className="mt-3 max-w-[70ch] text-sm text-muted-foreground md:text-base">
-          We create unique opportunities at F1® circuits in the UK for organisations to cultivate an experience for their clients and guests—forming powerful connections far beyond what would otherwise be possible.
+          We create unique opportunities at F1® circuits in the UK for organisations to cultivate an experience for their clients and guests; forming powerful connections far beyond what would otherwise be possible.
         </p>
       </FadeIn>
 

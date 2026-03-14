@@ -1,4 +1,4 @@
-# F1 Pass Web (Next.js)
+# F1 Experiences Web (Next.js)
 
 Modern frontend foundation for the customer-facing Formula 1 ticket platform.
 

@@ -40,7 +40,7 @@ export function GuidelinesContent() {
                 FORMULA 1 is the brand used to identify the most prestigious motor racing competition in the world. The Formula 1 companies own extensive rights in and to the FORMULA 1 brand, including trade marks (used and/or registered in the UK, EU and internationally) and other intellectual property rights.
               </p>
               <p className="text-muted-foreground mt-2">
-                As a rule, trade marks cannot be used by third parties without a specific written licence. However, certain trade marks can be used editorially and by fans without requiring a licence where these Guidelines are adhered to. &quot;Fans&quot; means individuals, groups or collectives (e.g. fan clubs) who follow FORMULA 1 and support the races without doing so in a materially commercial manner—including not using FORMULA 1 Rights for clickbait, to build traffic to sell goods/services, or for excessively repetitive or intrusive advertising.
+                As a rule, trade marks cannot be used by third parties without a specific written licence. However, certain trade marks can be used editorially and by fans without requiring a licence where these Guidelines are adhered to. &quot;Fans&quot; means individuals, groups or collectives (e.g. fan clubs) who follow FORMULA 1 and support the races without doing so in a materially commercial manner; including not using FORMULA 1 Rights for clickbait, to build traffic to sell goods/services, or for excessively repetitive or intrusive advertising.
               </p>
               <p className="text-muted-foreground mt-2">
                 These guidelines may be updated from time to time. We reserve the right to take action against unauthorised uses which we consider to infringe our rights.
@@ -91,7 +91,7 @@ export function GuidelinesContent() {
             <section>
               <h2 className="font-display text-lg font-bold uppercase tracking-tight mt-0">Section 4 – Other uses of FORMULA 1 Rights</h2>
               <p className="text-muted-foreground">
-                Fundamental principles when using FORMULA 1 Rights: be clear that your use is not official or endorsed by us; be respectful; do not be unlawful, deceptive, obscene, harmful or disparaging; do not use our Logos; do not integrate Our Marks into other marks—differentiate sufficiently.
+                Fundamental principles when using FORMULA 1 Rights: be clear that your use is not official or endorsed by us; be respectful; do not be unlawful, deceptive, obscene, harmful or disparaging; do not use our Logos; do not integrate Our Marks into other marks; differentiate sufficiently.
               </p>
               <p className="text-muted-foreground mt-2 font-semibold">Internet</p>
               <p className="text-muted-foreground">

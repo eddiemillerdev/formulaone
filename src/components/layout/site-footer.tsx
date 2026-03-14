@@ -57,7 +57,8 @@ const SOCIAL_LINKS = [
   { label: "LinkedIn", href: "https://www.linkedin.com/company/formula1" },
 ];
 
-const APP_NAME = process.env.NEXT_PUBLIC_APP_NAME || "F1 Pass";
+const APP_NAME = process.env.NEXT_PUBLIC_APP_NAME || "F1® Experiences";
+const LEGAL_ENTITY = "Formula One Digital Media Limited";
 
 export function SiteFooter() {
   const [showMore, setShowMore] = useState(false);
@@ -145,7 +146,10 @@ export function SiteFooter() {
             "lg:flex"
           )}
         >
-          <p>© {new Date().getFullYear()} {APP_NAME}. All rights reserved.</p>
+          <div className="space-y-1">
+            <p>F1® Experiences is operated and authorised by {LEGAL_ENTITY}.</p>
+            <p>© {new Date().getFullYear()} {LEGAL_ENTITY}. All rights reserved.</p>
+          </div>
           <div className="flex items-center gap-4">
             {SOCIAL_LINKS.map((social) => (
               <a

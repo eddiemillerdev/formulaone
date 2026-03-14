@@ -44,13 +44,13 @@ function TeamCard({ team, index }: { team: F1Team; index: number }) {
             </h3>
             {team.logo_url && (
               <div
-                className="flex shrink-0 items-center justify-center rounded-md p-2"
+                className="flex shrink-0 items-center justify-center rounded-md p-1.5"
                 style={{ backgroundColor: logoBg }}
               >
                 <img
                   src={team.logo_url}
                   alt=""
-                  className="h-10 w-10 object-contain"
+                  className="h-6 w-6 object-contain"
                   role="presentation"
                 />
               </div>
@@ -108,16 +108,19 @@ function TeamCard({ team, index }: { team: F1Team; index: number }) {
 }
 
 function SectionBlock({ section }: { section: F1TeamSection }) {
+  const hideHeading = section.title === SECTION_TITLE_TO_HIDE;
   return (
     <section className="space-y-6">
-      <div>
-        <h2 className="font-display text-xl font-bold uppercase tracking-wide md:text-2xl">
-          {section.title}
-        </h2>
-        {section.subtitle && (
-          <p className="mt-1 text-sm text-muted-foreground">{section.subtitle}</p>
-        )}
-      </div>
+      {!hideHeading && (
+        <div>
+          <h2 className="font-display text-xl font-bold uppercase tracking-wide md:text-2xl">
+            {section.title}
+          </h2>
+          {section.subtitle && (
+            <p className="mt-1 text-sm text-muted-foreground">{section.subtitle}</p>
+          )}
+        </div>
+      )}
       <div className="grid gap-4 md:grid-cols-2 xl:grid-cols-3">
         {section.teams.map((team, index) => (
           <TeamCard key={team.id} team={team} index={index} />
@@ -127,6 +130,8 @@ function SectionBlock({ section }: { section: F1TeamSection }) {
   );
 }
 
+const SECTION_TITLE_TO_HIDE = "F1 Teams 2026";
+
 export function TeamsPage() {
   const { data: sections = [], isLoading, error } = useF1TeamSectionsQuery();
 
@@ -134,14 +139,13 @@ export function TeamsPage() {
     <main className="mx-auto page-width space-y-8 py-10 pb-20">
       <FadeIn className="hero-panel-bg space-y-4 rounded-3xl border border-border/70 p-4 md:p-8">
         <Badge className="rounded-full border border-primary/40 bg-primary/10 px-3 py-1 text-[11px] uppercase tracking-[0.12em] text-primary">
-          Teams
+          Team Hub
         </Badge>
         <h1 className="font-display font-black text-2xl uppercase leading-[0.9] tracking-wide md:text-3xl md:tracking-wider">
-          Team Hub
+          F1® Teams 2026
         </h1>
         <p className="max-w-[70ch] text-sm text-muted-foreground md:text-base">
-          F1 teams and drivers from the backend. Upload logos, cars and driver avatars in the
-          dashboard; the default driver image is used when no avatar is set.
+          Explore your favourite F1® teams and drivers, with official ticket packages and hospitality for the circuits that matter to you.
         </p>
       </FadeIn>
 
@@ -154,7 +158,7 @@ export function TeamsPage() {
               </EmptyMedia>
               <EmptyTitle>Loading teams</EmptyTitle>
               <EmptyDescription>
-                Please wait while we load F1 teams and drivers.
+                Please wait while we load teams and drivers.
               </EmptyDescription>
             </EmptyHeader>
           </Empty>

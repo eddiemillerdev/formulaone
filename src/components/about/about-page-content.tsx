@@ -3,7 +3,7 @@
 import Link from "next/link";
 import { ArrowRight, CalendarDays, Shield, Sparkles, Ticket } from "lucide-react";
 
-const APP_NAME = process.env.NEXT_PUBLIC_APP_NAME || "F1 Pass";
+const APP_NAME = process.env.NEXT_PUBLIC_APP_NAME || "F1® Experiences";
 
 import { FadeIn } from "@/components/motion/fade-in";
 import { Badge } from "@/components/ui/badge";

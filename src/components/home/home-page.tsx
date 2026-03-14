@@ -139,7 +139,7 @@ export function HomePage() {
             {HOME_VIDEO?.embedUrl ? (
               <iframe
                 src={HOME_VIDEO.embedUrl}
-                title="F1 Pass video"
+                title="F1® Experiences video"
                 className="absolute inset-0 h-full w-full object-cover"
                 allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
                 allowFullScreen
@@ -230,7 +230,7 @@ export function HomePage() {
             {
               step: "02",
               title: "Select a package",
-              copy: "Compare official ticket packages—grandstand, VIP, hospitality—with live pricing and availability. Reserve before sell-out.",
+              copy: "Compare official ticket packages; grandstand, VIP, hospitality; with live pricing and availability. Reserve before sell-out.",
               icon: Trophy,
             },
             {

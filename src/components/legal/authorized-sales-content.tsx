@@ -4,7 +4,7 @@ import { FadeIn } from "@/components/motion/fade-in";
 import { Badge } from "@/components/ui/badge";
 import { Card, CardContent } from "@/components/ui/card";
 
-const APP_NAME = process.env.NEXT_PUBLIC_APP_NAME || "F1 Pass";
+const APP_NAME = process.env.NEXT_PUBLIC_APP_NAME || "F1® Experiences";
 
 const AUTHORISED_AGENTS: { country: string; company: string }[] = [
   { country: "Italy", company: "All Sport SRL" },

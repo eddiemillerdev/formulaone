@@ -95,7 +95,7 @@ export function PwaInstallPrompt() {
   const appName =
     typeof process.env.NEXT_PUBLIC_APP_NAME === "string"
       ? process.env.NEXT_PUBLIC_APP_NAME
-      : "F1 Pass";
+      : "F1® Experiences";
 
   return (
     <div

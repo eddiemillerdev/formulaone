@@ -12,7 +12,7 @@ import { ScrollToTop } from "@/components/scroll-to-top";
 
 import "./globals.css";
 
-const APP_NAME = process.env.NEXT_PUBLIC_APP_NAME || "F1 Pass";
+const APP_NAME = process.env.NEXT_PUBLIC_APP_NAME || "F1® Experiences";
 
 export const metadata: Metadata = {
   title: `${APP_NAME} | Premium Formula 1 Tickets`,

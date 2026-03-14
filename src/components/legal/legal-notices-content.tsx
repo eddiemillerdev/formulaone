@@ -19,7 +19,7 @@ export function LegalNoticesContent() {
           Last Updated: May 22, 2017
         </p>
         <p className="max-w-[70ch] text-sm text-muted-foreground md:text-base">
-          This website is operated by QuintEvents LLC (&quot;we&quot;, &quot;us&quot;, &quot;our&quot; and &quot;F1 Experiences&quot;). Access to and use of this site is subject to the following terms and conditions.
+          F1® Experiences is operated and authorised by Formula One Digital Media Limited (&quot;we&quot;, &quot;us&quot;, &quot;our&quot;). Access to and use of this site is subject to the following terms and conditions.
         </p>
       </FadeIn>
 
@@ -36,28 +36,28 @@ export function LegalNoticesContent() {
             <section>
               <h2 className="font-display text-lg font-bold uppercase tracking-tight mt-8 mb-2">Access & using the Site</h2>
               <p className="text-muted-foreground">
-                You may not use the Site in any manner that could damage, disable, overburden, or impair the Site&apos;s features or functionality, nor may you use the Site in any manner that could interfere with any other party&apos;s use and enjoyment of the Site. User access to and use of this website is subject to all applicable federal, state and local laws and regulations. This Site is operated and controlled by F1 Experiences from the United States. Access to and use of password protected and/or secure areas is restricted to authorized users only. You must not attempt to interfere with the proper working of this Site. We reserve the absolute right to alter, suspend or discontinue any aspect of this Site.
+                You may not use the Site in any manner that could damage, disable, overburden, or impair the Site&apos;s features or functionality, nor may you use the Site in any manner that could interfere with any other party&apos;s use and enjoyment of the Site. User access to and use of this website is subject to all applicable federal, state and local laws and regulations. This Site is operated and controlled by F1® Experiences (Formula One Digital Media Limited) from the United Kingdom. Access to and use of password protected and/or secure areas is restricted to authorized users only. You must not attempt to interfere with the proper working of this Site. We reserve the absolute right to alter, suspend or discontinue any aspect of this Site.
               </p>
             </section>
 
             <section>
               <h2 className="font-display text-lg font-bold uppercase tracking-tight mt-8 mb-2">Copyright, Database Rights, Trademarks And Other Intellectual Property Protection</h2>
               <p className="text-muted-foreground">
-                The information, content and other material provided on this Site is for your personal, non-commercial use only. Except as otherwise indicated, all materials on this Site are protected by copyrights, database rights, trademarks and/or other intellectual property rights owned by F1 Experiences or used with permission. The F1 logo, FORMULA 1, F1, FIA FORMULA ONE WORLD CHAMPIONSHIP, GRAND PRIX, PADDOCK CLUB and related marks are trademarks of Formula One Licensing BV. You agree not to modify, copy, reproduce, republish, upload, frame, post, transmit or distribute any information, content or other material from this Site without our prior written consent.
+                The information, content and other material provided on this Site is for your personal, non-commercial use only. Except as otherwise indicated, all materials on this Site are protected by copyrights, database rights, trademarks and/or other intellectual property rights owned by F1® Experiences or used with permission. The F1® logo, FORMULA 1®, F1®, FIA FORMULA ONE WORLD CHAMPIONSHIP, GRAND PRIX, PADDOCK CLUB and related marks are trademarks of Formula One Licensing BV. You agree not to modify, copy, reproduce, republish, upload, frame, post, transmit or distribute any information, content or other material from this Site without our prior written consent.
               </p>
             </section>
 
             <section>
               <h2 className="font-display text-lg font-bold uppercase tracking-tight mt-8 mb-2">Feedback</h2>
               <p className="text-muted-foreground">
-                Any information, content and other material you transmit to this site by email or otherwise is non-confidential and non-proprietary. Anything you transmit or post may be used by F1 Experiences for any purpose, including reproduction, disclosure, transmission, publication, broadcast and posting.
+                Any information, content and other material you transmit to this site by email or otherwise is non-confidential and non-proprietary. Anything you transmit or post may be used by F1® Experiences for any purpose, including reproduction, disclosure, transmission, publication, broadcast and posting.
               </p>
             </section>
 
             <section>
               <h2 className="font-display text-lg font-bold uppercase tracking-tight mt-8 mb-2">Our Information and Yours</h2>
               <p className="text-muted-foreground">
-                Every effort has been made to ensure that information is accurate, but F1 Experiences is not responsible for any errors or omissions. We will only use any personal data collected during your use of this Site in accordance with our <Link href="/privacy-policy" className="text-primary hover:underline">Privacy Policy</Link>.
+                Every effort has been made to ensure that information is accurate, but F1® Experiences is not responsible for any errors or omissions. We will only use any personal data collected during your use of this Site in accordance with our <Link href="/privacy-policy" className="text-primary hover:underline">Privacy Policy</Link>.
               </p>
             </section>
 
@@ -71,21 +71,21 @@ export function LegalNoticesContent() {
             <section>
               <h2 className="font-display text-lg font-bold uppercase tracking-tight mt-8 mb-2">Limitation of Liability</h2>
               <p className="text-muted-foreground">
-                TO THE FULLEST EXTENT PERMITTED BY LAW, WE ACCEPT NO LIABILITY TO YOU OR ANY THIRD PARTY FOR ANY DAMAGES ARISING FROM USE OR LOSS OF USE OF DATA, OR LOSS OF PROFITS, ARISING OUT OF OR IN CONNECTION WITH THE VIEWING, USE OR PERFORMANCE OF THE SITE OR ITS INFORMATION OR CONTENT. IN THE EVENT THAT THE FOREGOING LIMITATION OF LIABILITY IS DETERMINED TO BE UNENFORCEABLE, F1 EXPERIENCE&apos;S TOTAL CUMULATIVE LIABILITY SHALL BE LIMITED TO ONE HUNDRED U.S. DOLLARS (US$100).
+                TO THE FULLEST EXTENT PERMITTED BY LAW, WE ACCEPT NO LIABILITY TO YOU OR ANY THIRD PARTY FOR ANY DAMAGES ARISING FROM USE OR LOSS OF USE OF DATA, OR LOSS OF PROFITS, ARISING OUT OF OR IN CONNECTION WITH THE VIEWING, USE OR PERFORMANCE OF THE SITE OR ITS INFORMATION OR CONTENT. IN THE EVENT THAT THE FOREGOING LIMITATION OF LIABILITY IS DETERMINED TO BE UNENFORCEABLE, F1® EXPERIENCES&apos; TOTAL CUMULATIVE LIABILITY SHALL BE LIMITED TO ONE HUNDRED U.S. DOLLARS (US$100).
               </p>
             </section>
 
             <section>
               <h2 className="font-display text-lg font-bold uppercase tracking-tight mt-8 mb-2">Links</h2>
               <p className="text-muted-foreground">
-                Linking to this Site is permitted so long as such use does not create any unauthorized association between F1 Experiences, Formula 1 or their brands, and any third party. F1 Experiences may provide links to other websites as a convenience but we make no representations whatsoever about any other sites that you may access through this Site. A link to any other website does not mean that we endorse or accept any responsibility for such website.
+                Linking to this Site is permitted so long as such use does not create any unauthorized association between F1® Experiences, Formula 1® or their brands, and any third party. F1® Experiences may provide links to other websites as a convenience but we make no representations whatsoever about any other sites that you may access through this Site. A link to any other website does not mean that we endorse or accept any responsibility for such website.
               </p>
             </section>
 
             <section>
               <h2 className="font-display text-lg font-bold uppercase tracking-tight mt-8 mb-2">Statement Of Commitment To Respect For Human Rights</h2>
               <p className="text-muted-foreground">
-                F1 Experience and Formula 1 are committed to respecting internationally recognized human rights in its operations globally. We focus our efforts in areas within our direct influence by taking proportionate steps to understand and monitor the potential human rights impacts of our activities; identify and assess actual or potential adverse human rights impacts; consider practical responses; engage in meaningful consultation where appropriate; and respect the human rights of our employees. Where domestic laws conflict with internationally recognized human rights, we will seek ways to honor them to the fullest extent which does not place us in violation of domestic law.
+                F1® Experiences and Formula 1® are committed to respecting internationally recognized human rights in its operations globally. We focus our efforts in areas within our direct influence by taking proportionate steps to understand and monitor the potential human rights impacts of our activities; identify and assess actual or potential adverse human rights impacts; consider practical responses; engage in meaningful consultation where appropriate; and respect the human rights of our employees. Where domestic laws conflict with internationally recognized human rights, we will seek ways to honor them to the fullest extent which does not place us in violation of domestic law.
               </p>
             </section>
 
@@ -95,10 +95,10 @@ export function LegalNoticesContent() {
                 <strong>Governing Law:</strong> These Terms and Conditions and any dispute arising herefrom are governed by the laws of the state of North Carolina, USA. Disputes shall be exclusively subject to the jurisdiction of the courts of Charlotte, North Carolina USA.
               </p>
               <p className="text-muted-foreground mt-2">
-                <strong>Entire Agreement:</strong> These Terms and Conditions, including our Privacy Policy and any supplemental terms, constitute the entire agreement between you and F1 Experiences regarding your access to and use of this Site.
+                <strong>Entire Agreement:</strong> These Terms and Conditions, including our Privacy Policy and any supplemental terms, constitute the entire agreement between you and F1® Experiences regarding your access to and use of this Site.
               </p>
               <p className="text-muted-foreground mt-2">
-                <strong>Assignment:</strong> You may not assign your rights or obligations under these Terms and Conditions without our express prior written consent. F1 Experiences may assign its rights and obligations in its sole discretion.
+                <strong>Assignment:</strong> You may not assign your rights or obligations under these Terms and Conditions without our express prior written consent. F1® Experiences may assign its rights and obligations in its sole discretion.
               </p>
             </section>
 

@@ -3,9 +3,9 @@ import type { Metadata } from "next";
 import { FaqPage } from "@/components/faq/faq-page";
 
 export const metadata: Metadata = {
-  title: "FAQ | F1 Pass",
+  title: "FAQ | F1® Experiences",
   description:
-    "Frequently asked questions about F1 Pass: booking, ticket delivery, payments, refunds, and support.",
+    "Frequently asked questions about F1® Experiences: booking, ticket delivery, payments, refunds, and support.",
 };
 
 export default function Faq() {

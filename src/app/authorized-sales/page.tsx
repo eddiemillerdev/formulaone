@@ -2,7 +2,7 @@ import type { Metadata } from "next";
 
 import { AuthorizedSalesContent } from "@/components/legal/authorized-sales-content";
 
-const APP_NAME = process.env.NEXT_PUBLIC_APP_NAME || "F1 Pass";
+const APP_NAME = process.env.NEXT_PUBLIC_APP_NAME || "F1® Experiences";
 
 export const metadata: Metadata = {
   title: `Authorised Sales Agents | ${APP_NAME}`,

@@ -25,7 +25,7 @@ export function PrivacyPolicyContent() {
             <section>
               <h2 className="font-display text-lg font-bold uppercase tracking-tight mt-0">1. About this policy</h2>
               <p className="text-muted-foreground">
-                This Privacy Policy explains how F1 Pass (“we”, “our”, “us”) processes personal data in connection with our website and services, including ticket and hospitality bookings. We are based in the United Kingdom and comply with UK and applicable data protection law, including the UK GDPR.
+                This Privacy Policy explains how F1® Experiences, operated and authorised by Formula One Digital Media Limited (“we”, “our”, “us”) processes personal data in connection with our website and services, including ticket and hospitality bookings. We are based in the United Kingdom and comply with UK and applicable data protection law, including the UK GDPR.
               </p>
               <p className="text-muted-foreground mt-2">By using our website and services, you acknowledge that you have read and agree to this policy.</p>
             </section>
