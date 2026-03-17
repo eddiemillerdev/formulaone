@@ -111,22 +111,19 @@ export function OrderFinishPage() {
                 <div className="flex items-start gap-3 rounded-lg border border-amber-500/40 bg-amber-500/10 p-4">
                   <Clock className="mt-0.5 size-5 shrink-0 text-amber-600 dark:text-amber-400" />
                   <div>
-                    <p className="font-medium text-amber-700 dark:text-amber-200">Payment required</p>
+                    <p className="font-medium text-amber-700 dark:text-amber-200">Payment Required</p>
                     <p className="text-amber-700/90 dark:text-amber-200/90">
-                    Full payment must be received to confirm the order. The reservation will remain in pending status until funds are received and credited to our account.
-                    
-                    To proceed, please download the payment instructions or have them sent to your email before initiating the transfer.
+                      Complete your bank transfer and submit your payment receipt.
                     </p>
                   </div>
                 </div>
                 {(orderData?.payment_instructions_pdf_url || isPaymentPending) && reference && (
                   <div className="rounded-lg border border-amber-500/30 bg-amber-500/5 p-4">
-                    <p className="mb-2 text-sm font-medium text-amber-700 dark:text-amber-200">Payment instructions</p>
+                    <p className="mb-2 text-sm font-medium text-amber-700 dark:text-amber-200">Payment Instructions</p>
                     <ol className="mb-3 list-decimal list-inside space-y-1.5 text-sm text-amber-700/90 dark:text-amber-200/80">
-                      <li>Click “Download PDF” to access the bank transfer details. Alternatively, select “Email to me” or “Email to attendees” to receive the instructions directly.</li>
-                      <li>Complete the wire transfer using the banking details provided in the document.</li>
-                      <li>Ensure the reservation reference is included in the payment description to enable seamless allocation.</li>
-                      <li>Once the wire has been processed, submit your payment confirmation or receipt as instructed in the PDF.</li>
+                      <li>Access the bank transfer details by selecting “Download PDF”, or request delivery via “Email to me” or “Email to attendees”.</li>
+                      <li>Complete the transfer using the banking details provided, ensuring the reference ID is included in the payment description for accurate allocation.</li>
+                      <li>Once the transfer has been processed, please submit the payment confirmation or receipt as outlined in the instructions.</li>
                     </ol>
                     <div className="flex flex-wrap gap-2">
                       <button
