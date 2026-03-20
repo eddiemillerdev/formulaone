@@ -51,10 +51,10 @@ const footerSections = [
 ];
 
 const SOCIAL_LINKS = [
-  { label: "Instagram", href: "https://www.instagram.com/f1/" },
-  { label: "YouTube", href: "https://www.youtube.com/F1" },
-  { label: "X", href: "https://twitter.com/f1" },
-  { label: "LinkedIn", href: "https://www.linkedin.com/company/formula1" },
+  { label: "Instagram", href: "https://instagram.com/f1experiencesuk" },
+  { label: "YouTube", href: "https://www.youtube.com/@Formula1" },
+  { label: "X", href: "https://x.com/f1" },
+  { label: "LinkedIn", href: "https://uk.linkedin.com/company/formula-one-management-ltd" },
 ];
 
 const APP_NAME = process.env.NEXT_PUBLIC_APP_NAME || "F1® Experiences";

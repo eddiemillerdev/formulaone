@@ -223,7 +223,7 @@ export function OrderViewPage({ reference: refProp }: { reference?: string }) {
                     <div>
                       <p className="font-medium text-amber-700 dark:text-amber-200">Payment Required</p>
                       <p className="text-sm text-amber-700/90 dark:text-amber-200/90">
-                        Complete your bank transfer and submit your payment receipt.
+                      Complete the wire transfer using the banking details provided, ensuring the reference ID is included in the payment description for accurate allocation.
                       </p>
                       {order.payment_deadline_at && (
                         <p className="mt-2 text-sm text-amber-700/90 dark:text-amber-200/90">
