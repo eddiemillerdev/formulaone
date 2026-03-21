@@ -93,8 +93,8 @@ export function EventDetailPage({ eventId }: EventDetailPageProps) {
         </Badge>
       </FadeIn>
 
-      <section className="grid gap-5 lg:grid-cols-[1.2fr_0.8fr]">
-        <FadeIn className="space-y-5">
+      <section className="grid min-w-0 gap-5 lg:grid-cols-[1.2fr_minmax(0,0.85fr)] lg:items-start">
+        <FadeIn className="min-w-0 space-y-5">
           <Card className="overflow-hidden border-border/80 bg-card/85 pt-0 md:pt-0">
             <div
               className="h-64 shrink-0 bg-cover bg-center md:h-[19rem]"
@@ -122,8 +122,8 @@ export function EventDetailPage({ eventId }: EventDetailPageProps) {
           </Card>
         </FadeIn>
 
-        <FadeIn delay={0.06}>
-          <Card className="sticky top-24 self-start border-primary/35 bg-gradient-to-br from-primary/20 via-card to-card">
+        <FadeIn delay={0.06} className="min-w-0">
+          <Card className="sticky top-24 min-w-0 self-start overflow-hidden border-primary/35 bg-gradient-to-br from-primary/20 via-card to-card">
             <CardHeader>
               <CardTitle className="font-display text-3xl uppercase">Booking Summary</CardTitle>
               <CardDescription>Official packages with live availability.</CardDescription>
@@ -146,8 +146,11 @@ export function EventDetailPage({ eventId }: EventDetailPageProps) {
                   {selectedPackageId ? "Selected package" : "Select package"}
                 </label>
                 <Select value={selectedPackageId ?? ""} onValueChange={(v) => setSelectedPackageId(v || null)}>
-                  <SelectTrigger className="w-full max-w-full rounded-xl [&>span]:max-w-full [&>span]:truncate">
-                    <SelectValue placeholder={selectedPackageId ? "Selected package" : "Choose a package"} />
+                  <SelectTrigger className="min-w-0 w-full max-w-full overflow-hidden rounded-xl border shadow-xs text-left [&>span]:min-w-0 [&>span]:flex-1 [&>span]:overflow-hidden [&>span]:text-left [&>span]:leading-tight [&>span]:line-clamp-2 [&>span]:whitespace-normal">
+                    <SelectValue
+                      className="line-clamp-2 min-w-0 w-full whitespace-normal break-words text-left"
+                      placeholder={selectedPackageId ? "Selected package" : "Choose a package"}
+                    />
                   </SelectTrigger>
                   <SelectContent>
                     {event.tickets.map((ticket) => {

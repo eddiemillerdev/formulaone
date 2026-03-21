@@ -1,4 +1,5 @@
 export type RaceMappingItem = {
+  /** Must match `calendar_key` on the corresponding Laravel event (admin: Event → Calendar key). */
   id: string;
   name: string;
   location: string;
@@ -24,17 +25,59 @@ export const RACE_MAPPINGS: RaceMappingItem[] = [
     ],
   },
   {
+    id: "chinese-gp",
+    name: "Chinese Grand Prix",
+    location: "Shanghai, China",
+    circuit: "Shanghai International Circuit",
+    dateLabel: "March 2026",
+    description:
+      "Long straights and technical corners with strong hospitality demand across grandstand and premium categories.",
+    images: [
+      "/backgrounds/Chinese Grand Prix/2025 Chinese GP - George Russell 2.jpg",
+      "/backgrounds/Chinese Grand Prix/2025 Chinese GP - Kimi Antonelli.jpg",
+      "/backgrounds/Chinese Grand Prix/2025 Chinese GP - Liam Lawson.jpg",
+    ],
+  },
+  {
+    id: "japanese-gp",
+    name: "Japanese Grand Prix",
+    location: "Suzuka, Japan",
+    circuit: "Suzuka International Racing Course",
+    dateLabel: "March 2026",
+    description:
+      "Figure-of-eight legend with high-speed esses and passionate local crowds every race weekend.",
+    images: [
+      "/backgrounds/Japanese Grand Prix/2025 Japanese GP - Race Start 2.jpg",
+      "/backgrounds/Japanese Grand Prix/2025 Japanese GP - Max Verstappen Pit Stop.jpg",
+      "/backgrounds/Japanese Grand Prix/2025 Japanese GP - Kimi Antonelli & Oscar Piastri.jpg",
+    ],
+  },
+  {
     id: "bahrain-gp",
     name: "Bahrain Grand Prix",
     location: "Sakhir, Bahrain",
     circuit: "Bahrain International Circuit",
-    dateLabel: "March 2026",
+    dateLabel: "April 2026",
     description:
       "A desert night-race classic with strong overtaking zones and premium hospitality views under floodlights.",
     images: [
       "/backgrounds/Bahrain Grand Prix/2025 Bahrain GP - George Russell & Carlos Sainz.jpg",
       "/backgrounds/Bahrain Grand Prix/2025 Bahrain GP - Max Verstappen 3.jpg",
       "/backgrounds/Bahrain Grand Prix/2025 Bahrain GP - Kimi Antonelli Pit Box.jpg",
+    ],
+  },
+  {
+    id: "saudi-arabian-gp",
+    name: "Saudi Arabian Grand Prix",
+    location: "Jeddah, Saudi Arabia",
+    circuit: "Jeddah Corniche Circuit",
+    dateLabel: "April 2026",
+    description:
+      "The fastest street circuit on the calendar, racing at night along the Red Sea with non-stop action.",
+    images: [
+      "/backgrounds/Saudi Arabian Grand Prix/2025 Saudi Arabian GP - Jeddah Corniche Circuit.jpg",
+      "/backgrounds/Saudi Arabian Grand Prix/2025 Saudi Arabian GP - Max Verstappen Pitlane.jpg",
+      "/backgrounds/Saudi Arabian Grand Prix/2025 Saudi Arabian GP - George Russell Pit Box.jpg",
     ],
   },
   {
@@ -52,17 +95,59 @@ export const RACE_MAPPINGS: RaceMappingItem[] = [
     ],
   },
   {
+    id: "canadian-gp",
+    name: "Canadian Grand Prix",
+    location: "Montreal, Canada",
+    circuit: "Circuit Gilles-Villeneuve",
+    dateLabel: "May 2026",
+    description:
+      "Island circuit known for close racing, wall-lined chicanes, and one of the loudest North American crowds.",
+    images: [
+      "/backgrounds/Canadian Grand Prix/2025 Canadian GP - Charles Leclerc.jpg",
+      "/backgrounds/Canadian Grand Prix/2025 Canadian GP - George Russell Pit Box.jpg",
+      "/backgrounds/Canadian Grand Prix/2025 Canadian GP - George Russell & Kimi Antonelli.jpg",
+    ],
+  },
+  {
     id: "monaco-gp",
     name: "Monaco Grand Prix",
     location: "Monte Carlo, Monaco",
     circuit: "Circuit de Monaco",
-    dateLabel: "May 2026",
+    dateLabel: "June 2026",
     description:
       "Iconic harbor-side race with limited ticket inventory and unmatched prestige for VIP and premium packages.",
     images: [
       "/backgrounds/Monaco Grand Prix/2025 Monaco GP - Race Start.jpg",
       "/backgrounds/Monaco Grand Prix/2025 Monaco GP - Charles Leclerc.jpg",
       "/backgrounds/Monaco Grand Prix/2025 Monaco GP - Lewis Hamilton.jpg",
+    ],
+  },
+  {
+    id: "spanish-gp",
+    name: "Spanish Grand Prix",
+    location: "Barcelona, Spain",
+    circuit: "Circuit de Barcelona-Catalunya",
+    dateLabel: "June 2026",
+    description:
+      "A proven pre-season benchmark track with varied corners and strong demand for grandstand and VIP seats.",
+    images: [
+      "/backgrounds/Spanish Grand Prix/2025 Spanish GP - Charles Leclerc.jpg",
+      "/backgrounds/Spanish Grand Prix/2025 Spanish GP - Lewis Hamilton.jpg",
+      "/backgrounds/Spanish Grand Prix/2025 Spanish GP - Pierre Gasly.jpg",
+    ],
+  },
+  {
+    id: "austrian-gp",
+    name: "Austrian Grand Prix",
+    location: "Spielberg, Austria",
+    circuit: "Red Bull Ring",
+    dateLabel: "June 2026",
+    description:
+      "Short lap, big elevation changes, and festival atmosphere in the Styrian mountains.",
+    images: [
+      "/backgrounds/Austrian Grand Prix/2025 Austrian GP - Race Start.jpg",
+      "/backgrounds/Austrian Grand Prix/2025 Austrian GP - Max Verstappen 3.jpg",
+      "/backgrounds/Austrian Grand Prix/2025 Austrian GP - Lando Norris & Oscar Piastri 3.jpg",
     ],
   },
   {
@@ -80,9 +165,51 @@ export const RACE_MAPPINGS: RaceMappingItem[] = [
     ],
   },
   {
+    id: "belgian-gp",
+    name: "Belgian Grand Prix",
+    location: "Spa-Francorchamps, Belgium",
+    circuit: "Circuit de Spa-Francorchamps",
+    dateLabel: "July 2026",
+    description:
+      "Ardennes weather, Eau Rouge, and one of the longest laps in F1 with huge elevation change.",
+    images: [
+      "/backgrounds/Belgian Grand Prix/2025 Belgian GP - Circuit de Spa-Francorchamps.jpg",
+      "/backgrounds/Belgian Grand Prix/2025 Belgian GP - Charles Leclerc 6.jpg",
+      "/backgrounds/Belgian Grand Prix/2025 Belgian GP - George Russell 2.jpg",
+    ],
+  },
+  {
+    id: "hungarian-gp",
+    name: "Hungarian Grand Prix",
+    location: "Budapest, Hungary",
+    circuit: "Hungaroring",
+    dateLabel: "July 2026",
+    description:
+      "Twisty, technical Hungaroring layout where qualifying and race strategy often decide the podium.",
+    images: [
+      "/backgrounds/Hungarian Grand Prix/2025 Hungarian GP - George Russell.jpg",
+      "/backgrounds/Hungarian Grand Prix/2025 Hungarian GP - George Russell 3.JPG",
+      "/backgrounds/Hungarian Grand Prix/2025 Hungarian GP - Max Verstappen & Fernando Alonso.jpg",
+    ],
+  },
+  {
+    id: "dutch-gp",
+    name: "Dutch Grand Prix",
+    location: "Zandvoort, Netherlands",
+    circuit: "Circuit Zandvoort",
+    dateLabel: "August 2026",
+    description:
+      "Banked corners, dunes, and one of the most energetic fan bases on the calendar.",
+    images: [
+      "/backgrounds/Dutch Grand Prix/2025 Dutch GP - George Russell.jpg",
+      "/backgrounds/Dutch Grand Prix/2025 Dutch GP - Charles Leclerc Pit Stop.jpg",
+      "/backgrounds/Dutch Grand Prix/2025 Dutch GP - Franco Colapinto.jpg",
+    ],
+  },
+  {
     id: "italian-gp",
     name: "Italian Grand Prix",
-    location: "Monza / Imola, Italy",
+    location: "Monza, Italy",
     circuit: "Autodromo Nazionale Monza",
     dateLabel: "September 2026",
     description:
@@ -91,6 +218,34 @@ export const RACE_MAPPINGS: RaceMappingItem[] = [
       "/backgrounds/Italian Grand Prix/2025 Italian GP - George Russell 2.jpg",
       "/backgrounds/Italian Grand Prix/2025 Italian GP - Lewis Hamilton.jpg",
       "/backgrounds/Italian Grand Prix/2025 Italian GP - Max Verstappen 3.jpg",
+    ],
+  },
+  {
+    id: "madrid-gp",
+    name: "Madrid Grand Prix",
+    location: "Madrid, Spain",
+    circuit: "IFEMA Madrid Circuit",
+    dateLabel: "September 2026",
+    description:
+      "New city-centre style racing in the Spanish capital with fresh hospitality and grandstand experiences.",
+    images: [
+      "/backgrounds/Madrid Grand Prix/2025 Pre-Season Testing - Isack Hadjar 2.jpg",
+      "/backgrounds/Madrid Grand Prix/2025 Pre-Season Testing - Isack Hadjar 3.jpg",
+      "/backgrounds/Madrid Grand Prix/2025 Pre-Season Testing - Isack Hadjar 4.jpg",
+    ],
+  },
+  {
+    id: "azerbaijan-gp",
+    name: "Azerbaijan Grand Prix",
+    location: "Baku, Azerbaijan",
+    circuit: "Baku City Circuit",
+    dateLabel: "September 2026",
+    description:
+      "Blistering straights through the old city and a tight castle section that punishes mistakes.",
+    images: [
+      "/backgrounds/Azerbaijan Grand Prix/2025 Azerbaijan GP - Max Verstappen Pitlane.jpg",
+      "/backgrounds/Azerbaijan Grand Prix/2025 Azerbaijan GP - George Russell 2.jpg",
+      "/backgrounds/Azerbaijan Grand Prix/2025 Azerbaijan GP - Max Verstappen 3.jpg",
     ],
   },
   {
@@ -126,13 +281,27 @@ export const RACE_MAPPINGS: RaceMappingItem[] = [
     name: "Mexico City Grand Prix",
     location: "Mexico City, Mexico",
     circuit: "Autodromo Hermanos Rodriguez",
-    dateLabel: "October 2026",
+    dateLabel: "November 2026",
     description:
       "A vibrant fan-heavy weekend known for altitude, stadium sections, and high local demand.",
     images: [
       "/backgrounds/Mexico City Grand Prix/2025 Mexico City GP - Max Verstappen Pitlane.jpg",
       "/backgrounds/Mexico City Grand Prix/2025 Mexico City GP - Liam Lawson 3.jpg",
       "/backgrounds/Mexico City Grand Prix/2025 Mexico City GP - George Russell 4.jpg",
+    ],
+  },
+  {
+    id: "sao-paulo-gp",
+    name: "São Paulo Grand Prix",
+    location: "São Paulo, Brazil",
+    circuit: "Autódromo José Carlos Pace",
+    dateLabel: "November 2026",
+    description:
+      "Iconic Interlagos layout with elevation, weather swings, and one of the most passionate crowds in motorsport.",
+    images: [
+      "/backgrounds/São Paulo Grand Prix/2025 São Paulo GP - Charles Leclerc 2.jpg",
+      "/backgrounds/São Paulo Grand Prix/2025 São Paulo GP - George Russell 2.jpg",
+      "/backgrounds/São Paulo Grand Prix/2025 São Paulo GP - Max Verstappen.jpg",
     ],
   },
   {

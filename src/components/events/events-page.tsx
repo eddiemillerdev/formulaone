@@ -1,6 +1,6 @@
 "use client";
 
-import { useMemo, useState } from "react";
+import { useEffect, useMemo, useState } from "react";
 import { useSearchParams } from "next/navigation";
 
 import { EventCard } from "@/components/events/event-card";
@@ -20,6 +20,7 @@ import { Spinner } from "@/components/ui/spinner";
 import { Input } from "@/components/ui/input";
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select";
 import { useEventsQuery } from "@/hooks/use-events-query";
+import { eventMatchesSearchQuery } from "@/lib/race-title-match";
 
 export function EventsPage() {
   const params = useSearchParams();
@@ -27,6 +28,11 @@ export function EventsPage() {
 
   const [search, setSearch] = useState(initialSearch);
   const [zone, setZone] = useState("all");
+
+  const qFromUrl = params.get("q") ?? "";
+  useEffect(() => {
+    setSearch(qFromUrl);
+  }, [qFromUrl]);
 
   const { data: events = [], isLoading, isError } = useEventsQuery();
 
@@ -39,12 +45,7 @@ export function EventsPage() {
     const query = search.trim().toLowerCase();
 
     return events.filter((event) => {
-      const matchesSearch =
-        !query ||
-        [event.name, event.city, event.country, event.venue, event.zone]
-          .join(" ")
-          .toLowerCase()
-          .includes(query);
+      const matchesSearch = !query || eventMatchesSearchQuery(event, search.trim());
 
       const matchesZone = zone === "all" || event.zone === zone;
 
@@ -85,14 +86,14 @@ export function EventsPage() {
             ))}
           </SelectContent>
         </Select>
-        <div className="flex items-center justify-center rounded-full border border-primary/30 bg-primary/10 px-4 text-sm text-primary">
+        <div className="flex min-h-[2.75rem] items-center justify-center rounded-full border border-primary/30 bg-primary/10 px-4 py-2.5 text-sm text-primary">
           {filtered.length} racing event{filtered.length === 1 ? "" : "s"} available
         </div>
       </FadeIn>
 
       {isError ? (
         <FadeIn delay={0.08}>
-          <div className="rounded-2xl border border-destructive/40 bg-destructive/10 p-4 text-sm text-destructive">
+          <div className="rounded-2xl border border-destructive/40 bg-destructive/10 px-4 py-5 text-sm leading-relaxed text-destructive">
             Could not load events. Please try again later.
           </div>
         </FadeIn>

@@ -1,22 +1,15 @@
 import type { NextConfig } from "next";
 
-// Single env for all API endpoints: set API_BASE_URL in .env (e.g. https://dash.f1experiences.co.uk/api/public)
-const API_BASE_URL =
-  process.env.API_BASE_URL || "https://dash.f1experiences.co.uk/api/public";
-
+/**
+ * Public API: use server-side proxy at `src/app/api/f1experiences/[[...path]]/route.ts`
+ * (API_BASE_URL) so the browser stays same-origin — no CORS. Do not set NEXT_PUBLIC_API_BASE_URL
+ * for production unless you also configure CORS on the API.
+ */
 const nextConfig: NextConfig = {
   images: {
     remotePatterns: [
       { protocol: "https", hostname: "assets.quintevents.com", pathname: "/**" },
     ],
-  },
-  async rewrites() {
-    return [
-      {
-        source: "/api/f1experiences/:path*",
-        destination: `${API_BASE_URL}/:path*`,
-      },
-    ];
   },
 };
 

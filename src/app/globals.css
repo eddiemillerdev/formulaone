@@ -233,6 +233,38 @@ html.light {
 
 /* Tighter horizontal space on mobile: less page + card padding stacking */
 @layer utilities {
+  /*
+   * Races page CTA: matches F1 mark in public/images/logof1.svg (fill #EE0000), not the brighter app UI red.
+   * Gradient is intentionally strong (dark crimson → logo red) so it reads clearly on screen.
+   */
+  .race-cta-link {
+    font-family: var(--font-display);
+    font-weight: 400;
+    font-size: 0.8125rem;
+    line-height: 1.2;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    background-color: transparent !important;
+    background-image: linear-gradient(
+      135deg,
+      #5a0c0a 0%,
+      #8a1210 28%,
+      #b81814 58%,
+      #d01010 82%,
+      #ee0000 100%
+    ) !important;
+    color: #ffffff !important;
+    box-shadow: 0 6px 26px -6px rgba(120, 0, 0, 0.55), 0 2px 0 rgba(255, 255, 255, 0.12) inset;
+    text-decoration: none;
+  }
+  .race-cta-link:hover {
+    filter: brightness(1.08) saturate(1.05);
+    box-shadow: 0 10px 32px -6px rgba(180, 20, 10, 0.55), 0 2px 0 rgba(255, 255, 255, 0.15) inset;
+  }
+  .race-cta-link:active {
+    filter: brightness(0.94);
+  }
+
   .page-width {
     width: min(1280px, 97vw);
   }

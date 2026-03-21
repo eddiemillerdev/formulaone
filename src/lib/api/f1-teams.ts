@@ -1,3 +1,4 @@
+// Prefer same-origin `/api/f1experiences` (server proxy). See NEXT_PUBLIC_API_BASE_URL in events.ts.
 const API_BASE_URL =
   (typeof process.env.NEXT_PUBLIC_API_BASE_URL === "string" && process.env.NEXT_PUBLIC_API_BASE_URL.trim() !== "")
     ? process.env.NEXT_PUBLIC_API_BASE_URL.replace(/\/$/, "")

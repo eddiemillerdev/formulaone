@@ -82,13 +82,22 @@ export function SiteHeader() {
         <div className="ml-auto flex shrink-0 items-center gap-2 md:ml-0">
           <Sheet open={mobileMenuOpen} onOpenChange={setMobileMenuOpen}>
             <SheetTrigger asChild className="md:hidden">
-              <Button variant="outline" size="icon" className="rounded-none size-11">
+              <Button
+                type="button"
+                variant="ghost"
+                size="icon"
+                aria-label="Open menu"
+                className="rounded-none size-11 border border-white/20 bg-white/5 text-white shadow-none hover:bg-white/12 hover:text-white"
+              >
                 <Menu className="size-6" />
               </Button>
             </SheetTrigger>
-            <SheetContent side="right" className="rounded-none border-[#2a2a38] bg-[#20202d]">
+            <SheetContent
+              side="right"
+              className="rounded-none border-[#2a2a38] bg-[#20202d] text-white [&>button]:text-white [&>button]:opacity-90 [&>button]:hover:bg-white/10 [&>button]:hover:opacity-100"
+            >
               <SheetHeader>
-                <SheetTitle className="font-display uppercase tracking-wide">Navigation</SheetTitle>
+                <SheetTitle className="font-display uppercase tracking-wide text-white">Navigation</SheetTitle>
               </SheetHeader>
               <nav className="mt-8 grid gap-2" aria-label="Mobile Primary">
                 {mobileLinks.map((link) => (
@@ -97,7 +106,7 @@ export function SiteHeader() {
                     href={link.href}
                     onClick={() => setMobileMenuOpen(false)}
                     className={cn(
-                      "font-display font-normal uppercase tracking-wide rounded-none px-3 py-2 text-sm text-white transition-colors hover:bg-[#252534] hover:opacity-90",
+                      "font-display font-normal uppercase tracking-wide rounded-none px-3 py-2 text-sm text-white transition-colors hover:bg-[#252534] hover:text-white",
                       isActive(link.href) && "bg-[#252534] text-white",
                     )}
                   >

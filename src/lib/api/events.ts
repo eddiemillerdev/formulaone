@@ -1,6 +1,7 @@
 import { z } from "zod";
 
-// Use direct API URL when set (client calls Laravel; no rewrite/proxy needed). Else proxy path.
+// Prefer same-origin `/api/f1experiences` (server proxy → Laravel) to avoid CORS.
+// Set NEXT_PUBLIC_API_BASE_URL only if the API sends proper CORS headers for your origin.
 const API_BASE_URL =
   (typeof process.env.NEXT_PUBLIC_API_BASE_URL === "string" && process.env.NEXT_PUBLIC_API_BASE_URL.trim() !== "")
     ? process.env.NEXT_PUBLIC_API_BASE_URL.replace(/\/$/, "")
@@ -68,6 +69,7 @@ const apiTicketSchema = z.object({
 const apiEventSchema = z.object({
   id: z.number(),
   title: z.string(),
+  calendar_key: z.string().nullable().optional(),
   description: z.string().nullable().optional(),
   description_html: z.string().nullable().optional(),
   start_date: z.string(),
@@ -154,6 +156,8 @@ export type TicketPackage = {
 export type EventItem = {
   id: string;
   name: string;
+  /** Stable key matching `RaceMappingItem.id` in races-mapping (e.g. japanese-gp) when set in admin. */
+  calendarKey: string | null;
   city: string;
   country: string;
   zone: string;
@@ -433,9 +437,16 @@ function normalizeEvent(
   const description = stripHtml(event.description || event.description_html);
   const organiser = normalizeOrganiser(event.organiser ?? organiserFallback);
 
+  const rawCalendarKey = event.calendar_key;
+  const calendarKey =
+    typeof rawCalendarKey === "string" && rawCalendarKey.trim() !== ""
+      ? rawCalendarKey.trim().toLowerCase()
+      : null;
+
   return {
     id: String(event.id),
     name: event.title,
+    calendarKey,
     city:
       event.location_state?.trim() ||
       event.location_address_line_2?.trim() ||

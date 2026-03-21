@@ -5,6 +5,7 @@ import { AnimatePresence, motion } from "framer-motion";
 import { ChevronLeft, ChevronRight } from "lucide-react";
 
 import { Button } from "@/components/ui/button";
+import { Skeleton } from "@/components/ui/skeleton";
 import { cn } from "@/lib/utils";
 
 type RaceImageCarouselProps = {
@@ -26,33 +27,54 @@ export function RaceImageCarousel({ images, title, className }: RaceImageCarouse
   }, [images]);
 
   const [currentIndex, setCurrentIndex] = useState(0);
+  const [loadedSrc, setLoadedSrc] = useState<string | null>(null);
   const active = preparedImages[currentIndex] ?? preparedImages[0];
+  const isActiveLoaded = loadedSrc === active;
 
   function goToPrev() {
+    setLoadedSrc(null);
     setCurrentIndex((prev) => (prev - 1 + preparedImages.length) % preparedImages.length);
   }
 
   function goToNext() {
+    setLoadedSrc(null);
     setCurrentIndex((prev) => (prev + 1) % preparedImages.length);
   }
 
   return (
-    <div className={cn("relative overflow-hidden", className)}>
+    <div className={cn("relative overflow-hidden bg-muted", className)}>
+      <Skeleton
+        className={cn(
+          "absolute inset-0 z-0 rounded-none transition-opacity duration-300",
+          isActiveLoaded ? "pointer-events-none opacity-0" : "opacity-100",
+        )}
+        aria-hidden
+      />
+
       <AnimatePresence mode="wait">
         <motion.div
           key={active}
-          initial={{ opacity: 0, scale: 1.04 }}
-          animate={{ opacity: 1, scale: 1 }}
-          exit={{ opacity: 0, scale: 0.98 }}
-          transition={{ duration: 0.45, ease: [0.22, 0.61, 0.36, 1] }}
-          className="absolute inset-0 bg-cover bg-center"
-          style={{
-            backgroundImage: `linear-gradient(130deg, rgba(12,12,18,0.28), rgba(12,12,18,0.7)), url('${active}')`,
-          }}
-        />
+          initial={{ opacity: 0.85 }}
+          animate={{ opacity: isActiveLoaded ? 1 : 0.85 }}
+          exit={{ opacity: 0 }}
+          transition={{ duration: 0.35 }}
+          className="absolute inset-0 z-[1]"
+        >
+          {/* eslint-disable-next-line @next/next/no-img-element -- local static assets; onLoad drives skeleton */}
+          <img
+            src={active}
+            alt=""
+            decoding="async"
+            loading={currentIndex === 0 ? "eager" : "lazy"}
+            fetchPriority={currentIndex === 0 ? "high" : "low"}
+            className="absolute inset-0 size-full object-cover"
+            onLoad={() => setLoadedSrc(active)}
+          />
+          <div className="absolute inset-0 bg-gradient-to-br from-[rgba(12,12,18,0.28)] via-transparent to-[rgba(12,12,18,0.55)]" />
+        </motion.div>
       </AnimatePresence>
 
-      <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-transparent to-transparent" />
+      <div className="pointer-events-none absolute inset-0 z-[2] bg-gradient-to-t from-black/60 via-transparent to-transparent" />
 
       {preparedImages.length > 1 ? (
         <>
@@ -89,7 +111,10 @@ export function RaceImageCarousel({ images, title, className }: RaceImageCarouse
                   key={`${title}-${index}`}
                   type="button"
                   aria-label={`Show image ${index + 1}`}
-                  onClick={() => setCurrentIndex(index)}
+                  onClick={() => {
+                    setLoadedSrc(null);
+                    setCurrentIndex(index);
+                  }}
                   className={cn(
                     "h-1.5 w-6 rounded-full transition",
                     index === currentIndex ? "bg-primary" : "bg-white/45 hover:bg-white/70",
