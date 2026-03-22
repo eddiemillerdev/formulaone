@@ -1,5 +1,7 @@
 import type { MetadataRoute } from "next";
 
+import { publicAssetUrl } from "@/lib/public-asset-url";
+
 const APP_NAME = process.env.NEXT_PUBLIC_APP_NAME || "F1® Experiences";
 
 export default function manifest(): MetadataRoute.Manifest {
@@ -17,25 +19,25 @@ export default function manifest(): MetadataRoute.Manifest {
     categories: ["sports", "entertainment"],
     icons: [
       {
-        src: "/icons/icon-192.png",
+        src: publicAssetUrl("/icons/icon-192.png"),
         sizes: "192x192",
         type: "image/png",
         purpose: "any",
       },
       {
-        src: "/icons/icon-192.png",
+        src: publicAssetUrl("/icons/icon-192.png"),
         sizes: "192x192",
         type: "image/png",
         purpose: "maskable",
       },
       {
-        src: "/icons/icon-512.png",
+        src: publicAssetUrl("/icons/icon-512.png"),
         sizes: "512x512",
         type: "image/png",
         purpose: "any",
       },
       {
-        src: "/icons/icon-512.png",
+        src: publicAssetUrl("/icons/icon-512.png"),
         sizes: "512x512",
         type: "image/png",
         purpose: "maskable",

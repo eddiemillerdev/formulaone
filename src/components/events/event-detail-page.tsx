@@ -18,7 +18,7 @@ import { Accordion, AccordionContent, AccordionItem, AccordionTrigger } from "@/
 import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
-import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select";
+import { PackageBookingPicker } from "@/components/events/package-booking-picker";
 import { Separator } from "@/components/ui/separator";
 import { useEventsQuery } from "@/hooks/use-events-query";
 import type { TicketPackage } from "@/lib/api/events";
@@ -128,7 +128,7 @@ export function EventDetailPage({ eventId }: EventDetailPageProps) {
               <CardTitle className="font-display text-3xl uppercase">Booking Summary</CardTitle>
               <CardDescription>Official packages with live availability.</CardDescription>
               <p className="text-xs text-muted-foreground/90">
-                Choose a package below to see details and continue. Prices and availability are updated in real time.
+                Choose package below to see details and continue. Prices and availability are updated in real time.
               </p>
             </CardHeader>
             <CardContent className="space-y-3 text-sm">
@@ -143,31 +143,17 @@ export function EventDetailPage({ eventId }: EventDetailPageProps) {
               </div>
               <div className="space-y-2">
                 <label className="mb-2 block text-xs font-medium text-muted-foreground">
-                  {selectedPackageId ? "Selected package" : "Select package"}
+                  {selectedPackageId ? "Selected package" : "Choose package"}
                 </label>
-                <Select value={selectedPackageId ?? ""} onValueChange={(v) => setSelectedPackageId(v || null)}>
-                  <SelectTrigger className="min-w-0 w-full max-w-full overflow-hidden rounded-xl border shadow-xs text-left [&>span]:min-w-0 [&>span]:flex-1 [&>span]:overflow-hidden [&>span]:text-left [&>span]:leading-tight [&>span]:line-clamp-2 [&>span]:whitespace-normal">
-                    <SelectValue
-                      className="line-clamp-2 min-w-0 w-full whitespace-normal break-words text-left"
-                      placeholder={selectedPackageId ? "Selected package" : "Choose a package"}
-                    />
-                  </SelectTrigger>
-                  <SelectContent>
-                    {event.tickets.map((ticket) => {
-                      const isSoldOut =
-                        ticket.isSoldOut || (!ticket.isUnlimited && (ticket.quantityRemaining ?? 0) <= 0);
-                      return (
-                        <SelectItem key={ticket.id} value={ticket.id} disabled={isSoldOut} className="truncate max-w-full">
-                          <span className="block truncate">{ticket.title} — {formatMoney(ticket.price, event.currency?.code)}
-                          {isSoldOut ? " (Sold out)" : ""}</span>
-                        </SelectItem>
-                      );
-                    })}
-                  </SelectContent>
-                </Select>
+                <PackageBookingPicker
+                  tickets={event.tickets}
+                  currencyCode={event.currency?.code}
+                  value={selectedPackageId}
+                  onChange={setSelectedPackageId}
+                />
               </div>
               <p className="text-xs text-muted-foreground">
-                Choose a package above or below to continue with order.
+                Choose package above or below to continue with order.
               </p>
             </CardContent>
           </Card>

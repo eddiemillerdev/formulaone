@@ -191,6 +191,12 @@ html.light {
 }
 
 @layer base {
+  /* shadcn Button: Tailwind v4 default cursor on buttons — docs recommend pointer (ui.shadcn.com/docs/components/button) */
+  button:not(:disabled),
+  [role="button"]:not(:disabled) {
+    cursor: pointer;
+  }
+
   * {
     @apply border-border outline-ring/60;
   }
@@ -220,6 +226,13 @@ html.light {
     font-family: var(--font-display);
     font-weight: 700;
     text-transform: uppercase;
+    letter-spacing: 0.02em;
+  }
+
+  /* Site header primary links: sentence case (e.g. Races), not forced all-caps */
+  nav[aria-label="Primary"] .font-display,
+  nav[aria-label="Mobile Primary"] .font-display {
+    text-transform: none;
     letter-spacing: 0.02em;
   }
 

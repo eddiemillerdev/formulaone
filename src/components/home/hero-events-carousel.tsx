@@ -16,9 +16,8 @@ import {
 import { Spinner } from "@/components/ui/spinner";
 import { formatMoney } from "@/lib/api/events";
 import type { EventItem } from "@/lib/api/events";
+import { publicAssetUrl } from "@/lib/public-asset-url";
 import { cn } from "@/lib/utils";
-
-const asAssetUrl = (path: string) => encodeURI(path);
 
 const FALLBACK_IMAGE =
   "linear-gradient(130deg, #2b2a3f 0%, #4b2d2d 55%, #7e421f 100%)";
@@ -71,7 +70,7 @@ export function HeroEventsCarousel({ events, variant = "compact", className }: H
 
   if (variant === "hero") {
     const bgImage = current?.imageUrl
-      ? `linear-gradient(135deg, rgba(14,14,20,0.35), rgba(14,14,20,0.7)), url('${asAssetUrl(current.imageUrl)}')`
+      ? `linear-gradient(135deg, rgba(14,14,20,0.35), rgba(14,14,20,0.7)), url('${publicAssetUrl(current.imageUrl)}')`
       : FALLBACK_IMAGE;
     return (
       <div className={cn("relative h-full min-h-[480px] overflow-hidden rounded-3xl border border-border/70", className)}>
@@ -177,7 +176,7 @@ export function HeroEventsCarousel({ events, variant = "compact", className }: H
                 className="size-14 shrink-0 rounded-lg bg-cover bg-center"
                 style={{
                   backgroundImage: current?.imageUrl
-                    ? `url('${asAssetUrl(current.imageUrl)}')`
+                    ? `url('${publicAssetUrl(current.imageUrl)}')`
                     : FALLBACK_IMAGE,
                 }}
               />

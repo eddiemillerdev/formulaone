@@ -8,6 +8,7 @@ import { Menu } from "lucide-react";
 import { SiteLogo } from "@/components/layout/site-logo";
 import { Button } from "@/components/ui/button";
 import { Sheet, SheetContent, SheetHeader, SheetTitle, SheetTrigger } from "@/components/ui/sheet";
+import { publicAssetUrl } from "@/lib/public-asset-url";
 import { cn } from "@/lib/utils";
 
 /** Desktop nav: main sections only (logo = home; FAQ/Support in top bar). */
@@ -51,7 +52,7 @@ export function SiteHeader() {
       {/* Pattern behind links: repeat to fill */}
       <div
         className="pointer-events-none absolute inset-0 z-0 bg-repeat"
-        style={{ backgroundImage: "url(/images/pattern.svg)" }}
+        style={{ backgroundImage: `url(${JSON.stringify(publicAssetUrl("/images/pattern.svg"))})` }}
         aria-hidden
       />
 
@@ -66,7 +67,7 @@ export function SiteHeader() {
                 key={link.href}
                 href={link.href}
                 className={cn(
-                  "relative flex h-full items-center font-display font-normal uppercase tracking-[0.06em] px-2.5 py-2 text-sm text-white transition-colors",
+                  "relative flex h-full items-center font-display font-normal normal-case tracking-[0.02em] px-2.5 py-2 text-sm text-white transition-colors",
                   "after:absolute after:bottom-0 after:left-0 after:right-0 after:h-[2px] after:transition-[opacity,background-color] after:duration-150",
                   "after:opacity-0 hover:after:opacity-100 hover:after:bg-white",
                   active && "after:opacity-100 after:bg-[#ff1e00]",
@@ -106,7 +107,7 @@ export function SiteHeader() {
                     href={link.href}
                     onClick={() => setMobileMenuOpen(false)}
                     className={cn(
-                      "font-display font-normal uppercase tracking-wide rounded-none px-3 py-2 text-sm text-white transition-colors hover:bg-[#252534] hover:text-white",
+                      "font-display font-normal normal-case tracking-wide rounded-none px-3 py-2 text-sm text-white transition-colors hover:bg-[#252534] hover:text-white",
                       isActive(link.href) && "bg-[#252534] text-white",
                     )}
                   >

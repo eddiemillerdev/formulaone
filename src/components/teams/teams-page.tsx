@@ -18,6 +18,7 @@ import {
 import { Spinner } from "@/components/ui/spinner";
 import { useF1TeamSectionsQuery } from "@/hooks/use-f1-teams-query";
 import type { F1Team, F1TeamSection } from "@/lib/api/f1-teams";
+import { publicAssetUrl } from "@/lib/public-asset-url";
 
 const CAR_BG_IMAGE = "/images/car-bg.webp";
 
@@ -84,7 +85,7 @@ function TeamCard({ team, index }: { team: F1Team; index: number }) {
             {/* Car-bg image layer with transparency (not 50%) — extends to bottom of card */}
             <div
               className="absolute inset-0 bg-cover bg-center bg-no-repeat opacity-60"
-              style={{ backgroundImage: `url(${CAR_BG_IMAGE})` }}
+              style={{ backgroundImage: `url(${JSON.stringify(publicAssetUrl(CAR_BG_IMAGE))})` }}
             />
             {/* Gradient from team color */}
             <div

@@ -33,6 +33,18 @@ yarn-error.log*
 # env files (can opt-in for committing if needed)
 .env*
 
+# Local S3 upload state (sha256 per file — safe to delete to force full re-upload)
+/scripts/public-s3-manifest.json
+/scripts/public-s3-upload.log
+
+# Large assets synced to S3 (optional local copies — restore via upload bucket or optimize scripts)
+/public/backgrounds/
+/public/backgrounds-thumbs/
+/public/backgrounds-original/
+/public/backgrounds-optimized/
+/public/images/sponsors/
+/public/f1.mp4
+
 # vercel
 .vercel
 

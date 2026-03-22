@@ -12,6 +12,7 @@ module.exports = {
         NODE_ENV: "production",
         PORT: 3000,
         API_BASE_URL: "https://dash.f1experiences.co.uk/api/public",
+        // NEXT_PUBLIC_ASSET_BASE_URL: "https://your-cdn.example.com",
       },
       watch: true,
       ignore_watch: [

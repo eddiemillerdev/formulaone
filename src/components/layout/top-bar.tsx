@@ -6,6 +6,7 @@ import { usePathname } from "next/navigation";
 
 import { Separator } from "@/components/ui/separator";
 import { ThemeSwitcher } from "@/components/theme-switcher";
+import { publicAssetUrl } from "@/lib/public-asset-url";
 import { cn } from "@/lib/utils";
 
 const topLinks = [
@@ -21,16 +22,21 @@ export function TopBar() {
   const fiaUrl = "https://www.fia.com/";
 
   return (
-    <div className="border-b border-neutral-200 bg-white">
-      <div className="mx-auto flex h-9 w-[min(1220px,94vw)] items-center gap-5 px-2">
+    <div className="relative overflow-hidden border-b border-neutral-300/90 bg-neutral-100">
+      {/* Visible vertical gradient: cooler gray at bottom (toward main nav), lighter at top — not flat white */}
+      <div
+        className="pointer-events-none absolute inset-0 bg-gradient-to-t from-neutral-400/80 via-neutral-200/50 to-neutral-50"
+        aria-hidden
+      />
+      <div className="relative z-10 mx-auto flex h-9 w-[min(1220px,94vw)] items-center gap-5 px-2">
         <a
           href={fiaUrl}
           target="_blank"
           rel="noopener noreferrer"
-          className="flex shrink-0 items-center text-neutral-600 transition-colors hover:text-neutral-900"
+          className="flex shrink-0 items-center text-neutral-800 transition-colors hover:text-neutral-950"
           aria-label="FIA – Fédération Internationale de l'Automobile"
         >
-          <Image src="/images/fia-logo.svg" alt="" width={28} height={20} className="h-5 w-auto" />
+          <Image src={publicAssetUrl("/images/fia-logo.svg")} alt="" width={28} height={20} className="h-5 w-auto" />
         </a>
         <nav className="ml-auto flex items-center gap-5" aria-label="Utility">
           {topLinks.map((link) => {
@@ -40,9 +46,9 @@ export function TopBar() {
                 key={link.href}
                 href={link.href}
                 className={cn(
-                  "text-xs font-medium uppercase tracking-wide transition-colors",
-                  "text-neutral-600 hover:text-neutral-900",
-                  active && "text-neutral-900",
+                  "text-xs font-bold uppercase tracking-wide transition-colors",
+                  "text-neutral-800 hover:text-neutral-950",
+                  active && "text-neutral-950",
                 )}
               >
                 {link.label}
@@ -51,18 +57,18 @@ export function TopBar() {
           })}
         </nav>
         <ThemeSwitcher variant="light" />
-        <Separator orientation="vertical" className="h-4 bg-neutral-300" decorative />
+        <Separator orientation="vertical" className="h-4 bg-neutral-400/60" decorative />
         <a
           href={F1_TV_HREF}
           target="_blank"
           rel="noopener noreferrer"
-          className="flex items-center gap-1.5 text-xs font-medium uppercase tracking-wide text-neutral-600 transition-colors hover:text-neutral-900"
+          className="flex items-center gap-1.5 text-xs font-bold uppercase tracking-wide text-neutral-800 transition-colors hover:text-neutral-950"
           aria-label="F1 TV"
         >
-          <Image src="/images/f1Tv.svg" alt="" width={20} height={14} className="h-3.5 w-auto" />
+          <Image src={publicAssetUrl("/images/f1Tv.svg")} alt="" width={20} height={14} className="h-3.5 w-auto" />
           <span className="hidden sm:inline">F1 TV</span>
         </a>
-        <Separator orientation="vertical" className="h-4 bg-neutral-300" decorative />
+        <Separator orientation="vertical" className="h-4 bg-neutral-400/60" decorative />
       </div>
     </div>
   );

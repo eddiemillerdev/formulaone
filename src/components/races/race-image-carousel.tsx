@@ -6,6 +6,7 @@ import { ChevronLeft, ChevronRight } from "lucide-react";
 
 import { Button } from "@/components/ui/button";
 import { Skeleton } from "@/components/ui/skeleton";
+import { publicAssetUrl } from "@/lib/public-asset-url";
 import { cn } from "@/lib/utils";
 
 type RaceImageCarouselProps = {
@@ -14,16 +15,12 @@ type RaceImageCarouselProps = {
   className?: string;
 };
 
-function normalizeAssetUrl(path: string) {
-  return encodeURI(path);
-}
-
 export function RaceImageCarousel({ images, title, className }: RaceImageCarouselProps) {
   const preparedImages = useMemo(() => {
-    const clean = images.filter(Boolean).map(normalizeAssetUrl);
+    const clean = images.filter(Boolean).map((p) => publicAssetUrl(p));
     return clean.length
       ? clean
-      : ["/backgrounds/pass.jpg"];
+      : [publicAssetUrl("/backgrounds/pass.jpg")];
   }, [images]);
 
   const [currentIndex, setCurrentIndex] = useState(0);

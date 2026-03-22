@@ -19,8 +19,9 @@ if (fs.existsSync(sponsorsDir)) {
     .sort()
     .map((name) => {
       const meta = metadata[name] || {};
+      // Root-relative path only; publicAssetUrl() applies encodeURI once (do not pre-encode or % becomes %25).
       return {
-        src: `/images/sponsors/${encodeURIComponent(name)}`,
+        src: `/images/sponsors/${name}`,
         alt: meta.alt,
         link: meta.link,
       };

@@ -299,9 +299,9 @@ export const RACE_MAPPINGS: RaceMappingItem[] = [
     description:
       "Iconic Interlagos layout with elevation, weather swings, and one of the most passionate crowds in motorsport.",
     images: [
-      "/backgrounds/São Paulo Grand Prix/2025 São Paulo GP - Charles Leclerc 2.jpg",
-      "/backgrounds/São Paulo Grand Prix/2025 São Paulo GP - George Russell 2.jpg",
-      "/backgrounds/São Paulo Grand Prix/2025 São Paulo GP - Max Verstappen.jpg",
+      "/backgrounds/Sao Paulo Grand Prix/2025 Sao Paulo GP - Charles Leclerc 2.jpg",
+      "/backgrounds/Sao Paulo Grand Prix/2025 Sao Paulo GP - George Russell 2.jpg",
+      "/backgrounds/Sao Paulo Grand Prix/2025 Sao Paulo GP - Max Verstappen.jpg",
     ],
   },
   {

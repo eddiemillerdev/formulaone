@@ -1,6 +1,8 @@
 import Image from "next/image";
 import Link from "next/link";
 
+import { publicAssetUrl } from "@/lib/public-asset-url";
+
 const APP_STORE_URL = "https://apps.apple.com/gb/app/official-f1-app/id835022598";
 const GOOGLE_PLAY_URL = "https://play.google.com/store/apps/details?id=com.softpauer.f1timingapp2014.basic&hl=en_GB";
 
@@ -19,7 +21,7 @@ export function AppDownloadStripe() {
             className="opacity-90 transition hover:opacity-100"
             aria-label="Download on the App Store"
           >
-            <Image src="/images/app-store.svg" alt="" width={120} height={40} className="h-9 w-auto" />
+            <Image src={publicAssetUrl("/images/app-store.svg")} alt="" width={120} height={40} className="h-9 w-auto" />
           </Link>
           <Link
             href={GOOGLE_PLAY_URL}
@@ -28,7 +30,7 @@ export function AppDownloadStripe() {
             className="opacity-90 transition hover:opacity-100"
             aria-label="Get it on Google Play"
           >
-            <Image src="/images/google-play.svg" alt="" width={135} height={40} className="h-9 w-auto" />
+            <Image src={publicAssetUrl("/images/google-play.svg")} alt="" width={135} height={40} className="h-9 w-auto" />
           </Link>
         </div>
       </div>

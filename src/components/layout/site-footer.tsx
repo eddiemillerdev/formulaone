@@ -4,6 +4,7 @@ import Image from "next/image";
 import Link from "next/link";
 import { useState } from "react";
 import { ChevronDown, ChevronUp } from "lucide-react";
+import { publicAssetUrl } from "@/lib/public-asset-url";
 import { cn } from "@/lib/utils";
 
 const footerSections = [
@@ -70,7 +71,7 @@ export function SiteFooter() {
           <div className="space-y-4 text-center lg:text-left">
             <div className="flex justify-center lg:justify-start">
               <Image
-                src="/images/logof1.svg"
+                src={publicAssetUrl("/images/logof1.svg")}
                 alt={APP_NAME}
                 width={120}
                 height={30}

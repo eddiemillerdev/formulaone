@@ -3,6 +3,7 @@
 import { FadeIn } from "@/components/motion/fade-in";
 import { Badge } from "@/components/ui/badge";
 import { SPONSOR_IMAGES } from "@/config/sponsors";
+import { publicAssetUrl } from "@/lib/public-asset-url";
 
 export function SponsorCarousel() {
   if (SPONSOR_IMAGES.length === 0) return null;
@@ -37,7 +38,7 @@ export function SponsorCarousel() {
                 "h-8 w-full max-h-10 object-contain object-center opacity-90 transition hover:opacity-100 invert dark:invert-0 md:h-10 md:max-h-12";
               const content = (
                 <img
-                  src={sponsor.src}
+                  src={publicAssetUrl(sponsor.src)}
                   alt={sponsor.alt ?? "Sponsor"}
                   className={imgClass}
                 />

@@ -17,6 +17,7 @@ import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Input } from "@/components/ui/input";
 import { useEventsQuery } from "@/hooks/use-events-query";
+import { publicAssetUrl } from "@/lib/public-asset-url";
 
 const featurePanels = [
   {
@@ -34,8 +35,6 @@ const featurePanels = [
     image: "/backgrounds/Monaco Grand Prix/2025 Monaco GP - Charles Leclerc.jpg",
   },
 ] as const;
-
-const asAssetUrl = (path: string) => encodeURI(path);
 
 /** Video hero: src or embedUrl, plus optional heading/description overlaid on the video. */
 const HOME_VIDEO: {
@@ -146,7 +145,7 @@ export function HomePage() {
               />
             ) : HOME_VIDEO?.src ? (
               <video
-                src={HOME_VIDEO.src}
+                src={publicAssetUrl(HOME_VIDEO.src)}
                 className="absolute inset-0 h-full w-full object-cover"
                 autoPlay
                 muted
@@ -197,7 +196,7 @@ export function HomePage() {
               <div
                 className="h-40 shrink-0 bg-cover bg-center transition-transform duration-500 group-hover:scale-105"
                 style={{
-                  backgroundImage: `linear-gradient(130deg, rgba(11,11,16,0.35), rgba(11,11,16,0.68)), url('${asAssetUrl(panel.image)}')`,
+                  backgroundImage: `linear-gradient(130deg, rgba(11,11,16,0.35), rgba(11,11,16,0.68)), url('${publicAssetUrl(panel.image)}')`,
                 }}
               />
               <CardHeader className="text-center md:text-left">
