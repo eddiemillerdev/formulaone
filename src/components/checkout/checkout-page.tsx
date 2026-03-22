@@ -6,7 +6,7 @@ import { useRouter, useSearchParams } from "next/navigation";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { useFieldArray, useForm, useWatch } from "react-hook-form";
 import { z } from "zod";
-import { ArrowLeft } from "lucide-react";
+import { ArrowLeft, Check, Minus, Plus } from "lucide-react";
 
 import { FadeIn } from "@/components/motion/fade-in";
 import {
@@ -36,6 +36,12 @@ import { useEventsQuery } from "@/hooks/use-events-query";
 import { formatMoney, getEventById, getTicketById } from "@/lib/api/events";
 import { ORDER_SERVICE_MODE, OrderApiError, orderService } from "@/lib/api/orders";
 import { useBookingStore } from "@/store/booking-store";
+import { cn } from "@/lib/utils";
+
+const checkoutGuestInputClass =
+  "checkout-guest-input rounded-xl md:text-base";
+const checkoutGuestTextareaClass =
+  "checkout-guest-textarea rounded-xl md:text-base";
 
 const ticketHolderSchema = z.object({
   firstName: z.string().min(2, "First name is required"),
@@ -205,6 +211,13 @@ export function CheckoutPage() {
     return { subtotal, addOnsTotal, total };
   }, [selectedTicket, quantity, addOnsTotal]);
 
+  const maxTicketQuantity = useMemo(() => {
+    if (!selectedTicket) return 20;
+    if (selectedTicket.isUnlimited) return 20;
+    const remaining = selectedTicket.quantityRemaining ?? 20;
+    return Math.max(1, Math.min(20, remaining));
+  }, [selectedTicket]);
+
   async function onSubmit(values: CheckoutInput) {
     if (!selectedEvent || !selectedTicket) {
       routeToFinish({
@@ -350,7 +363,7 @@ export function CheckoutPage() {
         <FadeIn className="space-y-5">
           <Form {...form}>
             <form onSubmit={form.handleSubmit(onSubmit)} className="space-y-5">
-          <Card className="border-border/80 bg-card/80">
+          <Card className="checkout-guest-card border-border/80 bg-card/80">
             <CardHeader>
               <CardTitle className="font-display text-3xl uppercase tracking-tight">Guest Details</CardTitle>
               <CardDescription>
@@ -366,7 +379,7 @@ export function CheckoutPage() {
                         <FormItem>
                           <FormLabel>First name</FormLabel>
                           <FormControl>
-                            <Input {...field} className="rounded-xl" placeholder="e.g. James" />
+                            <Input {...field} className={checkoutGuestInputClass} placeholder="e.g. James" />
                           </FormControl>
                           <FormMessage />
                         </FormItem>
@@ -379,7 +392,7 @@ export function CheckoutPage() {
                         <FormItem>
                           <FormLabel>Last name</FormLabel>
                           <FormControl>
-                            <Input {...field} className="rounded-xl" placeholder="e.g. Smith" />
+                            <Input {...field} className={checkoutGuestInputClass} placeholder="e.g. Smith" />
                           </FormControl>
                           <FormMessage />
                         </FormItem>
@@ -395,7 +408,7 @@ export function CheckoutPage() {
                         <FormItem>
                           <FormLabel>Email</FormLabel>
                           <FormControl>
-                            <Input type="email" {...field} className="rounded-xl" placeholder="e.g. james@example.com" />
+                            <Input type="email" {...field} className={checkoutGuestInputClass} placeholder="e.g. james@example.com" />
                           </FormControl>
                           <FormMessage />
                         </FormItem>
@@ -408,7 +421,7 @@ export function CheckoutPage() {
                         <FormItem>
                           <FormLabel>Phone</FormLabel>
                           <FormControl>
-                            <Input {...field} className="rounded-xl" placeholder="e.g. +44 7700 900000" />
+                            <Input {...field} className={checkoutGuestInputClass} placeholder="e.g. +44 7700 900000" />
                           </FormControl>
                           <FormMessage />
                         </FormItem>
@@ -426,7 +439,7 @@ export function CheckoutPage() {
                           <Textarea
                             rows={4}
                             placeholder="Dietary, seating, transfer logistics"
-                            className="rounded-xl"
+                            className={checkoutGuestTextareaClass}
                             {...field}
                           />
                         </FormControl>
@@ -435,22 +448,49 @@ export function CheckoutPage() {
                     )}
                   />
 
-                  <div className="rounded-xl border border-border/70 bg-muted/30 space-y-3 p-4">
-                    <Label htmlFor="quantity">Quantity</Label>
-                    <Input
-                      id="quantity"
-                      type="number"
-                      min={1}
-                      max={
-                        selectedTicket.isUnlimited
-                          ? undefined
-                          : Math.max(1, selectedTicket.quantityRemaining ?? 20)
-                      }
-                      value={quantity}
-                      onChange={(event) => setQuantity(Number(event.target.value))}
-                      className="rounded-xl"
-                      placeholder="1"
-                    />
+                  <div className="rounded-xl border border-border/70 bg-muted/30 space-y-4 p-4">
+                    <div className="flex flex-col items-center gap-3">
+                      <Label id="checkout-quantity-label" className="text-base font-semibold">
+                        Quantity
+                      </Label>
+                      <div
+                        role="group"
+                        aria-labelledby="checkout-quantity-label"
+                        className="inline-flex items-center gap-1 rounded-xl border-2 border-border/55 bg-background/60 p-1 shadow-sm dark:border-white/15 dark:bg-background/40"
+                      >
+                        <Button
+                          type="button"
+                          variant="ghost"
+                          aria-label="Decrease ticket quantity"
+                          disabled={quantity <= 1}
+                          className="size-12 shrink-0 rounded-lg hover:bg-muted/80 disabled:opacity-40"
+                          onClick={() => setQuantity(quantity - 1)}
+                        >
+                          <Minus className="mx-auto size-6" strokeWidth={2} aria-hidden />
+                        </Button>
+                        <output
+                          className="flex min-w-[3.25rem] items-center justify-center font-display text-2xl font-bold tabular-nums leading-none text-foreground"
+                          aria-live="polite"
+                        >
+                          {quantity}
+                        </output>
+                        <Button
+                          type="button"
+                          variant="ghost"
+                          aria-label="Increase ticket quantity"
+                          disabled={quantity >= maxTicketQuantity}
+                          className="size-12 shrink-0 rounded-lg hover:bg-muted/80 disabled:opacity-40"
+                          onClick={() => setQuantity(quantity + 1)}
+                        >
+                          <Plus className="mx-auto size-6" strokeWidth={2} aria-hidden />
+                        </Button>
+                      </div>
+                      {!selectedTicket.isUnlimited ? (
+                        <p className="text-center text-xs text-muted-foreground">
+                          Up to {maxTicketQuantity} ticket{maxTicketQuantity !== 1 ? "s" : ""} available for this package.
+                        </p>
+                      ) : null}
+                    </div>
 
                     {selectedTicket.addOns && selectedTicket.addOns.length > 0 && (
                       <div className="grid gap-3 pt-2">
@@ -541,19 +581,36 @@ export function CheckoutPage() {
             </CardContent>
           </Card>
 
-          <Card className="border-border/80 bg-card/80">
-            <CardHeader>
+          <Card className="checkout-guest-card border-border/80 bg-card/80">
+            <CardHeader className="gap-3 md:gap-4">
               <CardTitle className="font-display text-3xl uppercase tracking-tight">Ticket Holders</CardTitle>
               <CardDescription>
                 Add one ticket holder per seat ({Math.max(1, quantity)} total). Names will appear on the tickets.
               </CardDescription>
-              <label className="flex items-center gap-3 text-sm text-muted-foreground">
-                <Checkbox
-                  checked={copyFromBuyer}
-                  onCheckedChange={(value) => setCopyFromBuyer(Boolean(value))}
-                />
-                Copy buyer details to all ticket holders
-              </label>
+              <Button
+                type="button"
+                variant="ghost"
+                role="switch"
+                aria-checked={copyFromBuyer}
+                onClick={() => setCopyFromBuyer((v) => !v)}
+                className={cn(
+                  "event-package-card-cta copy-buyer-toggle w-full justify-center gap-3 rounded-xl px-4",
+                  copyFromBuyer && "is-active",
+                )}
+              >
+                <span
+                  className={cn(
+                    "flex size-9 shrink-0 items-center justify-center rounded-lg border-2 border-current/30 bg-current/[0.08]",
+                    copyFromBuyer && "border-current/45 bg-current/[0.14]",
+                  )}
+                  aria-hidden
+                >
+                  {copyFromBuyer ? <Check className="size-5" strokeWidth={2.5} /> : null}
+                </span>
+                <span className="text-balance text-left sm:text-center">
+                  Copy buyer details to all ticket holders
+                </span>
+              </Button>
             </CardHeader>
             <CardContent className="space-y-4">
                 {fields.map((field, index) => (
@@ -567,7 +624,7 @@ export function CheckoutPage() {
                           <FormItem>
                             <FormLabel>First name</FormLabel>
                             <FormControl>
-                              <Input {...f} disabled={copyFromBuyer} className="rounded-xl" placeholder="First name" />
+                              <Input {...f} disabled={copyFromBuyer} className={checkoutGuestInputClass} placeholder="First name" />
                             </FormControl>
                             <FormMessage />
                           </FormItem>
@@ -580,7 +637,7 @@ export function CheckoutPage() {
                           <FormItem>
                             <FormLabel>Last name</FormLabel>
                             <FormControl>
-                              <Input {...f} disabled={copyFromBuyer} className="rounded-xl" placeholder="Last name" />
+                              <Input {...f} disabled={copyFromBuyer} className={checkoutGuestInputClass} placeholder="Last name" />
                             </FormControl>
                             <FormMessage />
                           </FormItem>
@@ -597,7 +654,7 @@ export function CheckoutPage() {
                                 type="email"
                                 {...f}
                                 disabled={copyFromBuyer}
-                                className="rounded-xl"
+                                className={checkoutGuestInputClass}
                                 placeholder="email@example.com"
                               />
                             </FormControl>

@@ -49,7 +49,11 @@ export function EventCard({ event }: EventCardProps) {
           From <strong className="font-display text-lg text-foreground">{formatMoney(event.fromPrice, event.currency?.code)}</strong>
           {event.currency?.code ? <span className="ml-1 text-xs text-muted-foreground">({event.currency.code})</span> : null}
         </p>
-        <Button asChild variant="secondary" className="rounded-full">
+        <Button
+          asChild
+          variant="secondary"
+          className="rounded-full border border-border bg-secondary shadow-sm hover:bg-secondary/80 dark:border-white/55 dark:bg-white/[0.1] dark:text-white dark:shadow-[0_0_0_1px_rgba(255,255,255,0.08)] dark:hover:bg-white/[0.16]"
+        >
           <Link href={`/events/${event.id}`}>Check availability</Link>
         </Button>
       </CardFooter>

@@ -65,7 +65,7 @@ export function PackageBookingPicker({
               <span className="text-sm text-muted-foreground">Choose package</span>
             )}
           </span>
-          <ChevronDown className="size-4 shrink-0 text-muted-foreground" />
+          <ChevronDown className="size-4 shrink-0 text-muted-foreground" aria-hidden />
         </Button>
       </DropdownMenuTrigger>
       <DropdownMenuContent
