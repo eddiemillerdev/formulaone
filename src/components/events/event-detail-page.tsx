@@ -83,6 +83,8 @@ export function EventDetailPage({ eventId }: EventDetailPageProps) {
     );
   }
 
+  const hasVenueImage = Boolean(event.venueImageUrl);
+
   return (
     <main className="mx-auto page-width space-y-8 py-10 pb-20">
       <FadeIn className="flex flex-wrap items-center gap-3">
@@ -94,8 +96,12 @@ export function EventDetailPage({ eventId }: EventDetailPageProps) {
         </Badge>
       </FadeIn>
 
-      <section className="grid min-w-0 grid-cols-1 gap-8 lg:grid-cols-[minmax(0,1fr)_minmax(280px,22rem)] lg:items-start xl:grid-cols-[minmax(0,1fr)_minmax(300px,24rem)]">
-        <div className="flex min-w-0 flex-col gap-8">
+      {/*
+        Mobile: order = hero → booking summary → venue → packages (summary not trapped at bottom).
+        lg+: col1 = hero / venue / packages stacked; col2 = summary with grid-row 1 / -1 + sticky.
+      */}
+      <section className="grid min-w-0 grid-cols-1 gap-8 lg:grid-cols-[minmax(0,1fr)_minmax(280px,22rem)] lg:items-stretch xl:grid-cols-[minmax(0,1fr)_minmax(300px,24rem)]">
+        <div className="order-1 flex min-w-0 flex-col gap-8 lg:col-start-1 lg:row-start-1 lg:self-start">
           <FadeIn className="min-w-0">
             <Card className="overflow-hidden border-border/80 bg-card/85 pt-0 md:pt-0">
               <div
@@ -125,120 +131,9 @@ export function EventDetailPage({ eventId }: EventDetailPageProps) {
           </FadeIn>
 
           <RacingLineSeparator className="opacity-90" />
-
-          {event.venueImageUrl ? (
-            <FadeIn>
-              <section className="space-y-3">
-                <h2 className="font-display text-2xl uppercase tracking-tight text-muted-foreground">Venue</h2>
-                <div className="overflow-hidden rounded-xl border border-border/80 bg-card/85">
-                  <img
-                    src={event.venueImageUrl}
-                    alt={`${event.venue}, ${event.city}`}
-                    className="h-auto w-full object-cover"
-                  />
-                </div>
-              </section>
-            </FadeIn>
-          ) : null}
-
-          <section ref={availablePackagesRef} className="scroll-mt-24 w-full space-y-4">
-            <FadeIn>
-              <h2 className="font-display text-4xl uppercase tracking-tight">Available Packages</h2>
-            </FadeIn>
-
-            {selectedPackage ? (
-              <div>
-                <FadeIn className="w-full space-y-3">
-                  <button
-                    type="button"
-                    onClick={() => setSelectedPackageId(null)}
-                    className="text-sm text-muted-foreground underline hover:text-foreground"
-                  >
-                    ← View all packages
-                  </button>
-                  <SelectedPackageCard
-                    event={event}
-                    ticket={selectedPackage}
-                    onContinue={() => {
-                      setSelection({
-                        eventId: event.id,
-                        ticketId: selectedPackage.id,
-                        ticketCategory: selectedPackage.category,
-                      });
-                      router.push(`/checkout?event=${event.id}&ticket=${selectedPackage.id}`);
-                    }}
-                  />
-                </FadeIn>
-              </div>
-            ) : (
-              <div className="grid w-full gap-4">
-                {event.tickets.map((ticket, index) => {
-                  const isSoldOut =
-                    ticket.isSoldOut || (!ticket.isUnlimited && (ticket.quantityRemaining ?? 0) <= 0);
-                  const availabilityLabel = isSoldOut
-                    ? "Sold out"
-                    : ticket.isUnlimited
-                      ? "Available"
-                      : `${ticket.quantityRemaining} remaining`;
-
-                  return (
-                    <FadeIn key={ticket.id} delay={0.05 + index * 0.03}>
-                      <Card className="w-full border-border/80 bg-card/80">
-                        <CardHeader className="space-y-3">
-                          <div className="flex flex-wrap items-start justify-between gap-2">
-                            <CardTitle className="font-display text-2xl uppercase leading-tight">{ticket.title}</CardTitle>
-                            <span className="font-display text-3xl leading-none">{formatMoney(ticket.price, event.currency?.code)}</span>
-                          </div>
-                          <div className="flex flex-wrap gap-2 text-xs">
-                            <Badge variant="outline" className="rounded-full border-border bg-background/70 text-muted-foreground">
-                              {ticket.category.toUpperCase()}
-                            </Badge>
-                            <Badge
-                              variant="outline"
-                              className="rounded-full border-border bg-background/70 text-muted-foreground"
-                            >
-                              {availabilityLabel}
-                            </Badge>
-                            <Badge variant="outline" className="rounded-full border-border bg-background/70 text-muted-foreground">
-                              {formatDate(ticket.startSaleDate)} - {formatDate(ticket.endSaleDate)}
-                            </Badge>
-                          </div>
-                          <CardDescription className="text-sm text-muted-foreground">
-                            {ticket.descriptionPreview || "Official Formula 1 ticket package"}
-                          </CardDescription>
-                          {ticket.descriptionMarkdown ? (
-                            <Accordion type="single" collapsible className="w-full">
-                              <AccordionItem value={`details-${ticket.id}`} className="border-border/70">
-                                <AccordionTrigger className="py-2 text-sm text-foreground hover:no-underline">
-                                  View full package details
-                                </AccordionTrigger>
-                                <AccordionContent className="pt-2">
-                                  <MarkdownContent markdown={ticket.descriptionMarkdown} />
-                                </AccordionContent>
-                              </AccordionItem>
-                            </Accordion>
-                          ) : null}
-                        </CardHeader>
-                        <CardContent className="space-y-3 md:flex md:justify-start">
-                          <Button
-                            variant="ghost"
-                            className="event-package-card-cta w-full justify-center rounded-xl md:inline-flex md:w-auto md:min-w-[13.5rem]"
-                            disabled={isSoldOut}
-                            onClick={() => setSelectedPackageId(ticket.id)}
-                          >
-                            {isSoldOut ? "Currently sold out" : "Select package"}
-                          </Button>
-                        </CardContent>
-                      </Card>
-                    </FadeIn>
-                  );
-                })}
-              </div>
-            )}
-          </section>
         </div>
 
-        <div className="min-w-0 lg:sticky lg:top-24 lg:z-10 lg:self-start">
+        <div className="order-2 min-w-0 lg:sticky lg:top-24 lg:z-10 lg:col-start-2 lg:self-start lg:[grid-row:1/-1]">
           <FadeIn delay={0.06} className="min-w-0">
             <Card className="min-w-0 overflow-hidden border-primary/35 bg-gradient-to-br from-primary/20 via-card to-card">
               <CardHeader>
@@ -276,6 +171,124 @@ export function EventDetailPage({ eventId }: EventDetailPageProps) {
             </Card>
           </FadeIn>
         </div>
+
+        {event.venueImageUrl ? (
+          <FadeIn className="order-3 min-w-0 lg:col-start-1 lg:row-start-2 lg:self-start">
+            <section className="space-y-3">
+              <h2 className="font-display text-2xl uppercase tracking-tight text-muted-foreground">Venue</h2>
+              <div className="overflow-hidden rounded-xl border border-border/80 bg-card/85">
+                <img
+                  src={event.venueImageUrl}
+                  alt={`${event.venue}, ${event.city}`}
+                  className="h-auto w-full object-cover"
+                />
+              </div>
+            </section>
+          </FadeIn>
+        ) : null}
+
+        <section
+          ref={availablePackagesRef}
+          className={
+            hasVenueImage
+              ? "order-4 scroll-mt-24 w-full min-w-0 space-y-4 lg:col-start-1 lg:row-start-3 lg:self-start"
+              : "order-3 scroll-mt-24 w-full min-w-0 space-y-4 lg:col-start-1 lg:row-start-2 lg:self-start"
+          }
+        >
+          <FadeIn>
+            <h2 className="font-display text-4xl uppercase tracking-tight">Available Packages</h2>
+          </FadeIn>
+
+          {selectedPackage ? (
+            <div>
+              <FadeIn className="w-full space-y-3">
+                <button
+                  type="button"
+                  onClick={() => setSelectedPackageId(null)}
+                  className="text-sm text-muted-foreground underline hover:text-foreground"
+                >
+                  ← View all packages
+                </button>
+                <SelectedPackageCard
+                  event={event}
+                  ticket={selectedPackage}
+                  onContinue={() => {
+                    setSelection({
+                      eventId: event.id,
+                      ticketId: selectedPackage.id,
+                      ticketCategory: selectedPackage.category,
+                    });
+                    router.push(`/checkout?event=${event.id}&ticket=${selectedPackage.id}`);
+                  }}
+                />
+              </FadeIn>
+            </div>
+          ) : (
+            <div className="grid w-full gap-4">
+              {event.tickets.map((ticket, index) => {
+                const isSoldOut =
+                  ticket.isSoldOut || (!ticket.isUnlimited && (ticket.quantityRemaining ?? 0) <= 0);
+                const availabilityLabel = isSoldOut
+                  ? "Sold out"
+                  : ticket.isUnlimited
+                    ? "Available"
+                    : `${ticket.quantityRemaining} remaining`;
+
+                return (
+                  <FadeIn key={ticket.id} delay={0.05 + index * 0.03}>
+                    <Card className="w-full border-border/80 bg-card/80">
+                      <CardHeader className="space-y-3">
+                        <div className="flex flex-wrap items-start justify-between gap-2">
+                          <CardTitle className="font-display text-2xl uppercase leading-tight">{ticket.title}</CardTitle>
+                          <span className="font-display text-3xl leading-none">{formatMoney(ticket.price, event.currency?.code)}</span>
+                        </div>
+                        <div className="flex flex-wrap gap-2 text-xs">
+                          <Badge variant="outline" className="rounded-full border-border bg-background/70 text-muted-foreground">
+                            {ticket.category.toUpperCase()}
+                          </Badge>
+                          <Badge
+                            variant="outline"
+                            className="rounded-full border-border bg-background/70 text-muted-foreground"
+                          >
+                            {availabilityLabel}
+                          </Badge>
+                          <Badge variant="outline" className="rounded-full border-border bg-background/70 text-muted-foreground">
+                            {formatDate(ticket.startSaleDate)} - {formatDate(ticket.endSaleDate)}
+                          </Badge>
+                        </div>
+                        <CardDescription className="text-sm text-muted-foreground">
+                          {ticket.descriptionPreview || "Official Formula 1 ticket package"}
+                        </CardDescription>
+                        {ticket.descriptionMarkdown ? (
+                          <Accordion type="single" collapsible className="w-full">
+                            <AccordionItem value={`details-${ticket.id}`} className="border-border/70">
+                              <AccordionTrigger className="py-2 text-sm text-foreground hover:no-underline">
+                                View full package details
+                              </AccordionTrigger>
+                              <AccordionContent className="pt-2">
+                                <MarkdownContent markdown={ticket.descriptionMarkdown} />
+                              </AccordionContent>
+                            </AccordionItem>
+                          </Accordion>
+                        ) : null}
+                      </CardHeader>
+                      <CardContent className="space-y-3 md:flex md:justify-start">
+                        <Button
+                          variant="ghost"
+                          className="event-package-card-cta w-full justify-center rounded-xl md:inline-flex md:w-auto md:min-w-[13.5rem]"
+                          disabled={isSoldOut}
+                          onClick={() => setSelectedPackageId(ticket.id)}
+                        >
+                          {isSoldOut ? "Currently sold out" : "Select package"}
+                        </Button>
+                      </CardContent>
+                    </Card>
+                  </FadeIn>
+                );
+              })}
+            </div>
+          )}
+        </section>
       </section>
     </main>
   );
