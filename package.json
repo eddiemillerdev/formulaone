@@ -2,6 +2,9 @@
   "name": "f1-pass-web",
   "version": "0.1.0",
   "private": true,
+  "overrides": {
+    "@types/minimatch": "5.1.2"
+  },
   "scripts": {
     "dev": "next dev",
     "build": "node scripts/generate-sponsors-list.js && node scripts/generate-pwa-icons.js && next build",
@@ -45,7 +48,7 @@
   },
   "devDependencies": {
     "@tailwindcss/postcss": "^4",
-    "@types/minimatch": "^6.0.0",
+    "@types/minimatch": "5.1.2",
     "@types/node": "^20",
     "@types/react": "^19",
     "@types/react-dom": "^19",
