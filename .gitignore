@@ -36,6 +36,8 @@ yarn-error.log*
 # Local S3 upload state (sha256 per file — safe to delete to force full re-upload)
 /scripts/public-s3-manifest.json
 /scripts/public-s3-upload.log
+/scripts/public-s3-manifest-background-carousel.json
+/scripts/public-s3-upload-background-carousel.log
 
 # Large assets synced to S3 (optional local copies — restore via upload bucket or optimize scripts)
 /public/backgrounds/

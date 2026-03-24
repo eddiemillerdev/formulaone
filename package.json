@@ -10,6 +10,7 @@
     "optimize-images": "node scripts/optimize-background-images.js",
     "upload-public-s3": "node scripts/upload-public-to-s3.js",
     "upload": "node scripts/upload-public-to-s3.js",
+    "upload-background-carousel-s3": "node scripts/upload-background-carousel-to-s3.js",
     "normalize-public-names": "node scripts/normalize-public-filenames.js",
     "start": "next start",
     "lint": "eslint"

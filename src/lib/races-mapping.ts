@@ -19,9 +19,9 @@ export const RACE_MAPPINGS: RaceMappingItem[] = [
     description:
       "Season opener energy, a fast street-style layout, and one of the strongest fan atmospheres on the calendar.",
     images: [
-      "/backgrounds/Australian Grand Prix/2025 Australian GP - Charles Leclerc.jpg",
-      "/backgrounds/Australian Grand Prix/2025 Australian GP - Max Verstappen & Charles Leclerc.jpg",
-      "/backgrounds/Australian Grand Prix/2025 Australian GP - George Russell.jpg",
+      "/backgrounds/Australian Grand Prix/1.jpg",
+      "/backgrounds/Australian Grand Prix/2.jpg",
+      "/backgrounds/Australian Grand Prix/3.jpg",
     ],
   },
   {
@@ -33,9 +33,9 @@ export const RACE_MAPPINGS: RaceMappingItem[] = [
     description:
       "Long straights and technical corners with strong hospitality demand across grandstand and premium categories.",
     images: [
-      "/backgrounds/Chinese Grand Prix/2025 Chinese GP - George Russell 2.jpg",
-      "/backgrounds/Chinese Grand Prix/2025 Chinese GP - Kimi Antonelli.jpg",
-      "/backgrounds/Chinese Grand Prix/2025 Chinese GP - Liam Lawson.jpg",
+      "/backgrounds/Chinese Grand Prix/1.jpg",
+      "/backgrounds/Chinese Grand Prix/2.jpg",
+      "/backgrounds/Chinese Grand Prix/3.jpg",
     ],
   },
   {
@@ -47,9 +47,9 @@ export const RACE_MAPPINGS: RaceMappingItem[] = [
     description:
       "Figure-of-eight legend with high-speed esses and passionate local crowds every race weekend.",
     images: [
-      "/backgrounds/Japanese Grand Prix/2025 Japanese GP - Race Start 2.jpg",
-      "/backgrounds/Japanese Grand Prix/2025 Japanese GP - Max Verstappen Pit Stop.jpg",
-      "/backgrounds/Japanese Grand Prix/2025 Japanese GP - Kimi Antonelli & Oscar Piastri.jpg",
+      "/backgrounds/Japanese Grand Prix/1.jpg",
+      "/backgrounds/Japanese Grand Prix/2.jpg",
+      "/backgrounds/Japanese Grand Prix/3.jpg",
     ],
   },
   {
@@ -61,9 +61,9 @@ export const RACE_MAPPINGS: RaceMappingItem[] = [
     description:
       "A desert night-race classic with strong overtaking zones and premium hospitality views under floodlights.",
     images: [
-      "/backgrounds/Bahrain Grand Prix/2025 Bahrain GP - George Russell & Carlos Sainz.jpg",
-      "/backgrounds/Bahrain Grand Prix/2025 Bahrain GP - Max Verstappen 3.jpg",
-      "/backgrounds/Bahrain Grand Prix/2025 Bahrain GP - Kimi Antonelli Pit Box.jpg",
+      "/backgrounds/Bahrain Grand Prix/1.jpg",
+      "/backgrounds/Bahrain Grand Prix/2.jpg",
+      "/backgrounds/Bahrain Grand Prix/3.jpg",
     ],
   },
   {
@@ -75,9 +75,9 @@ export const RACE_MAPPINGS: RaceMappingItem[] = [
     description:
       "The fastest street circuit on the calendar, racing at night along the Red Sea with non-stop action.",
     images: [
-      "/backgrounds/Saudi Arabian Grand Prix/2025 Saudi Arabian GP - Jeddah Corniche Circuit.jpg",
-      "/backgrounds/Saudi Arabian Grand Prix/2025 Saudi Arabian GP - Max Verstappen Pitlane.jpg",
-      "/backgrounds/Saudi Arabian Grand Prix/2025 Saudi Arabian GP - George Russell Pit Box.jpg",
+      "/backgrounds/Saudi Arabian Grand Prix/1.jpg",
+      "/backgrounds/Saudi Arabian Grand Prix/2.jpg",
+      "/backgrounds/Saudi Arabian Grand Prix/3.jpg",
     ],
   },
   {
@@ -89,9 +89,9 @@ export const RACE_MAPPINGS: RaceMappingItem[] = [
     description:
       "High-profile race weekend with premium hospitality demand, nightlife access, and strong global interest.",
     images: [
-      "/backgrounds/Miami Grand Prix/2025 Miami GP - Charles Leclerc Pit Box.jpg",
-      "/backgrounds/Miami Grand Prix/2025 Miami GP - Pierre Gasly.jpg",
-      "/backgrounds/Miami Grand Prix/2025 Miami GP - Yuki Tsunoda 3.jpg",
+      "/backgrounds/Miami Grand Prix/1.jpg",
+      "/backgrounds/Miami Grand Prix/2.jpg",
+      "/backgrounds/Miami Grand Prix/3.jpg",
     ],
   },
   {
@@ -103,9 +103,9 @@ export const RACE_MAPPINGS: RaceMappingItem[] = [
     description:
       "Island circuit known for close racing, wall-lined chicanes, and one of the loudest North American crowds.",
     images: [
-      "/backgrounds/Canadian Grand Prix/2025 Canadian GP - Charles Leclerc.jpg",
-      "/backgrounds/Canadian Grand Prix/2025 Canadian GP - George Russell Pit Box.jpg",
-      "/backgrounds/Canadian Grand Prix/2025 Canadian GP - George Russell & Kimi Antonelli.jpg",
+      "/backgrounds/Canadian Grand Prix/1.jpg",
+      "/backgrounds/Canadian Grand Prix/2.jpg",
+      "/backgrounds/Canadian Grand Prix/3.jpg",
     ],
   },
   {
@@ -117,9 +117,9 @@ export const RACE_MAPPINGS: RaceMappingItem[] = [
     description:
       "Iconic harbor-side race with limited ticket inventory and unmatched prestige for VIP and premium packages.",
     images: [
-      "/backgrounds/Monaco Grand Prix/2025 Monaco GP - Race Start.jpg",
-      "/backgrounds/Monaco Grand Prix/2025 Monaco GP - Charles Leclerc.jpg",
-      "/backgrounds/Monaco Grand Prix/2025 Monaco GP - Lewis Hamilton.jpg",
+      "/backgrounds/Monaco Grand Prix/1.jpg",
+      "/backgrounds/Monaco Grand Prix/2.jpg",
+      "/backgrounds/Monaco Grand Prix/3.jpg",
     ],
   },
   {
@@ -131,9 +131,9 @@ export const RACE_MAPPINGS: RaceMappingItem[] = [
     description:
       "A proven pre-season benchmark track with varied corners and strong demand for grandstand and VIP seats.",
     images: [
-      "/backgrounds/Spanish Grand Prix/2025 Spanish GP - Charles Leclerc.jpg",
-      "/backgrounds/Spanish Grand Prix/2025 Spanish GP - Lewis Hamilton.jpg",
-      "/backgrounds/Spanish Grand Prix/2025 Spanish GP - Pierre Gasly.jpg",
+      "/backgrounds/Spanish Grand Prix/1.jpg",
+      "/backgrounds/Spanish Grand Prix/2.jpg",
+      "/backgrounds/Spanish Grand Prix/3.jpg",
     ],
   },
   {
@@ -145,9 +145,9 @@ export const RACE_MAPPINGS: RaceMappingItem[] = [
     description:
       "Short lap, big elevation changes, and festival atmosphere in the Styrian mountains.",
     images: [
-      "/backgrounds/Austrian Grand Prix/2025 Austrian GP - Race Start.jpg",
-      "/backgrounds/Austrian Grand Prix/2025 Austrian GP - Max Verstappen 3.jpg",
-      "/backgrounds/Austrian Grand Prix/2025 Austrian GP - Lando Norris & Oscar Piastri 3.jpg",
+      "/backgrounds/Austrian Grand Prix/1.jpg",
+      "/backgrounds/Austrian Grand Prix/2.jpg",
+      "/backgrounds/Austrian Grand Prix/3.jpg",
     ],
   },
   {
@@ -159,9 +159,9 @@ export const RACE_MAPPINGS: RaceMappingItem[] = [
     description:
       "Historic high-speed corners, massive crowds, and a race weekend known for loud, all-day grandstand atmosphere.",
     images: [
-      "/backgrounds/British Grand Prix/2025 British GP - Lewis Hamilton Grid.jpg",
-      "/backgrounds/British Grand Prix/2025 British GP - Max Verstappen.jpg",
-      "/backgrounds/British Grand Prix/2025 British GP - Pierre Gasly 4.jpg",
+      "/backgrounds/British Grand Prix/1.jpg",
+      "/backgrounds/British Grand Prix/2.jpg",
+      "/backgrounds/British Grand Prix/3.jpg",
     ],
   },
   {
@@ -173,9 +173,9 @@ export const RACE_MAPPINGS: RaceMappingItem[] = [
     description:
       "Ardennes weather, Eau Rouge, and one of the longest laps in F1 with huge elevation change.",
     images: [
-      "/backgrounds/Belgian Grand Prix/2025 Belgian GP - Circuit de Spa-Francorchamps.jpg",
-      "/backgrounds/Belgian Grand Prix/2025 Belgian GP - Charles Leclerc 6.jpg",
-      "/backgrounds/Belgian Grand Prix/2025 Belgian GP - George Russell 2.jpg",
+      "/backgrounds/Belgian Grand Prix/1.jpg",
+      "/backgrounds/Belgian Grand Prix/2.jpg",
+      "/backgrounds/Belgian Grand Prix/3.jpg",
     ],
   },
   {
@@ -187,9 +187,9 @@ export const RACE_MAPPINGS: RaceMappingItem[] = [
     description:
       "Twisty, technical Hungaroring layout where qualifying and race strategy often decide the podium.",
     images: [
-      "/backgrounds/Hungarian Grand Prix/2025 Hungarian GP - George Russell.jpg",
-      "/backgrounds/Hungarian Grand Prix/2025 Hungarian GP - George Russell 3.JPG",
-      "/backgrounds/Hungarian Grand Prix/2025 Hungarian GP - Max Verstappen & Fernando Alonso.jpg",
+      "/backgrounds/Hungarian Grand Prix/1.jpg",
+      "/backgrounds/Hungarian Grand Prix/2.jpg",
+      "/backgrounds/Hungarian Grand Prix/3.jpg",
     ],
   },
   {
@@ -201,9 +201,9 @@ export const RACE_MAPPINGS: RaceMappingItem[] = [
     description:
       "Banked corners, dunes, and one of the most energetic fan bases on the calendar.",
     images: [
-      "/backgrounds/Dutch Grand Prix/2025 Dutch GP - George Russell.jpg",
-      "/backgrounds/Dutch Grand Prix/2025 Dutch GP - Charles Leclerc Pit Stop.jpg",
-      "/backgrounds/Dutch Grand Prix/2025 Dutch GP - Franco Colapinto.jpg",
+      "/backgrounds/Dutch Grand Prix/1.jpg",
+      "/backgrounds/Dutch Grand Prix/2.jpg",
+      "/backgrounds/Dutch Grand Prix/3.jpg",
     ],
   },
   {
@@ -215,9 +215,9 @@ export const RACE_MAPPINGS: RaceMappingItem[] = [
     description:
       "Tifosi-driven race weekend with strong heritage, high-speed straights, and high demand across all categories.",
     images: [
-      "/backgrounds/Italian Grand Prix/2025 Italian GP - George Russell 2.jpg",
-      "/backgrounds/Italian Grand Prix/2025 Italian GP - Lewis Hamilton.jpg",
-      "/backgrounds/Italian Grand Prix/2025 Italian GP - Max Verstappen 3.jpg",
+      "/backgrounds/Italian Grand Prix/1.jpg",
+      "/backgrounds/Italian Grand Prix/2.jpg",
+      "/backgrounds/Italian Grand Prix/3.jpg",
     ],
   },
   {
@@ -229,9 +229,9 @@ export const RACE_MAPPINGS: RaceMappingItem[] = [
     description:
       "New city-centre style racing in the Spanish capital with fresh hospitality and grandstand experiences.",
     images: [
-      "/backgrounds/Madrid Grand Prix/2025 Pre-Season Testing - Isack Hadjar 2.jpg",
-      "/backgrounds/Madrid Grand Prix/2025 Pre-Season Testing - Isack Hadjar 3.jpg",
-      "/backgrounds/Madrid Grand Prix/2025 Pre-Season Testing - Isack Hadjar 4.jpg",
+      "/backgrounds/Madrid Grand Prix/1.jpg",
+      "/backgrounds/Madrid Grand Prix/2.jpg",
+      "/backgrounds/Madrid Grand Prix/3.jpg",
     ],
   },
   {
@@ -243,9 +243,9 @@ export const RACE_MAPPINGS: RaceMappingItem[] = [
     description:
       "Blistering straights through the old city and a tight castle section that punishes mistakes.",
     images: [
-      "/backgrounds/Azerbaijan Grand Prix/2025 Azerbaijan GP - Max Verstappen Pitlane.jpg",
-      "/backgrounds/Azerbaijan Grand Prix/2025 Azerbaijan GP - George Russell 2.jpg",
-      "/backgrounds/Azerbaijan Grand Prix/2025 Azerbaijan GP - Max Verstappen 3.jpg",
+      "/backgrounds/Azerbaijan Grand Prix/1.jpg",
+      "/backgrounds/Azerbaijan Grand Prix/2.jpg",
+      "/backgrounds/Azerbaijan Grand Prix/3.jpg",
     ],
   },
   {
@@ -257,9 +257,9 @@ export const RACE_MAPPINGS: RaceMappingItem[] = [
     description:
       "Night-race spectacle in the city center with premium skyline viewing and hospitality-led demand.",
     images: [
-      "/backgrounds/Singapore Grand Prix/2025 Singapore GP - Marina Bay Street Circuit.jpg",
-      "/backgrounds/Singapore Grand Prix/2025 Singapore GP - Max Verstappen 8.jpg",
-      "/backgrounds/Singapore Grand Prix/2025 Singapore GP - George Russell Celebration.jpg",
+      "/backgrounds/Singapore Grand Prix/1.jpg",
+      "/backgrounds/Singapore Grand Prix/2.jpg",
+      "/backgrounds/Singapore Grand Prix/3.jpg",
     ],
   },
   {
@@ -271,9 +271,9 @@ export const RACE_MAPPINGS: RaceMappingItem[] = [
     description:
       "High-energy US weekend with strong corporate demand and full hospitality programs around race day.",
     images: [
-      "/backgrounds/United States Grand Prix/2025 United States GP - Max Verstappen Celebration 3.jpg",
-      "/backgrounds/United States Grand Prix/2025 United States GP - George Russell 2.jpg",
-      "/backgrounds/United States Grand Prix/2025 United States GP - Oliver Bearman.jpg",
+      "/backgrounds/United States Grand Prix/1.jpg",
+      "/backgrounds/United States Grand Prix/2.jpg",
+      "/backgrounds/United States Grand Prix/3.jpg",
     ],
   },
   {
@@ -285,9 +285,9 @@ export const RACE_MAPPINGS: RaceMappingItem[] = [
     description:
       "A vibrant fan-heavy weekend known for altitude, stadium sections, and high local demand.",
     images: [
-      "/backgrounds/Mexico City Grand Prix/2025 Mexico City GP - Max Verstappen Pitlane.jpg",
-      "/backgrounds/Mexico City Grand Prix/2025 Mexico City GP - Liam Lawson 3.jpg",
-      "/backgrounds/Mexico City Grand Prix/2025 Mexico City GP - George Russell 4.jpg",
+      "/backgrounds/Mexico City Grand Prix/1.jpg",
+      "/backgrounds/Mexico City Grand Prix/2.jpg",
+      "/backgrounds/Mexico City Grand Prix/3.jpg",
     ],
   },
   {
@@ -299,9 +299,9 @@ export const RACE_MAPPINGS: RaceMappingItem[] = [
     description:
       "Iconic Interlagos layout with elevation, weather swings, and one of the most passionate crowds in motorsport.",
     images: [
-      "/backgrounds/Sao Paulo Grand Prix/2025 Sao Paulo GP - Charles Leclerc 2.jpg",
-      "/backgrounds/Sao Paulo Grand Prix/2025 Sao Paulo GP - George Russell 2.jpg",
-      "/backgrounds/Sao Paulo Grand Prix/2025 Sao Paulo GP - Max Verstappen.jpg",
+      "/backgrounds/Sao Paulo Grand Prix/1.jpg",
+      "/backgrounds/Sao Paulo Grand Prix/2.jpg",
+      "/backgrounds/Sao Paulo Grand Prix/3.jpg",
     ],
   },
   {
@@ -313,9 +313,9 @@ export const RACE_MAPPINGS: RaceMappingItem[] = [
     description:
       "Late-season night race on the Strip with premium demand for hospitality, suites, and city packages.",
     images: [
-      "/backgrounds/Las Vegas Grand Prix/2025 Las Vegas GP - Las Vegas Strip Circuit.jpg",
-      "/backgrounds/Las Vegas Grand Prix/2025 Las Vegas GP - Race Start 4.jpg",
-      "/backgrounds/Las Vegas Grand Prix/2025 Las Vegas GP - Max Verstappen.jpg",
+      "/backgrounds/Las Vegas Grand Prix/1.jpg",
+      "/backgrounds/Las Vegas Grand Prix/2.jpg",
+      "/backgrounds/Las Vegas Grand Prix/3.jpg",
     ],
   },
   {
@@ -327,9 +327,9 @@ export const RACE_MAPPINGS: RaceMappingItem[] = [
     description:
       "Fast modern circuit under lights with strong premium inventory and late-season championship pressure.",
     images: [
-      "/backgrounds/Qatar Grand Prix/2025 Qatar GP - Max Verstappen.jpg",
-      "/backgrounds/Qatar Grand Prix/2025 Qatar GP - Kimi Antonelli.jpg",
-      "/backgrounds/Qatar Grand Prix/2025 Qatar GP - Max Verstappen & Lando Norris.jpg",
+      "/backgrounds/Qatar Grand Prix/1.jpg",
+      "/backgrounds/Qatar Grand Prix/2.jpg",
+      "/backgrounds/Qatar Grand Prix/3.jpg",
     ],
   },
   {
@@ -341,9 +341,9 @@ export const RACE_MAPPINGS: RaceMappingItem[] = [
     description:
       "Season finale with sunset racing, premium marina views, and strong demand for final-round packages.",
     images: [
-      "/backgrounds/Abu Dhabi Grand Prix/2025 Abu Dhabi GP - End of Season - Driver Photo 3.jpg",
-      "/backgrounds/Abu Dhabi Grand Prix/2025 Abu Dhabi GP - Max Verstappen 3.jpg",
-      "/backgrounds/Abu Dhabi Grand Prix/2025 Abu Dhabi GP - Oscar Piastri.jpg",
+      "/backgrounds/Abu Dhabi Grand Prix/1.jpg",
+      "/backgrounds/Abu Dhabi Grand Prix/2.jpg",
+      "/backgrounds/Abu Dhabi Grand Prix/3.jpg",
     ],
   },
 ];
