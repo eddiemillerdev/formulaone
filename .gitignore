@@ -40,6 +40,8 @@ yarn-error.log*
 /scripts/public-s3-upload-background-carousel.log
 /scripts/public-s3-manifest-background-carousel-thumbs.json
 /scripts/public-s3-upload-background-carousel-thumbs.log
+/scripts/public-s3-manifest-race-flags.json
+/scripts/public-s3-upload-race-flags.log
 
 # Large assets synced to S3 (optional local copies — restore via upload bucket or optimize scripts)
 /public/backgrounds/

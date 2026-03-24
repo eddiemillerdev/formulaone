@@ -12,6 +12,7 @@
     "upload": "node scripts/upload-public-to-s3.js",
     "upload-background-carousel-s3": "node scripts/upload-background-carousel-to-s3.js",
     "upload-background-carousel-thumbs-s3": "node scripts/upload-background-carousel-thumbs-to-s3.js",
+    "upload-race-flags-s3": "node scripts/upload-race-flags-s3.js",
     "normalize-public-names": "node scripts/normalize-public-filenames.js",
     "start": "next start",
     "lint": "eslint"
@@ -26,6 +27,7 @@
     "cmdk": "^1.1.1",
     "date-fns": "^4.1.0",
     "framer-motion": "^12.34.0",
+    "libphonenumber-js": "^1.12.40",
     "lucide-react": "^0.563.0",
     "next": "16.1.6",
     "next-themes": "^0.4.6",
@@ -34,6 +36,7 @@
     "react-dom": "19.2.3",
     "react-hook-form": "^7.71.1",
     "react-markdown": "^10.1.0",
+    "react-phone-number-input": "^3.4.16",
     "remark-gfm": "^4.0.1",
     "sonner": "^2.0.7",
     "tailwind-merge": "^3.4.0",
@@ -42,6 +45,7 @@
   },
   "devDependencies": {
     "@tailwindcss/postcss": "^4",
+    "@types/minimatch": "^6.0.0",
     "@types/node": "^20",
     "@types/react": "^19",
     "@types/react-dom": "^19",

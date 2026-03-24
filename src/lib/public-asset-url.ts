@@ -36,3 +36,16 @@ export function publicAssetUrl(path: string): string {
   if (!base) return encodeURI(once);
   return encodeURI(`${base}${once}`);
 }
+
+/**
+ * Root-relative URL only — always served from this app’s `public/` folder by Next.
+ * Use for assets that are not uploaded to S3/CDN (e.g. `/2027/race-flags/...`).
+ * Does not apply `NEXT_PUBLIC_ASSET_BASE_URL`.
+ */
+export function publicLocalPath(path: string): string {
+  if (!path) return path;
+  const t = path.trim();
+  if (/^https?:\/\//i.test(t)) return t;
+  const normalized = t.startsWith("/") ? t : `/${t}`;
+  return encodeURI(decodePathForEncoding(normalized));
+}

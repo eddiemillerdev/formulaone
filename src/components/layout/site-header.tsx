@@ -3,17 +3,22 @@
 import { useState } from "react";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
-import { Menu } from "lucide-react";
+import { ChevronDown, Menu } from "lucide-react";
 
 import { SiteLogo } from "@/components/layout/site-logo";
 import { Button } from "@/components/ui/button";
+import {
+  DropdownMenu,
+  DropdownMenuContent,
+  DropdownMenuItem,
+  DropdownMenuTrigger,
+} from "@/components/ui/dropdown-menu";
 import { Sheet, SheetContent, SheetHeader, SheetTitle, SheetTrigger } from "@/components/ui/sheet";
 import { publicAssetUrl } from "@/lib/public-asset-url";
 import { cn } from "@/lib/utils";
 
-/** Desktop nav: main sections only (logo = home; FAQ/Support in top bar). */
+/** Desktop nav: main sections only (Races uses a year dropdown). */
 const headerLinks = [
-  { href: "/races", label: "Races" },
   { href: "/events", label: "Events" },
   { href: "/calendar", label: "Calendar" },
   { href: "/teams", label: "Teams" },
@@ -22,7 +27,8 @@ const headerLinks = [
 /** Mobile nav: full list so all pages are reachable. */
 const mobileLinks = [
   { href: "/", label: "Home" },
-  { href: "/races", label: "Races" },
+  { href: "/races", label: "Races · 2026" },
+  { href: "/races/2027", label: "Races · 2027" },
   { href: "/events", label: "Events" },
   { href: "/calendar", label: "Calendar" },
   { href: "/teams", label: "Teams" },
@@ -38,6 +44,7 @@ export function SiteHeader() {
   const isActive = (href: string) => {
     if (href === "/") return pathname === "/";
     if (href === "/races") return pathname === "/races";
+    if (href === "/races/2027") return pathname === "/races/2027";
     if (href.startsWith("/events")) return pathname.startsWith("/events") || pathname.startsWith("/checkout");
     if (href.startsWith("/calendar")) return pathname.startsWith("/calendar");
     if (href.startsWith("/teams")) return pathname.startsWith("/teams");
@@ -46,6 +53,8 @@ export function SiteHeader() {
     if (href.startsWith("/support")) return pathname.startsWith("/support");
     return pathname === href;
   };
+
+  const racesSectionActive = pathname === "/races" || pathname.startsWith("/races/");
 
   return (
     <header className="relative sticky top-0 z-50 bg-[#15151e]/95 pt-[env(safe-area-inset-top,0px)] shadow-[0_4px_14px_0_rgba(0,0,0,0.25)] backdrop-blur-xl">
@@ -60,6 +69,35 @@ export function SiteHeader() {
         <SiteLogo />
 
         <nav className="ml-auto hidden h-full shrink-0 items-stretch gap-0.5 md:flex" aria-label="Primary">
+          <DropdownMenu>
+            <DropdownMenuTrigger
+              type="button"
+              className={cn(
+                "relative flex h-full items-center gap-0.5 font-display font-normal normal-case tracking-[0.02em] px-2.5 py-2 text-sm text-white transition-colors",
+                "after:absolute after:bottom-0 after:left-0 after:right-0 after:h-[2px] after:transition-[opacity,background-color] after:duration-150",
+                "after:opacity-0 hover:after:opacity-100 hover:after:bg-white",
+                "outline-none focus-visible:ring-2 focus-visible:ring-white/30 focus-visible:ring-offset-2 focus-visible:ring-offset-[#15151e]",
+                racesSectionActive && "after:opacity-100 after:bg-[#ff1e00]",
+                racesSectionActive && "hover:after:bg-white",
+              )}
+            >
+              Races
+              <ChevronDown className="size-4 shrink-0 opacity-85" aria-hidden />
+            </DropdownMenuTrigger>
+            <DropdownMenuContent align="end" className="z-[60] min-w-[12rem]">
+              <DropdownMenuItem asChild>
+                <Link href="/races" className="cursor-pointer font-display">
+                  2026 season
+                </Link>
+              </DropdownMenuItem>
+              <DropdownMenuItem asChild>
+                <Link href="/races/2027" className="cursor-pointer font-display">
+                  2027 season
+                </Link>
+              </DropdownMenuItem>
+            </DropdownMenuContent>
+          </DropdownMenu>
+
           {headerLinks.map((link) => {
             const active = isActive(link.href);
             return (

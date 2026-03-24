@@ -236,6 +236,12 @@ html.light {
     letter-spacing: 0.02em;
   }
 
+  /* 2027 race cards: deposit link uses Display font but “Deposit” in sentence case */
+  a.race-deposit-link.font-display {
+    text-transform: none;
+    letter-spacing: 0.02em;
+  }
+
   input,
   button,
   select,

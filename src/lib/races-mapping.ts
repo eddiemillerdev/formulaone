@@ -1,17 +1,41 @@
+export type RaceDepositPackage = {
+  id: string;
+  label: string;
+  /** Display amount (e.g. "GBP 500"). */
+  amountLabel: string;
+};
+
+/** Default deposit tiers shown on each race; same catalogue for every Grand Prix. */
+export const DEFAULT_DEPOSIT_PACKAGES: RaceDepositPackage[] = [
+  { id: "fan-package", label: "Fan Package Deposit", amountLabel: "GBP 500" },
+  { id: "hospitality", label: "Hospitality Deposit", amountLabel: "GBP 4,500" },
+  { id: "paddock-club", label: "Paddock Club™ Hospitality Deposit", amountLabel: "GBP 8,800" },
+];
+
 export type RaceMappingItem = {
   /** Must match `calendar_key` on the corresponding Laravel event (admin: Event → Calendar key). */
   id: string;
+  /** ISO 3166-1 alpha-2 country code for flag emoji (e.g. GB, AE). */
+  flagCountryCode: string;
+  /**
+   * Root-relative path to the 2027 race flag SVG under `public/` (e.g. `/2027/race-flags/...svg`).
+   * Use with `publicLocalPath()` when rendering so it is not rewritten to CDN.
+   */
+  flagSvgPath: string;
   name: string;
   location: string;
   circuit: string;
   dateLabel: string;
   description: string;
   images: string[];
+  packages: RaceDepositPackage[];
 };
 
 export const RACE_MAPPINGS: RaceMappingItem[] = [
   {
     id: "australian-gp",
+    flagCountryCode: "AU",
+    flagSvgPath: "/2027/race-flags/152000-Australia-ddca3432247cb1f71e78c2ac2c9a323a.svg",
     name: "Australian Grand Prix",
     location: "Melbourne, Australia",
     circuit: "Albert Park Grand Prix Circuit",
@@ -23,9 +47,12 @@ export const RACE_MAPPINGS: RaceMappingItem[] = [
       "/backgrounds/Australian Grand Prix/2.jpg",
       "/backgrounds/Australian Grand Prix/3.jpg",
     ],
+    packages: DEFAULT_DEPOSIT_PACKAGES,
   },
   {
     id: "chinese-gp",
+    flagCountryCode: "CN",
+    flagSvgPath: "/2027/race-flags/152065-China-5bc1580c2e1d5ade660e53d8c8e89f2d.svg",
     name: "Chinese Grand Prix",
     location: "Shanghai, China",
     circuit: "Shanghai International Circuit",
@@ -37,9 +64,12 @@ export const RACE_MAPPINGS: RaceMappingItem[] = [
       "/backgrounds/Chinese Grand Prix/2.jpg",
       "/backgrounds/Chinese Grand Prix/3.jpg",
     ],
+    packages: DEFAULT_DEPOSIT_PACKAGES,
   },
   {
     id: "japanese-gp",
+    flagCountryCode: "JP",
+    flagSvgPath: "/2027/race-flags/152017-Japan-7af897fa1b5bc154727bb20a31964c71.svg",
     name: "Japanese Grand Prix",
     location: "Suzuka, Japan",
     circuit: "Suzuka International Racing Course",
@@ -51,9 +81,12 @@ export const RACE_MAPPINGS: RaceMappingItem[] = [
       "/backgrounds/Japanese Grand Prix/2.jpg",
       "/backgrounds/Japanese Grand Prix/3.jpg",
     ],
+    packages: DEFAULT_DEPOSIT_PACKAGES,
   },
   {
     id: "bahrain-gp",
+    flagCountryCode: "BH",
+    flagSvgPath: "/2027/race-flags/152004-Bahrain-67a988d581fee8fea766e0c9920c617f.svg",
     name: "Bahrain Grand Prix",
     location: "Sakhir, Bahrain",
     circuit: "Bahrain International Circuit",
@@ -65,9 +98,12 @@ export const RACE_MAPPINGS: RaceMappingItem[] = [
       "/backgrounds/Bahrain Grand Prix/2.jpg",
       "/backgrounds/Bahrain Grand Prix/3.jpg",
     ],
+    packages: DEFAULT_DEPOSIT_PACKAGES,
   },
   {
     id: "saudi-arabian-gp",
+    flagCountryCode: "SA",
+    flagSvgPath: "/2027/race-flags/152003-Saudi_Arabia-5beaae53c93b59f9a076269c95c4df23.svg",
     name: "Saudi Arabian Grand Prix",
     location: "Jeddah, Saudi Arabia",
     circuit: "Jeddah Corniche Circuit",
@@ -79,9 +115,12 @@ export const RACE_MAPPINGS: RaceMappingItem[] = [
       "/backgrounds/Saudi Arabian Grand Prix/2.jpg",
       "/backgrounds/Saudi Arabian Grand Prix/3.jpg",
     ],
+    packages: DEFAULT_DEPOSIT_PACKAGES,
   },
   {
     id: "miami-gp",
+    flagCountryCode: "US",
+    flagSvgPath: "/2027/race-flags/152019-United_States-1f164b9144a3374bb47919ddbf44350e.svg",
     name: "Miami Grand Prix",
     location: "Miami, USA",
     circuit: "Miami International Autodrome",
@@ -93,9 +132,12 @@ export const RACE_MAPPINGS: RaceMappingItem[] = [
       "/backgrounds/Miami Grand Prix/2.jpg",
       "/backgrounds/Miami Grand Prix/3.jpg",
     ],
+    packages: DEFAULT_DEPOSIT_PACKAGES,
   },
   {
     id: "canadian-gp",
+    flagCountryCode: "CA",
+    flagSvgPath: "/2027/race-flags/152018-Canada-d0de68d7d4b1d5aacdc732f73796d72d.svg",
     name: "Canadian Grand Prix",
     location: "Montreal, Canada",
     circuit: "Circuit Gilles-Villeneuve",
@@ -107,9 +149,12 @@ export const RACE_MAPPINGS: RaceMappingItem[] = [
       "/backgrounds/Canadian Grand Prix/2.jpg",
       "/backgrounds/Canadian Grand Prix/3.jpg",
     ],
+    packages: DEFAULT_DEPOSIT_PACKAGES,
   },
   {
     id: "monaco-gp",
+    flagCountryCode: "MC",
+    flagSvgPath: "/2027/race-flags/152016-Monaco-97be05aafa65bb72b3b34ff0970c7127.svg",
     name: "Monaco Grand Prix",
     location: "Monte Carlo, Monaco",
     circuit: "Circuit de Monaco",
@@ -121,9 +166,12 @@ export const RACE_MAPPINGS: RaceMappingItem[] = [
       "/backgrounds/Monaco Grand Prix/2.jpg",
       "/backgrounds/Monaco Grand Prix/3.jpg",
     ],
+    packages: DEFAULT_DEPOSIT_PACKAGES,
   },
   {
     id: "spanish-gp",
+    flagCountryCode: "ES",
+    flagSvgPath: "/2027/race-flags/152008-Spain-819e6945b3254a0a9378604157f90af2.svg",
     name: "Spanish Grand Prix",
     location: "Barcelona, Spain",
     circuit: "Circuit de Barcelona-Catalunya",
@@ -135,9 +183,12 @@ export const RACE_MAPPINGS: RaceMappingItem[] = [
       "/backgrounds/Spanish Grand Prix/2.jpg",
       "/backgrounds/Spanish Grand Prix/3.jpg",
     ],
+    packages: DEFAULT_DEPOSIT_PACKAGES,
   },
   {
     id: "austrian-gp",
+    flagCountryCode: "AT",
+    flagSvgPath: "/2027/race-flags/152007-Austria-f3fe30504c6e73a99ad80f4417d89665.svg",
     name: "Austrian Grand Prix",
     location: "Spielberg, Austria",
     circuit: "Red Bull Ring",
@@ -149,9 +200,12 @@ export const RACE_MAPPINGS: RaceMappingItem[] = [
       "/backgrounds/Austrian Grand Prix/2.jpg",
       "/backgrounds/Austrian Grand Prix/3.jpg",
     ],
+    packages: DEFAULT_DEPOSIT_PACKAGES,
   },
   {
     id: "british-gp",
+    flagCountryCode: "GB",
+    flagSvgPath: "/2027/race-flags/152006-United_Kingdom-6f6ee614a9b4d26807b58fa299fc7314.svg",
     name: "British Grand Prix",
     location: "Silverstone, United Kingdom",
     circuit: "Silverstone Circuit",
@@ -163,9 +217,12 @@ export const RACE_MAPPINGS: RaceMappingItem[] = [
       "/backgrounds/British Grand Prix/2.jpg",
       "/backgrounds/British Grand Prix/3.jpg",
     ],
+    packages: DEFAULT_DEPOSIT_PACKAGES,
   },
   {
     id: "belgian-gp",
+    flagCountryCode: "BE",
+    flagSvgPath: "/2027/race-flags/152005-Belgium-6ea701e7eae9b051073cbf3f7134adec.svg",
     name: "Belgian Grand Prix",
     location: "Spa-Francorchamps, Belgium",
     circuit: "Circuit de Spa-Francorchamps",
@@ -177,9 +234,12 @@ export const RACE_MAPPINGS: RaceMappingItem[] = [
       "/backgrounds/Belgian Grand Prix/2.jpg",
       "/backgrounds/Belgian Grand Prix/3.jpg",
     ],
+    packages: DEFAULT_DEPOSIT_PACKAGES,
   },
   {
     id: "hungarian-gp",
+    flagCountryCode: "HU",
+    flagSvgPath: "/2027/race-flags/152015-Hungary-687aada921b406dd1294be48183fca29.svg",
     name: "Hungarian Grand Prix",
     location: "Budapest, Hungary",
     circuit: "Hungaroring",
@@ -191,9 +251,12 @@ export const RACE_MAPPINGS: RaceMappingItem[] = [
       "/backgrounds/Hungarian Grand Prix/2.jpg",
       "/backgrounds/Hungarian Grand Prix/3.jpg",
     ],
+    packages: DEFAULT_DEPOSIT_PACKAGES,
   },
   {
     id: "dutch-gp",
+    flagCountryCode: "NL",
+    flagSvgPath: "/2027/race-flags/152011-Netherlands-a6be82151016b0b306a032fc43367d12.svg",
     name: "Dutch Grand Prix",
     location: "Zandvoort, Netherlands",
     circuit: "Circuit Zandvoort",
@@ -205,9 +268,12 @@ export const RACE_MAPPINGS: RaceMappingItem[] = [
       "/backgrounds/Dutch Grand Prix/2.jpg",
       "/backgrounds/Dutch Grand Prix/3.jpg",
     ],
+    packages: DEFAULT_DEPOSIT_PACKAGES,
   },
   {
     id: "italian-gp",
+    flagCountryCode: "IT",
+    flagSvgPath: "/2027/race-flags/152010-Italy-a28c10f5435e203f872847843cdd4406.svg",
     name: "Italian Grand Prix",
     location: "Monza, Italy",
     circuit: "Autodromo Nazionale Monza",
@@ -219,9 +285,12 @@ export const RACE_MAPPINGS: RaceMappingItem[] = [
       "/backgrounds/Italian Grand Prix/2.jpg",
       "/backgrounds/Italian Grand Prix/3.jpg",
     ],
+    packages: DEFAULT_DEPOSIT_PACKAGES,
   },
   {
     id: "madrid-gp",
+    flagCountryCode: "ES",
+    flagSvgPath: "/2027/race-flags/152008-Spain-819e6945b3254a0a9378604157f90af2.svg",
     name: "Madrid Grand Prix",
     location: "Madrid, Spain",
     circuit: "IFEMA Madrid Circuit",
@@ -233,9 +302,12 @@ export const RACE_MAPPINGS: RaceMappingItem[] = [
       "/backgrounds/Madrid Grand Prix/2.jpg",
       "/backgrounds/Madrid Grand Prix/3.jpg",
     ],
+    packages: DEFAULT_DEPOSIT_PACKAGES,
   },
   {
     id: "azerbaijan-gp",
+    flagCountryCode: "AZ",
+    flagSvgPath: "/2027/race-flags/152009-Azerbijan-9c351aea65e58d73a7e7f224c71acd57.svg",
     name: "Azerbaijan Grand Prix",
     location: "Baku, Azerbaijan",
     circuit: "Baku City Circuit",
@@ -247,9 +319,12 @@ export const RACE_MAPPINGS: RaceMappingItem[] = [
       "/backgrounds/Azerbaijan Grand Prix/2.jpg",
       "/backgrounds/Azerbaijan Grand Prix/3.jpg",
     ],
+    packages: DEFAULT_DEPOSIT_PACKAGES,
   },
   {
     id: "singapore-gp",
+    flagCountryCode: "SG",
+    flagSvgPath: "/2027/race-flags/152014-Singapore-6356eecfc1ba1adfd3d3e043ac9a139f.svg",
     name: "Singapore Grand Prix",
     location: "Singapore",
     circuit: "Marina Bay Street Circuit",
@@ -261,9 +336,12 @@ export const RACE_MAPPINGS: RaceMappingItem[] = [
       "/backgrounds/Singapore Grand Prix/2.jpg",
       "/backgrounds/Singapore Grand Prix/3.jpg",
     ],
+    packages: DEFAULT_DEPOSIT_PACKAGES,
   },
   {
     id: "us-gp",
+    flagCountryCode: "US",
+    flagSvgPath: "/2027/race-flags/152019-United_States-1f164b9144a3374bb47919ddbf44350e.svg",
     name: "United States Grand Prix",
     location: "Austin, USA",
     circuit: "Circuit of The Americas",
@@ -275,9 +353,12 @@ export const RACE_MAPPINGS: RaceMappingItem[] = [
       "/backgrounds/United States Grand Prix/2.jpg",
       "/backgrounds/United States Grand Prix/3.jpg",
     ],
+    packages: DEFAULT_DEPOSIT_PACKAGES,
   },
   {
     id: "mexico-city-gp",
+    flagCountryCode: "MX",
+    flagSvgPath: "/2027/race-flags/152013-Mexico-230abfe1801b52d73c564dd99362774c.svg",
     name: "Mexico City Grand Prix",
     location: "Mexico City, Mexico",
     circuit: "Autodromo Hermanos Rodriguez",
@@ -289,9 +370,12 @@ export const RACE_MAPPINGS: RaceMappingItem[] = [
       "/backgrounds/Mexico City Grand Prix/2.jpg",
       "/backgrounds/Mexico City Grand Prix/3.jpg",
     ],
+    packages: DEFAULT_DEPOSIT_PACKAGES,
   },
   {
     id: "sao-paulo-gp",
+    flagCountryCode: "BR",
+    flagSvgPath: "/2027/race-flags/152012-Brazil-f31260f6733f40b7a1202faf946fbaa0.svg",
     name: "São Paulo Grand Prix",
     location: "São Paulo, Brazil",
     circuit: "Autódromo José Carlos Pace",
@@ -303,9 +387,12 @@ export const RACE_MAPPINGS: RaceMappingItem[] = [
       "/backgrounds/Sao Paulo Grand Prix/2.jpg",
       "/backgrounds/Sao Paulo Grand Prix/3.jpg",
     ],
+    packages: DEFAULT_DEPOSIT_PACKAGES,
   },
   {
     id: "las-vegas-gp",
+    flagCountryCode: "US",
+    flagSvgPath: "/2027/race-flags/152019-United_States-1f164b9144a3374bb47919ddbf44350e.svg",
     name: "Las Vegas Grand Prix",
     location: "Las Vegas, USA",
     circuit: "Las Vegas Strip Circuit",
@@ -317,9 +404,12 @@ export const RACE_MAPPINGS: RaceMappingItem[] = [
       "/backgrounds/Las Vegas Grand Prix/2.jpg",
       "/backgrounds/Las Vegas Grand Prix/3.jpg",
     ],
+    packages: DEFAULT_DEPOSIT_PACKAGES,
   },
   {
     id: "qatar-gp",
+    flagCountryCode: "QA",
+    flagSvgPath: "/2027/race-flags/152002-Qatar-36399ff2c0ee67ebe44d585c169d2526.svg",
     name: "Qatar Grand Prix",
     location: "Lusail, Qatar",
     circuit: "Lusail International Circuit",
@@ -331,9 +421,12 @@ export const RACE_MAPPINGS: RaceMappingItem[] = [
       "/backgrounds/Qatar Grand Prix/2.jpg",
       "/backgrounds/Qatar Grand Prix/3.jpg",
     ],
+    packages: DEFAULT_DEPOSIT_PACKAGES,
   },
   {
     id: "abu-dhabi-gp",
+    flagCountryCode: "AE",
+    flagSvgPath: "/2027/race-flags/152001-United_Arab_Emirates-7f2c4a67c892779b088a56599acd6204.svg",
     name: "Abu Dhabi Grand Prix",
     location: "Yas Island, UAE",
     circuit: "Yas Marina Circuit",
@@ -345,5 +438,10 @@ export const RACE_MAPPINGS: RaceMappingItem[] = [
       "/backgrounds/Abu Dhabi Grand Prix/2.jpg",
       "/backgrounds/Abu Dhabi Grand Prix/3.jpg",
     ],
+    packages: DEFAULT_DEPOSIT_PACKAGES,
   },
 ];
+
+export function getRaceMappingById(raceId: string): RaceMappingItem | undefined {
+  return RACE_MAPPINGS.find((r) => r.id === raceId);
+}
