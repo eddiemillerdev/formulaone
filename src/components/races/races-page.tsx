@@ -101,6 +101,9 @@ export function RacesPage() {
               const availabilityHref = matchedEvent
                 ? `/events/${matchedEvent.id}`
                 : `/events?q=${encodeURIComponent(race.name)}`;
+              const carouselImageCount = race.images.filter(Boolean).length;
+              const metaBottomClass =
+                carouselImageCount > 1 ? "bottom-14" : "bottom-3";
               return (
               <motion.div
                 key={race.id}
@@ -126,24 +129,43 @@ export function RacesPage() {
                       images={race.images}
                       title={race.name}
                       className="h-48 md:h-52"
+                      bottomMeta={
+                        <>
+                          <div
+                            className="absolute inset-x-0 bottom-0 h-36 bg-gradient-to-t from-black/85 via-black/50 to-transparent"
+                            aria-hidden
+                          />
+                          <div
+                            className={cn(
+                              "absolute inset-x-0 px-4 md:px-5",
+                              metaBottomClass,
+                            )}
+                          >
+                            <p
+                              className={cn(
+                                "flex max-w-[92%] flex-wrap items-center gap-x-2 gap-y-1 text-[10px] font-semibold uppercase leading-none tracking-[0.22em]",
+                                "text-white [text-shadow:0_1px_3px_rgba(0,0,0,0.95)]",
+                              )}
+                            >
+                              <span className="inline-flex items-center gap-1.5">
+                                <CalendarDays className="size-3 shrink-0 text-white" aria-hidden />
+                                {race.dateLabel}
+                              </span>
+                              <span className="text-white/90" aria-hidden>
+                                ·
+                              </span>
+                              <span className="inline-flex items-center gap-1.5">
+                                <MapPin className="size-3 shrink-0 text-white" aria-hidden />
+                                {race.location}
+                              </span>
+                            </p>
+                          </div>
+                        </>
+                      }
                     />
-                    <div className="pointer-events-none absolute inset-x-0 bottom-0 h-16 bg-gradient-to-t from-card to-transparent" />
                   </div>
 
-                  <div className="relative z-[1] -mt-4 space-y-2 px-5 pb-1 pt-0">
-                    <p className="flex flex-wrap items-center gap-x-2 gap-y-1 text-[10px] font-semibold uppercase leading-none tracking-[0.22em] text-primary/80 dark:text-primary/70">
-                      <span className="inline-flex items-center gap-1.5">
-                        <CalendarDays className="size-3 shrink-0 opacity-80" aria-hidden />
-                        {race.dateLabel}
-                      </span>
-                      <span className="text-primary/35" aria-hidden>
-                        ·
-                      </span>
-                      <span className="inline-flex items-center gap-1.5">
-                        <MapPin className="size-3 shrink-0 opacity-80" aria-hidden />
-                        {race.location}
-                      </span>
-                    </p>
+                  <div className="relative z-[1] space-y-2 px-5 pb-1 pt-4">
                     <h2 className="font-display text-[1.65rem] font-black uppercase leading-[0.92] tracking-[0.02em] text-foreground md:text-[1.85rem]">
                       {race.name}
                     </h2>

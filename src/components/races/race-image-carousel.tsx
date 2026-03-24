@@ -1,6 +1,6 @@
 "use client";
 
-import { useMemo, useState } from "react";
+import { useMemo, useState, type ReactNode } from "react";
 import { AnimatePresence, motion } from "framer-motion";
 import { ChevronLeft, ChevronRight } from "lucide-react";
 
@@ -13,9 +13,11 @@ type RaceImageCarouselProps = {
   images: string[];
   title: string;
   className?: string;
+  /** Shown on the image (e.g. date/location). Stays below nav/dots. */
+  bottomMeta?: ReactNode;
 };
 
-export function RaceImageCarousel({ images, title, className }: RaceImageCarouselProps) {
+export function RaceImageCarousel({ images, title, className, bottomMeta }: RaceImageCarouselProps) {
   const preparedImages = useMemo(() => {
     const clean = images.filter(Boolean).map((p) => publicAssetUrl(p));
     return clean.length
@@ -73,9 +75,13 @@ export function RaceImageCarousel({ images, title, className }: RaceImageCarouse
 
       <div className="pointer-events-none absolute inset-0 z-[2] bg-gradient-to-t from-black/60 via-transparent to-transparent" />
 
+      {bottomMeta ? (
+        <div className="pointer-events-none absolute inset-x-0 bottom-0 z-[8]">{bottomMeta}</div>
+      ) : null}
+
       {preparedImages.length > 1 ? (
         <>
-          <div className="absolute left-3 top-1/2 z-10 -translate-y-1/2">
+          <div className="absolute left-3 top-1/2 z-20 -translate-y-1/2">
             <Button
               type="button"
               variant="secondary"
@@ -86,7 +92,7 @@ export function RaceImageCarousel({ images, title, className }: RaceImageCarouse
               <ChevronLeft className="size-4" />
             </Button>
           </div>
-          <div className="absolute right-3 top-1/2 z-10 -translate-y-1/2">
+          <div className="absolute right-3 top-1/2 z-20 -translate-y-1/2">
             <Button
               type="button"
               variant="secondary"
@@ -98,7 +104,7 @@ export function RaceImageCarousel({ images, title, className }: RaceImageCarouse
             </Button>
           </div>
 
-          <div className="absolute bottom-3 left-3 right-3 z-10 flex items-center justify-between">
+          <div className="absolute bottom-3 left-3 right-3 z-20 flex items-center justify-between">
             <p className="rounded-full border border-white/35 bg-black/35 px-2 py-1 text-[10px] uppercase tracking-[0.12em] text-white/90">
               {currentIndex + 1}/{preparedImages.length}
             </p>

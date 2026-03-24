@@ -1,10 +1,9 @@
 #!/usr/bin/env node
 /**
- * Upload only full-size race carousel assets: `1.jpg`, `2.jpg`, `3.jpg` under
- * `public/backgrounds/{Grand Prix}/` (not thumbnails). Same env and flags as
- * upload-public-to-s3.js, with a separate manifest.
- *
- * For `backgrounds-thumbs/` only, use `upload-background-carousel-thumbs-to-s3.js`.
+ * Upload only race carousel thumbnails: `1.jpg`, `2.jpg`, `3.jpg` under
+ * `public/backgrounds-thumbs/{Grand Prix}/`. Same env and flags as
+ * upload-public-to-s3.js, with its own manifest (separate from full-size
+ * `upload-background-carousel-to-s3.js`).
  *
  * Incremental uploads: a JSON manifest stores sha256 per relative path.
  *
@@ -29,9 +28,9 @@
  *   --prefix <p>        Override AWS_S3_PREFIX for this run
  *
  * Usage (from formulaone/):
- *   bun run upload-background-carousel-s3 -- --dry-run
- *   bun run upload-background-carousel-s3
- *   AWS_S3_UPLOAD_CONCURRENCY=48 bun run upload-background-carousel-s3
+ *   bun run upload-background-carousel-thumbs-s3 -- --dry-run
+ *   bun run upload-background-carousel-thumbs-s3
+ *   AWS_S3_UPLOAD_CONCURRENCY=48 bun run upload-background-carousel-thumbs-s3
  */
 const fs = require("fs");
 const path = require("path");
@@ -39,8 +38,8 @@ const crypto = require("crypto");
 const { S3Client, PutObjectCommand } = require("@aws-sdk/client-s3");
 
 const MANIFEST_VERSION = 1;
-const DEFAULT_MANIFEST_PATH = path.join(__dirname, "public-s3-manifest-background-carousel.json");
-const DEFAULT_UPLOAD_LOG = path.join(__dirname, "public-s3-upload-background-carousel.log");
+const DEFAULT_MANIFEST_PATH = path.join(__dirname, "public-s3-manifest-background-carousel-thumbs.json");
+const DEFAULT_UPLOAD_LOG = path.join(__dirname, "public-s3-upload-background-carousel-thumbs.log");
 const DEFAULT_UPLOAD_CONCURRENCY = 32;
 
 function uploadConcurrency(parsed) {
@@ -94,10 +93,10 @@ function normalizeS3Endpoint(raw) {
 const PUBLIC_DIR = path.join(__dirname, "..", "public");
 const SKIP_NAMES = new Set([".DS_Store", "Thumbs.db", ".gitkeep"]);
 
-/** Relative path uses forward slashes. Full-size `backgrounds/` only (not `backgrounds-thumbs/`). */
+/** Relative path uses forward slashes. `backgrounds-thumbs/` carousel slots only. */
 function isCarouselSlotFile(rel) {
   const n = rel.replace(/\\/g, "/");
-  if (!n.startsWith("backgrounds/")) return false;
+  if (!n.startsWith("backgrounds-thumbs/")) return false;
   return /\/(1|2|3)\.(jpg|jpeg|webp)$/i.test(n);
 }
 
@@ -246,7 +245,7 @@ async function main() {
   });
   const publicLabel = path.relative(process.cwd(), PUBLIC_DIR) || "public";
   console.log(
-    `Found ${files.length} carousel file(s) (1/2/3 under backgrounds/) of ${allFiles.length} total under ${publicLabel}`,
+    `Found ${files.length} carousel thumb file(s) (1/2/3 under backgrounds-thumbs/) of ${allFiles.length} total under ${publicLabel}`,
   );
   if (prefix) console.log(`Key prefix: "${prefix}"`);
   console.log(`Concurrency: ${conc}`);
