@@ -17,6 +17,7 @@
     "upload-background-carousel-thumbs-s3": "node scripts/upload-background-carousel-thumbs-to-s3.js",
     "upload-race-flags-s3": "node scripts/upload-race-flags-s3.js",
     "normalize-public-names": "node scripts/normalize-public-filenames.js",
+    "rename-background-folders": "node scripts/rename-background-folders-to-race-ids.js",
     "start": "next start",
     "lint": "eslint"
   },

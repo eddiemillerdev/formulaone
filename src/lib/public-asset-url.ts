@@ -2,7 +2,7 @@
  * Resolves paths under `public/` when `NEXT_PUBLIC_ASSET_BASE_URL` is set.
  * - Public CDN/S3 URL: `https://…` (bucket must allow anonymous GET).
  * - Private bucket: `/api/public-assets` — same-origin proxy (`src/app/api/public-assets`) uses server credentials.
- * Upload `public/` so keys match `/backgrounds/...`, `/images/...`, `/f1.mp4`.
+ * Upload `public/` so keys match `/backgrounds/{raceId}/...`, `/images/...`, `/f1.mp4`.
  *
  * When unset, returns the same root-relative path (Next serves `public/` locally).
  */

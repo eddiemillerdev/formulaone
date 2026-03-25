@@ -1,8 +1,8 @@
 #!/usr/bin/env node
 /**
  * Upload only full-size race carousel assets: `1.jpg`, `2.jpg`, `3.jpg` under
- * `public/backgrounds/{Grand Prix}/` (not thumbnails). Same env and flags as
- * upload-public-to-s3.js, with a separate manifest.
+ * `public/backgrounds/{raceId}/` (race `id` from races-mapping, e.g. `british-gp`; not thumbnails).
+ * Same env and flags as upload-public-to-s3.js, with a separate manifest.
  *
  * For `backgrounds-thumbs/` only, use `upload-background-carousel-thumbs-to-s3.js`.
  *

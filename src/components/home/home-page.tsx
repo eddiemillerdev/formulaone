@@ -25,14 +25,14 @@ const featurePanels = [
     copy: "See every race weekend at a glance. Plan your year and go straight to official ticket packages, dates and availability for each Grand Prix.",
     href: "/calendar",
     icon: CalendarDays,
-    image: "/backgrounds/British Grand Prix/2.jpg",
+    image: "/backgrounds/british-gp/2.jpg",
   },
   {
     title: "Team Hub",
     copy: "Explore your favourite F1® teams, their race calendar and dedicated ticket options. Find packages for the circuits that matter to you.",
     href: "/teams",
     icon: Users,
-    image: "/backgrounds/Monaco Grand Prix/2.jpg",
+    image: "/backgrounds/monaco-gp/2.jpg",
   },
 ] as const;
 

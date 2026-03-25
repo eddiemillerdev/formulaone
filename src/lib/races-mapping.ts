@@ -43,9 +43,9 @@ export const RACE_MAPPINGS: RaceMappingItem[] = [
     description:
       "Season opener energy, a fast street-style layout, and one of the strongest fan atmospheres on the calendar.",
     images: [
-      "/backgrounds/Australian Grand Prix/1.jpg",
-      "/backgrounds/Australian Grand Prix/2.jpg",
-      "/backgrounds/Australian Grand Prix/3.jpg",
+      "/backgrounds/australian-gp/1.jpg",
+      "/backgrounds/australian-gp/2.jpg",
+      "/backgrounds/australian-gp/3.jpg",
     ],
     packages: DEFAULT_DEPOSIT_PACKAGES,
   },
@@ -60,9 +60,9 @@ export const RACE_MAPPINGS: RaceMappingItem[] = [
     description:
       "Long straights and technical corners with strong hospitality demand across grandstand and premium categories.",
     images: [
-      "/backgrounds/Chinese Grand Prix/1.jpg",
-      "/backgrounds/Chinese Grand Prix/2.jpg",
-      "/backgrounds/Chinese Grand Prix/3.jpg",
+      "/backgrounds/chinese-gp/1.jpg",
+      "/backgrounds/chinese-gp/2.jpg",
+      "/backgrounds/chinese-gp/3.jpg",
     ],
     packages: DEFAULT_DEPOSIT_PACKAGES,
   },
@@ -77,9 +77,9 @@ export const RACE_MAPPINGS: RaceMappingItem[] = [
     description:
       "Figure-of-eight legend with high-speed esses and passionate local crowds every race weekend.",
     images: [
-      "/backgrounds/Japanese Grand Prix/1.jpg",
-      "/backgrounds/Japanese Grand Prix/2.jpg",
-      "/backgrounds/Japanese Grand Prix/3.jpg",
+      "/backgrounds/japanese-gp/1.jpg",
+      "/backgrounds/japanese-gp/2.jpg",
+      "/backgrounds/japanese-gp/3.jpg",
     ],
     packages: DEFAULT_DEPOSIT_PACKAGES,
   },
@@ -94,9 +94,9 @@ export const RACE_MAPPINGS: RaceMappingItem[] = [
     description:
       "A desert night-race classic with strong overtaking zones and premium hospitality views under floodlights.",
     images: [
-      "/backgrounds/Bahrain Grand Prix/1.jpg",
-      "/backgrounds/Bahrain Grand Prix/2.jpg",
-      "/backgrounds/Bahrain Grand Prix/3.jpg",
+      "/backgrounds/bahrain-gp/1.jpg",
+      "/backgrounds/bahrain-gp/2.jpg",
+      "/backgrounds/bahrain-gp/3.jpg",
     ],
     packages: DEFAULT_DEPOSIT_PACKAGES,
   },
@@ -111,9 +111,9 @@ export const RACE_MAPPINGS: RaceMappingItem[] = [
     description:
       "The fastest street circuit on the calendar, racing at night along the Red Sea with non-stop action.",
     images: [
-      "/backgrounds/Saudi Arabian Grand Prix/1.jpg",
-      "/backgrounds/Saudi Arabian Grand Prix/2.jpg",
-      "/backgrounds/Saudi Arabian Grand Prix/3.jpg",
+      "/backgrounds/saudi-arabian-gp/1.jpg",
+      "/backgrounds/saudi-arabian-gp/2.jpg",
+      "/backgrounds/saudi-arabian-gp/3.jpg",
     ],
     packages: DEFAULT_DEPOSIT_PACKAGES,
   },
@@ -128,9 +128,9 @@ export const RACE_MAPPINGS: RaceMappingItem[] = [
     description:
       "High-profile race weekend with premium hospitality demand, nightlife access, and strong global interest.",
     images: [
-      "/backgrounds/Miami Grand Prix/1.jpg",
-      "/backgrounds/Miami Grand Prix/2.jpg",
-      "/backgrounds/Miami Grand Prix/3.jpg",
+      "/backgrounds/miami-gp/1.jpg",
+      "/backgrounds/miami-gp/2.jpg",
+      "/backgrounds/miami-gp/3.jpg",
     ],
     packages: DEFAULT_DEPOSIT_PACKAGES,
   },
@@ -145,9 +145,9 @@ export const RACE_MAPPINGS: RaceMappingItem[] = [
     description:
       "Island circuit known for close racing, wall-lined chicanes, and one of the loudest North American crowds.",
     images: [
-      "/backgrounds/Canadian Grand Prix/1.jpg",
-      "/backgrounds/Canadian Grand Prix/2.jpg",
-      "/backgrounds/Canadian Grand Prix/3.jpg",
+      "/backgrounds/canadian-gp/1.jpg",
+      "/backgrounds/canadian-gp/2.jpg",
+      "/backgrounds/canadian-gp/3.jpg",
     ],
     packages: DEFAULT_DEPOSIT_PACKAGES,
   },
@@ -162,9 +162,9 @@ export const RACE_MAPPINGS: RaceMappingItem[] = [
     description:
       "Iconic harbor-side race with limited ticket inventory and unmatched prestige for VIP and premium packages.",
     images: [
-      "/backgrounds/Monaco Grand Prix/1.jpg",
-      "/backgrounds/Monaco Grand Prix/2.jpg",
-      "/backgrounds/Monaco Grand Prix/3.jpg",
+      "/backgrounds/monaco-gp/1.jpg",
+      "/backgrounds/monaco-gp/2.jpg",
+      "/backgrounds/monaco-gp/3.jpg",
     ],
     packages: DEFAULT_DEPOSIT_PACKAGES,
   },
@@ -179,9 +179,9 @@ export const RACE_MAPPINGS: RaceMappingItem[] = [
     description:
       "A proven pre-season benchmark track with varied corners and strong demand for grandstand and VIP seats.",
     images: [
-      "/backgrounds/Spanish Grand Prix/1.jpg",
-      "/backgrounds/Spanish Grand Prix/2.jpg",
-      "/backgrounds/Spanish Grand Prix/3.jpg",
+      "/backgrounds/spanish-gp/1.jpg",
+      "/backgrounds/spanish-gp/2.jpg",
+      "/backgrounds/spanish-gp/3.jpg",
     ],
     packages: DEFAULT_DEPOSIT_PACKAGES,
   },
@@ -196,9 +196,9 @@ export const RACE_MAPPINGS: RaceMappingItem[] = [
     description:
       "Short lap, big elevation changes, and festival atmosphere in the Styrian mountains.",
     images: [
-      "/backgrounds/Austrian Grand Prix/1.jpg",
-      "/backgrounds/Austrian Grand Prix/2.jpg",
-      "/backgrounds/Austrian Grand Prix/3.jpg",
+      "/backgrounds/austrian-gp/1.jpg",
+      "/backgrounds/austrian-gp/2.jpg",
+      "/backgrounds/austrian-gp/3.jpg",
     ],
     packages: DEFAULT_DEPOSIT_PACKAGES,
   },
@@ -213,9 +213,9 @@ export const RACE_MAPPINGS: RaceMappingItem[] = [
     description:
       "Historic high-speed corners, massive crowds, and a race weekend known for loud, all-day grandstand atmosphere.",
     images: [
-      "/backgrounds/British Grand Prix/1.jpg",
-      "/backgrounds/British Grand Prix/2.jpg",
-      "/backgrounds/British Grand Prix/3.jpg",
+      "/backgrounds/british-gp/1.jpg",
+      "/backgrounds/british-gp/2.jpg",
+      "/backgrounds/british-gp/3.jpg",
     ],
     packages: DEFAULT_DEPOSIT_PACKAGES,
   },
@@ -230,9 +230,9 @@ export const RACE_MAPPINGS: RaceMappingItem[] = [
     description:
       "Ardennes weather, Eau Rouge, and one of the longest laps in F1 with huge elevation change.",
     images: [
-      "/backgrounds/Belgian Grand Prix/1.jpg",
-      "/backgrounds/Belgian Grand Prix/2.jpg",
-      "/backgrounds/Belgian Grand Prix/3.jpg",
+      "/backgrounds/belgian-gp/1.jpg",
+      "/backgrounds/belgian-gp/2.jpg",
+      "/backgrounds/belgian-gp/3.jpg",
     ],
     packages: DEFAULT_DEPOSIT_PACKAGES,
   },
@@ -247,9 +247,9 @@ export const RACE_MAPPINGS: RaceMappingItem[] = [
     description:
       "Twisty, technical Hungaroring layout where qualifying and race strategy often decide the podium.",
     images: [
-      "/backgrounds/Hungarian Grand Prix/1.jpg",
-      "/backgrounds/Hungarian Grand Prix/2.jpg",
-      "/backgrounds/Hungarian Grand Prix/3.jpg",
+      "/backgrounds/hungarian-gp/1.jpg",
+      "/backgrounds/hungarian-gp/2.jpg",
+      "/backgrounds/hungarian-gp/3.jpg",
     ],
     packages: DEFAULT_DEPOSIT_PACKAGES,
   },
@@ -264,9 +264,9 @@ export const RACE_MAPPINGS: RaceMappingItem[] = [
     description:
       "Banked corners, dunes, and one of the most energetic fan bases on the calendar.",
     images: [
-      "/backgrounds/Dutch Grand Prix/1.jpg",
-      "/backgrounds/Dutch Grand Prix/2.jpg",
-      "/backgrounds/Dutch Grand Prix/3.jpg",
+      "/backgrounds/dutch-gp/1.jpg",
+      "/backgrounds/dutch-gp/2.jpg",
+      "/backgrounds/dutch-gp/3.jpg",
     ],
     packages: DEFAULT_DEPOSIT_PACKAGES,
   },
@@ -281,9 +281,9 @@ export const RACE_MAPPINGS: RaceMappingItem[] = [
     description:
       "Tifosi-driven race weekend with strong heritage, high-speed straights, and high demand across all categories.",
     images: [
-      "/backgrounds/Italian Grand Prix/1.jpg",
-      "/backgrounds/Italian Grand Prix/2.jpg",
-      "/backgrounds/Italian Grand Prix/3.jpg",
+      "/backgrounds/italian-gp/1.jpg",
+      "/backgrounds/italian-gp/2.jpg",
+      "/backgrounds/italian-gp/3.jpg",
     ],
     packages: DEFAULT_DEPOSIT_PACKAGES,
   },
@@ -298,9 +298,9 @@ export const RACE_MAPPINGS: RaceMappingItem[] = [
     description:
       "New city-centre style racing in the Spanish capital with fresh hospitality and grandstand experiences.",
     images: [
-      "/backgrounds/Madrid Grand Prix/1.jpg",
-      "/backgrounds/Madrid Grand Prix/2.jpg",
-      "/backgrounds/Madrid Grand Prix/3.jpg",
+      "/backgrounds/madrid-gp/1.jpg",
+      "/backgrounds/madrid-gp/2.jpg",
+      "/backgrounds/madrid-gp/3.jpg",
     ],
     packages: DEFAULT_DEPOSIT_PACKAGES,
   },
@@ -315,9 +315,9 @@ export const RACE_MAPPINGS: RaceMappingItem[] = [
     description:
       "Blistering straights through the old city and a tight castle section that punishes mistakes.",
     images: [
-      "/backgrounds/Azerbaijan Grand Prix/1.jpg",
-      "/backgrounds/Azerbaijan Grand Prix/2.jpg",
-      "/backgrounds/Azerbaijan Grand Prix/3.jpg",
+      "/backgrounds/azerbaijan-gp/1.jpg",
+      "/backgrounds/azerbaijan-gp/2.jpg",
+      "/backgrounds/azerbaijan-gp/3.jpg",
     ],
     packages: DEFAULT_DEPOSIT_PACKAGES,
   },
@@ -332,9 +332,9 @@ export const RACE_MAPPINGS: RaceMappingItem[] = [
     description:
       "Night-race spectacle in the city center with premium skyline viewing and hospitality-led demand.",
     images: [
-      "/backgrounds/Singapore Grand Prix/1.jpg",
-      "/backgrounds/Singapore Grand Prix/2.jpg",
-      "/backgrounds/Singapore Grand Prix/3.jpg",
+      "/backgrounds/singapore-gp/1.jpg",
+      "/backgrounds/singapore-gp/2.jpg",
+      "/backgrounds/singapore-gp/3.jpg",
     ],
     packages: DEFAULT_DEPOSIT_PACKAGES,
   },
@@ -349,9 +349,9 @@ export const RACE_MAPPINGS: RaceMappingItem[] = [
     description:
       "High-energy US weekend with strong corporate demand and full hospitality programs around race day.",
     images: [
-      "/backgrounds/United States Grand Prix/1.jpg",
-      "/backgrounds/United States Grand Prix/2.jpg",
-      "/backgrounds/United States Grand Prix/3.jpg",
+      "/backgrounds/us-gp/1.jpg",
+      "/backgrounds/us-gp/2.jpg",
+      "/backgrounds/us-gp/3.jpg",
     ],
     packages: DEFAULT_DEPOSIT_PACKAGES,
   },
@@ -366,9 +366,9 @@ export const RACE_MAPPINGS: RaceMappingItem[] = [
     description:
       "A vibrant fan-heavy weekend known for altitude, stadium sections, and high local demand.",
     images: [
-      "/backgrounds/Mexico City Grand Prix/1.jpg",
-      "/backgrounds/Mexico City Grand Prix/2.jpg",
-      "/backgrounds/Mexico City Grand Prix/3.jpg",
+      "/backgrounds/mexico-city-gp/1.jpg",
+      "/backgrounds/mexico-city-gp/2.jpg",
+      "/backgrounds/mexico-city-gp/3.jpg",
     ],
     packages: DEFAULT_DEPOSIT_PACKAGES,
   },
@@ -383,9 +383,9 @@ export const RACE_MAPPINGS: RaceMappingItem[] = [
     description:
       "Iconic Interlagos layout with elevation, weather swings, and one of the most passionate crowds in motorsport.",
     images: [
-      "/backgrounds/Sao Paulo Grand Prix/1.jpg",
-      "/backgrounds/Sao Paulo Grand Prix/2.jpg",
-      "/backgrounds/Sao Paulo Grand Prix/3.jpg",
+      "/backgrounds/sao-paulo-gp/1.jpg",
+      "/backgrounds/sao-paulo-gp/2.jpg",
+      "/backgrounds/sao-paulo-gp/3.jpg",
     ],
     packages: DEFAULT_DEPOSIT_PACKAGES,
   },
@@ -400,9 +400,9 @@ export const RACE_MAPPINGS: RaceMappingItem[] = [
     description:
       "Late-season night race on the Strip with premium demand for hospitality, suites, and city packages.",
     images: [
-      "/backgrounds/Las Vegas Grand Prix/1.jpg",
-      "/backgrounds/Las Vegas Grand Prix/2.jpg",
-      "/backgrounds/Las Vegas Grand Prix/3.jpg",
+      "/backgrounds/las-vegas-gp/1.jpg",
+      "/backgrounds/las-vegas-gp/2.jpg",
+      "/backgrounds/las-vegas-gp/3.jpg",
     ],
     packages: DEFAULT_DEPOSIT_PACKAGES,
   },
@@ -417,9 +417,9 @@ export const RACE_MAPPINGS: RaceMappingItem[] = [
     description:
       "Fast modern circuit under lights with strong premium inventory and late-season championship pressure.",
     images: [
-      "/backgrounds/Qatar Grand Prix/1.jpg",
-      "/backgrounds/Qatar Grand Prix/2.jpg",
-      "/backgrounds/Qatar Grand Prix/3.jpg",
+      "/backgrounds/qatar-gp/1.jpg",
+      "/backgrounds/qatar-gp/2.jpg",
+      "/backgrounds/qatar-gp/3.jpg",
     ],
     packages: DEFAULT_DEPOSIT_PACKAGES,
   },
@@ -434,9 +434,9 @@ export const RACE_MAPPINGS: RaceMappingItem[] = [
     description:
       "Season finale with sunset racing, premium marina views, and strong demand for final-round packages.",
     images: [
-      "/backgrounds/Abu Dhabi Grand Prix/1.jpg",
-      "/backgrounds/Abu Dhabi Grand Prix/2.jpg",
-      "/backgrounds/Abu Dhabi Grand Prix/3.jpg",
+      "/backgrounds/abu-dhabi-gp/1.jpg",
+      "/backgrounds/abu-dhabi-gp/2.jpg",
+      "/backgrounds/abu-dhabi-gp/3.jpg",
     ],
     packages: DEFAULT_DEPOSIT_PACKAGES,
   },
